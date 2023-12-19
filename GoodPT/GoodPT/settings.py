@@ -83,39 +83,9 @@ DATABASES = {
         'ENGINE' : 'django.db.backends.mysql',
         'HOST' : 'database-1.cbwtl8qiph0q.ap-northeast-2.rds.amazonaws.com',
         'PORT' : '3306',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c83d255 (fix: mysql info)
         'NAME' : 'GoodPT',
         'USER' : 'master',
         'PASSWORD' : 'masterDB',
-=======
-        'NAME' : 'goodpt',
-        'USER' : 'goodpt_id',
-        'PASSWORD' : 'ehdwo2991!',
->>>>>>> c3de99a (fix: mysql info)
-<<<<<<< HEAD
-=======
-        'NAME' : 'goodpt',
-        'USER' : 'goodpt_id',
-        'PASSWORD' : 'ehdwo2991!',
->>>>>>> c3de99a (fix: mysql info)
-=======
->>>>>>> c83d255 (fix: mysql info)
-=======
-        'NAME' : 'goodpt',
-        'USER' : 'goodpt_id',
-        'PASSWORD' : 'ehdwo2991!',
->>>>>>> c3de99a (fix: mysql info)
-=======
-        'NAME' : 'GoodPT',
-        'USER' : 'master',
-        'PASSWORD' : 'masterDB',
->>>>>>> 406e8be (fix)
     }
 }
 
