@@ -97,7 +97,11 @@ DATABASES = {
         'NAME' : 'goodpt',
         'USER' : 'goodpt_id',
         'PASSWORD' : 'ehdwo2991!',
+<<<<<<< HEAD
 >>>>>>> c3de99a (fix: mysql info)
+=======
+>>>>>>> c3de99afe2f9139f0d9bdc8e6e57a1b1a99d7b21
+>>>>>>> 312f3c67857db0573bb2b9442b4624096622f792
     }
 }
 
