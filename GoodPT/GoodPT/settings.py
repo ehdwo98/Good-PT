@@ -84,6 +84,7 @@ DATABASES = {
         'HOST' : 'database-1.cbwtl8qiph0q.ap-northeast-2.rds.amazonaws.com',
         'PORT' : '3306',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'NAME' : 'GoodPT',
         'USER' : 'master',
         'PASSWORD' : 'masterDB',
@@ -92,6 +93,11 @@ DATABASES = {
         'USER' : 'goodpt_id',
         'PASSWORD' : 'ehdwo2991!',
 >>>>>>> c3de99a (fix: mysql info)
+=======
+        'NAME' : 'goodpt',
+        'USER' : 'goodpt_id',
+        'PASSWORD' : 'ehdwo2991!',
+>>>>>>> c3de99afe2f9139f0d9bdc8e6e57a1b1a99d7b21
     }
 }
 
