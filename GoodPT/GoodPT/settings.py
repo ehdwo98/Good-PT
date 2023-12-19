@@ -87,6 +87,7 @@ DATABASES = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c83d255 (fix: mysql info)
         'NAME' : 'GoodPT',
@@ -110,6 +111,11 @@ DATABASES = {
         'USER' : 'goodpt_id',
         'PASSWORD' : 'ehdwo2991!',
 >>>>>>> c3de99a (fix: mysql info)
+=======
+        'NAME' : 'GoodPT',
+        'USER' : 'master',
+        'PASSWORD' : 'masterDB',
+>>>>>>> 406e8be (fix)
     }
 }
 
