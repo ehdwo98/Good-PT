@@ -81,11 +81,11 @@ WSGI_APPLICATION = "GoodPT.wsgi.application"
 DATABASES = {
     'default':{
         'ENGINE' : 'django.db.backends.mysql',
-        'HOST' : 'localhost',
+        'HOST' : 'database-1.cbwtl8qiph0q.ap-northeast-2.rds.amazonaws.com',
         'PORT' : '3306',
-        'NAME' : 'mydb',
-        'USER' : 'root',
-        'PASSWORD' : 'aivle',
+        'NAME' : 'GoodPT',
+        'USER' : 'master',
+        'PASSWORD' : 'masterDB',
     }
 }
 
