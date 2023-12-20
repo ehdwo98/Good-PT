@@ -4,3 +4,6 @@ from django.http import HttpResponse
 
 def test1(request):
     return render(request,'login.html')
+
+def test2(request):
+    return render(request,'naver.html')
