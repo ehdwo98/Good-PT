@@ -3,5 +3,7 @@ from . import views
 
 urlpatterns = [
     path('',views.test1),
-    path('naver-login',views.test2)
+    path('naver-login',views.test2),
+    path('google-login',views.test3)
+
 ]
