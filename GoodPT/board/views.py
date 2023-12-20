@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .models import Question, 
+from .models import Question, Answer
 
 
 def index(request):
