@@ -32,12 +32,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.naver",
     "accounts",
     "board",
     "presentation",
@@ -52,8 +57,17 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'   # social login redirect
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # logout redirect
+SITE_ID = 1
 ROOT_URLCONF = "GoodPT.urls"
 
 TEMPLATES = [
@@ -83,21 +97,9 @@ DATABASES = {
         'ENGINE' : 'django.db.backends.mysql',
         'HOST' : 'database-1.cbwtl8qiph0q.ap-northeast-2.rds.amazonaws.com',
         'PORT' : '3306',
-<<<<<<< HEAD
-<<<<<<< HEAD
         'NAME' : 'GoodPT',
         'USER' : 'master',
         'PASSWORD' : 'masterDB',
-=======
-        'NAME' : 'goodpt',
-        'USER' : 'root',
-        'PASSWORD' : 'aivle',
->>>>>>> 04c61af (edit)
-=======
-        'NAME' : 'GoodPT',
-        'USER' : 'master',
-        'PASSWORD' : 'masterDB',
->>>>>>> 712fe50 (settings)
     }
 }
 
