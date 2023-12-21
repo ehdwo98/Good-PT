@@ -9,4 +9,4 @@ def test2(request):
     return render(request,'naver.html')
 
 def test3(request):
-    return render(request,'google.html')
+    return render(request,'naverCallback.html')
