@@ -12,7 +12,14 @@
       </a>
 	</li>
 </ul>
-
+{% load socialaccount %}
+<div>
+    {% if user.is_authenticated %}
+        <a href="/accounts/logout" type="button" class="h1">Logout</a>   
+    {% else %}                
+    <h2><a href="{% provider_login_url 'naver' method='oauth2' %}">페이스북 로그인</a></h2>    
+    {% endif %}
+</div>
 <!-- 네이버 스크립트 -->
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script type="text/javascript" src = '/static/js/keys.js'></script>
