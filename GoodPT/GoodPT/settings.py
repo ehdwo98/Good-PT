@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.naver",
+    "allauth.socialaccount.providers.kakao",
+    "allauth.socialaccount.providers.google",
+
     "accounts",
     "board",
     "presentation",
@@ -65,10 +68,12 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-LOGIN_REDIRECT_URL = '/'   # social login redirect
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # logout redirect
+LOGIN_REDIRECT_URL = '/login/naver-login'   # social login redirect
+ACCOUNT_LOGOUT_REDIRECT_URL = '/login/naver-login'  # logout redirect
 SITE_ID = 1
 ROOT_URLCONF = "GoodPT.urls"
+SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = True 
 
 TEMPLATES = [
     {
@@ -147,3 +152,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
