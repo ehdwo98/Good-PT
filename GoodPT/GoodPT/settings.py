@@ -84,6 +84,7 @@ DATABASES = {
         'HOST' : 'database-1.cbwtl8qiph0q.ap-northeast-2.rds.amazonaws.com',
         'PORT' : '3306',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'NAME' : 'GoodPT',
         'USER' : 'master',
         'PASSWORD' : 'masterDB',
@@ -92,6 +93,11 @@ DATABASES = {
         'USER' : 'root',
         'PASSWORD' : 'aivle',
 >>>>>>> 04c61af (edit)
+=======
+        'NAME' : 'GoodPT',
+        'USER' : 'master',
+        'PASSWORD' : 'masterDB',
+>>>>>>> 712fe50 (settings)
     }
 }
 
