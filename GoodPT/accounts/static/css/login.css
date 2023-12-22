@@ -15,7 +15,7 @@
   background: #ebecf0;
   overflow: hidden;
 }
-.container {
+.container-login {
   border-radius: 10px;
   box-shadow: -5px -5px 10px #fff, 5px 5px 10px #babebc;
   position: absolute;
@@ -130,20 +130,20 @@ form input {
   color: #fff;
   transition: all 0.5s;
 }
-.container.right-panel-active .sign-in-container {
+.container-login.right-panel-active .sign-in-container {
   transform: translateX(100%);
   opacity: 0;
 }
-.container.right-panel-active .sign-up-container {
+.container-login.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 2;
 }
-.container.right-panel-active .overlay-right {
+.container-login.right-panel-active .overlay-right {
   transform: translateX(-100%);
   opacity: 0;
 }
-.container.right-panel-active .overlay-left {
+.container-login.right-panel-active .overlay-left {
   transform: translateX(-100%);
   opacity: 1;
   z-index: 2;

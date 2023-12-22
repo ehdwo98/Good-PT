@@ -1,9 +1,12 @@
-<html>
+{% extends "layout.html" %}
+{% load static %}
+{% comment %} <html>
     <head>
     </head>
-    <body>
+    <body> {% endcomment %}
+{% block content %}
         <div class="wrapper">
-            <div class="container">
+            <div class="container-login">
             <div class="sign-up-container">
                 <div class = "login_form">
                 <form>
@@ -71,7 +74,8 @@
             </div>
             </div>
         </div>
-    </body>
+    {% comment %} </body> {% endcomment %}
     <link rel="stylesheet" href="/static/css/login.css"/>
     <script defer src = '/static/js/login.js'></script>
-<html>
+{% comment %} <html> {% endcomment %}
+{% endblock content %}
