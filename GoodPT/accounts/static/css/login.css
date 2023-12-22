@@ -82,11 +82,10 @@ form input {
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 80ms ease-in;
-  background-color: #2b75ff;
-  background-color: ;
-  color: #fff;
-  background-color: #206efe;
-  box-shadow: -5px -5px 10px , 5px 5px 8px #206efe;
+  background-color: #424D83;
+  border: 1px solid black;
+  color: black;
+  box-shadow: 5px 5px 5px , -3px -3px 3px #424D83;
 }
 .sign-in-container {
   position: absolute;
@@ -114,7 +113,7 @@ form input {
   width: 50%;
   height: 100%;
   opacity: 0;
-  background-color: #2b75ff;
+  background-color: #424D83;
   color: #fff;
   transition: all 0.5s;
 }
@@ -128,7 +127,7 @@ form input {
   right: 0;
   width: 50%;
   height: 100%;
-  background-color: #2b75ff;
+  background-color: #424D83;
   color: #fff;
   transition: all 0.5s;
 }
