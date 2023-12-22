@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <html>
 =======
@@ -62,6 +63,39 @@
                 <div class = "login_span">
                 소셜 로그인 또는 사이트 로그인을 해주세요.
                 </div>
+=======
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static '/css/login.css' %}?after"/>
+    <script defer src = "{% static '/js/login.js' %}"></script>
+    
+    <div class="wrapper">
+        <div class="container-login">
+        <div class="sign-up-container">
+            <div class = "login_form">
+            <form>
+            <h1>계정 생성하기</h1>
+
+            <div class = "login_span">
+                
+            </div>
+            <input type="text" placeholder="이름">
+            <input type="email" placeholder="이메일">
+            <input type="password" placeholder="비밀번호">
+            <button class="form_btn">회원가입</button>
+        </div>    
+        </form>
+        </div>
+        <div class="sign-in-container">
+            <div class="login_form">
+            <form>
+            <h1>로그인</h1>
+            <div class = "login_span">
+            소셜 로그인 또는 사이트 로그인을 해주세요.
+            </div>
+>>>>>>> ebf783c9e893fb86014b80c6a775e8efe8c1dca3
 
                 <input type="email" placeholder="이메일">
                 <input type="password" placeholder="비밀번호">
@@ -123,6 +157,7 @@
             <ul class="ft_link">
                 <li><a href="http://localhost:8000/login/privacy" onclick="privacypolicy()">개인정보 처리방침</a></li>
         </footer>
+<<<<<<< HEAD
         <!-- 모달 창 -->
    
     </body>
@@ -141,3 +176,6 @@
 >>>>>>> 89d8276 (edit main&login)
 {% endblock content %}
 >>>>>>> 1252577 (edit pages: main&login)
+=======
+{% endblock content %}
+>>>>>>> ebf783c9e893fb86014b80c6a775e8efe8c1dca3

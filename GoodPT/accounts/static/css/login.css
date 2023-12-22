@@ -68,6 +68,7 @@ form input {
 }
 .overlay_btn {
 <<<<<<< HEAD
+<<<<<<< HEAD
   border-radius: 20px;
   border: none;
   outline: none;
@@ -90,6 +91,8 @@ form input {
   box-shadow: 5px 5px 5px , -3px -3px 3px #424D83;
 >>>>>>> 89d8276 (edit main&login)
 =======
+=======
+>>>>>>> ebf783c9e893fb86014b80c6a775e8efe8c1dca3
     border-radius: 20px;
     border: none;
     outline: none;
@@ -105,7 +108,10 @@ form input {
     border: 1px solid black;
     color: black;
     box-shadow: 5px 5px 5px, -3px -3px 3px #424d83;
+<<<<<<< HEAD
 >>>>>>> ebf783c (fix 로그인 css수정)
+=======
+>>>>>>> ebf783c9e893fb86014b80c6a775e8efe8c1dca3
 }
 .sign-in-container {
     position: absolute;
@@ -202,6 +208,7 @@ form h1 {
 }
 .social-links a {
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   color: #000;
   display : flex;
@@ -223,3 +230,10 @@ div a img {
     box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
 }
 >>>>>>> ebf783c (fix 로그인 css수정)
+=======
+    color: #000;
+}
+.social-links div:active {
+    box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+}
+>>>>>>> ebf783c9e893fb86014b80c6a775e8efe8c1dca3
