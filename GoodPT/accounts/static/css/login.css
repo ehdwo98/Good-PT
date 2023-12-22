@@ -82,8 +82,6 @@ form input {
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 80ms ease-in;
-  background-color: #2b75ff;
-  background-color: ;
   color: #fff;
   background-color: #206efe;
   box-shadow: -5px -5px 10px , 5px 5px 8px #206efe;
@@ -184,7 +182,15 @@ form h1 {
 .social-links a {
   
   color: #000;
+  display : flex;
+  justify-content : center;
+
 }
 .social-links div:active {
   box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+}
+
+div a img {
+  width : 50%;
+  height : 50%;
 }
