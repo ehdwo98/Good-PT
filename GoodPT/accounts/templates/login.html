@@ -1,41 +1,34 @@
 {% extends "layout.html" %}
 {% load static %}
-{% comment %} <html>
-    <head>
-    </head>
-    <body> {% endcomment %}
+
 {% block content %}
         <div class="wrapper">
             <div class="container-login">
             <div class="sign-up-container">
                 <div class = "login_form">
                 <form>
-                <h1>Create Account</h1>
-                <div class="social-links">
-                    <div>
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    </div>
-                    <div>
-                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    </div>
-                    <div>
-                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                    </div>
-                </div>
+                <h1>계정 생성하기</h1>
+
                 <div class = "login_span">
-                    or use your email for registration
+                    
                 </div>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button class="form_btn">Sign Up</button>
+                <input type="text" placeholder="이름">
+                <input type="email" placeholder="이메일">
+                <input type="password" placeholder="비밀번호">
+                <button class="form_btn">회원가입</button>
             </div>    
             </form>
             </div>
             <div class="sign-in-container">
                 <div class="login_form">
                 <form>
-                <h1>Sign In</h1>
+                <h1>로그인</h1>
+                <div class = "login_span">
+                소셜 로그인 또는 사이트 로그인을 해주세요.
+                </div>
+
+                <input type="email" placeholder="이메일">
+                <input type="password" placeholder="비밀번호">
                 <div class="social-links">
                     <div>
                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -47,35 +40,29 @@
                     <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                     </div>
                 </div>
-                <div class = "login_span">
-                    or use your account
-                </div>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button class="form_btn">Sign In</button>
+                <button class="form_btn">로그인</button>
             </div>    
             </form>
             </div>
             <div class="overlay-container">
                 <div class="overlay-left">
-                <h1>Welcome Back</h1>
+                <h1>환영합니다!</h1>
                 <div class = "login_detail">
-                    <p>To keep connected with us please login with your personal info</p>
+                    <p>회원정보를 입력해 가입을 진행해주세요.</p>
                 </div>
-                <button id="signIn" class="overlay_btn">Sign In</button>
+                <button id="signIn" class="overlay_btn">로그인</button>
                 </div>
                 <div class="overlay-right">
-                <h1>Hello, Friend</h1>
+                <h1>발표력을 증진 시키세요!</h1>
                 <div class = "login_detail">
-                    <p>Enter your personal details and start journey with us</p>
+                    <p>우리 서비스에서 여러분의 발표능력을 향상시켜드리겠습니다.</p>
                 </div>
-                    <button id="signUp" class="overlay_btn">Sign Up</button>
+                    <button id="signUp" class="overlay_btn">회원가입</button>
                 </div>
             </div>
             </div>
         </div>
-    {% comment %} </body> {% endcomment %}
     <link rel="stylesheet" href="/static/css/login.css"/>
     <script defer src = '/static/js/login.js'></script>
-{% comment %} <html> {% endcomment %}
+    
 {% endblock content %}
