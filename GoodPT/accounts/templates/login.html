@@ -1,7 +1,11 @@
+
 <html>
     <head>
+        {% load i18n %}
+        {% load allauth account socialaccount %}
     </head>
     <body>
+
         <div class="wrapper">
             <div class="container">
             <div class="sign-up-container">
@@ -19,6 +23,7 @@
             </div>    
             </form>
             </div>
+            
             <div class="sign-in-container">
                 <div class="login_form">
                 <form>
@@ -31,13 +36,19 @@
                 <input type="password" placeholder="비밀번호">
                 <div class="social-links">
                     <div>
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img src="/static/img/kakao.png" style="
+                        width: 50%;
+                        height: 50%;
+                    "></i></a>
                     </div>
                     <div>
-                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="{% provider_login_url 'naver' method='oauth2' %}"><img src="/static/img/naver.png" style="
+                        width: 50%;
+                        height: 50% ;
+                    "></i></a>
                     </div>
                     <div>
-                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="{% provider_login_url 'google' method='oauth2' %}"><img src = '/static/img/google.png'></i></a>
                     </div>
                 </div>
                 <button class="form_btn">로그인</button>
