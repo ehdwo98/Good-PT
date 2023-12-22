@@ -1,13 +1,12 @@
-
-<html>
-    <head>
-        {% load i18n %}
-        {% load allauth account socialaccount %}
-    </head>
-    <body>
-
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% block content %}
+        <link rel="stylesheet" href="{% static '/css/login.css' %}?after"/>
+        <script defer src = "{% static '/js/login.js' %}"></script>
         <div class="wrapper">
-            <div class="container">
+            <div class="container-login">
             <div class="sign-up-container">
                 <div class = "login_form">
                 <form>
@@ -74,18 +73,7 @@
             </div>
         </div>
         <footer>
-           
-              
-            
             <ul class="ft_link">
                 <li><a href="http://localhost:8000/login/privacy" onclick="privacypolicy()">개인정보 처리방침</a></li>
-               
-              
-            
         </footer>
-        <!-- 모달 창 -->
-   
-    </body>
-    <link rel="stylesheet" href="/static/css/login.css"/>
-    <script defer src = '/static/js/login.js'></script>
-    <html>
+{% endblock content %}
