@@ -1,7 +1,2 @@
 /GoodPT/keys
-# /GoodPT/accounts/static/js/keys.js
-# /GoodPT/accounts/__pycache__/
-# /GoodPT/GoodPT/__pycache__/
-# /GoodPT/board/__pycache__/
-# /GoodPT/presentation/__pycache__/
-# /GoodPT/report/__pycache__/
+__pycache__/
