@@ -1,13 +1,24 @@
+<<<<<<< HEAD
 
 <html>
+=======
+{% extends "layout.html" %}
+{% load static %}
+{% comment %} <html>
+>>>>>>> 1252577 (edit pages: main&login)
     <head>
         {% load i18n %}
         {% load allauth account socialaccount %}
     </head>
+<<<<<<< HEAD
     <body>
 
+=======
+    <body> {% endcomment %}
+{% block content %}
+>>>>>>> 1252577 (edit pages: main&login)
         <div class="wrapper">
-            <div class="container">
+            <div class="container-login">
             <div class="sign-up-container">
                 <div class = "login_form">
                 <form>
@@ -73,6 +84,7 @@
             </div>
             </div>
         </div>
+<<<<<<< HEAD
         <footer>
            
               
@@ -89,3 +101,10 @@
     <link rel="stylesheet" href="/static/css/login.css"/>
     <script defer src = '/static/js/login.js'></script>
     <html>
+=======
+    {% comment %} </body> {% endcomment %}
+    <link rel="stylesheet" href="/static/css/login.css"/>
+    <script defer src = '/static/js/login.js'></script>
+{% comment %} <html> {% endcomment %}
+{% endblock content %}
+>>>>>>> 1252577 (edit pages: main&login)
