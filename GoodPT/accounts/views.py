@@ -10,3 +10,6 @@ def test2(request):
 
 def test3(request):
     return render(request,'naverCallback.html')
+
+def test4(request):
+    return render(request,'privacyPolicy.html')
