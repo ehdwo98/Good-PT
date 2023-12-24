@@ -9,7 +9,7 @@
             <div class="container-login">
             <div class="sign-up-container">
                 <div class = "login_form">
-                <form name = 'register' method="post">
+                <form method="post">
                     {%csrf_token%}
                 <h1>계정 생성하기</h1>
                 <div class = "login_span">
@@ -31,7 +31,7 @@
                 <div class = "login_span">
                 소셜 로그인 또는 사이트 로그인을 해주세요.
                 </div>
-                <form action="" name='login' method = "post">
+                <form action="" method = "post">
                     {%csrf_token%}
                 <input type="username" name = "username" placeholder="이메일">
                 <input type="password" name = "password" placeholder="비밀번호">

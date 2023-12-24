@@ -9,6 +9,7 @@ def test1(request):
         if 'login' in request.POST:
             form = AuthenticationForm(request,request.POST)
             if form.is_valid():
+                print('login success')
                 auth_login(request,form.get_user())
                 return redirect('/')
         elif 'register' in request.POST:
