@@ -78,8 +78,8 @@ form input {
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 80ms ease-in;
+  background-color: #2b75ff;
   color: #fff;
-  background-color: #206efe;
   box-shadow: -5px -5px 10px , 5px 5px 8px #206efe;
 }
 .sign-in-container {

@@ -9,30 +9,32 @@
             <div class="container-login">
             <div class="sign-up-container">
                 <div class = "login_form">
-                <form>
+                <form name = 'register' method="post">
+                    {%csrf_token%}
                 <h1>계정 생성하기</h1>
-
                 <div class = "login_span">
                     
                 </div>
-                <input type="text" placeholder="이름">
-                <input type="email" placeholder="이메일">
-                <input type="password" placeholder="비밀번호">
-                <button class="form_btn">회원가입</button>
+                <input type="text" name="username" placeholder="이름">
+                <input type="email" name = "email" placeholder="이메일">
+                <input type="password" name="password1" placeholder="비밀번호">
+                <input type="password" name="password2" placeholder="비밀번호확인">
+                <button class="form_btn" name="register">회원가입</button>
             </div>    
             </form>
             </div>
             
             <div class="sign-in-container">
                 <div class="login_form">
-                <form>
+
                 <h1>로그인</h1>
                 <div class = "login_span">
                 소셜 로그인 또는 사이트 로그인을 해주세요.
                 </div>
-
-                <input type="email" placeholder="이메일">
-                <input type="password" placeholder="비밀번호">
+                <form action="" name='login' method = "post">
+                    {%csrf_token%}
+                <input type="username" name = "username" placeholder="이메일">
+                <input type="password" name = "password" placeholder="비밀번호">
                 <div class="social-links">
                     <div>
                         <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img src="/static/img/kakao.png" style="
@@ -50,7 +52,7 @@
                         <a href="{% provider_login_url 'google' method='oauth2' %}"><img src = '/static/img/google.png'></i></a>
                     </div>
                 </div>
-                <button class="form_btn">로그인</button>
+                <button type="submit" class="form_btn" name="login">로그인</button>
             </div>    
             </form>
             </div>
