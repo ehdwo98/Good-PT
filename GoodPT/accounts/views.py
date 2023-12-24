@@ -6,6 +6,7 @@ from django.contrib.auth import login as auth_login
 def test1(request):
     if request.method == 'POST':
         form = AuthenticationForm(request,request.POST)
+        print(request.POST)
         if form.is_valid():
             auth_login(request,form.get_user())
             return redirect('/')
