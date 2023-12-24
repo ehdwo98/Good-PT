@@ -22,7 +22,7 @@ def detail(request, question_id):
     context = {'question': question}
     return render(request, 'board/question_detail.html', context)
 
-@login_required(login_url='login')
+@login_required(login_url='/login')
 def answer_create(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if request.method == "POST":
@@ -39,7 +39,7 @@ def answer_create(request, question_id):
     context = {'question': question, 'form': form}
     return render(request, 'board/question_detail.html', context)
 
-@login_required(login_url='login')
+@login_required(login_url='/login')
 def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
