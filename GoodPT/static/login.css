@@ -126,20 +126,20 @@ form input {
   color: #fff;
   transition: all 0.5s;
 }
-.container-login.right-panel-active .sign-in-container {
+.container.right-panel-active .sign-in-container {
   transform: translateX(100%);
   opacity: 0;
 }
-.container-login.right-panel-active .sign-up-container {
+.container.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 2;
 }
-.container-login.right-panel-active .overlay-right {
+.container.right-panel-active .overlay-right {
   transform: translateX(-100%);
   opacity: 0;
 }
-.container-login.right-panel-active .overlay-left {
+.container.right-panel-active .overlay-left {
   transform: translateX(-100%);
   opacity: 1;
   z-index: 2;
