@@ -68,8 +68,8 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-LOGIN_REDIRECT_URL = '/login/naver-login'   # social login redirect
-ACCOUNT_LOGOUT_REDIRECT_URL = '/login/naver-login'  # logout redirect
+LOGIN_REDIRECT_URL = '/'   # social login redirect
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # logout redirect
 SITE_ID = 1
 ROOT_URLCONF = "GoodPT.urls"
 SOCIALACCOUNT_LOGIN_ON_GET = True
@@ -153,3 +153,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "auth.User"
+LOGIN_URL = "login"
+LOGOUT_REDIRECT_URL = '/'
