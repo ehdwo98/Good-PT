@@ -12644,7 +12644,7 @@ fieldset:disabled .btn {
     padding-top: 5rem !important;
   }
   .pt-md-8 {
-    padding-top: 7.5rem !important;
+    /* padding-top: 7.5rem !important; */
   }
   .pt-md-9 {
     padding-top: 10rem !important;
