@@ -28,5 +28,5 @@ urlpatterns = [
     path("board/",include('board.urls')),
     path('accounts/', include('allauth.urls')),
     path('mypage/', include('mypage.urls')),
-
+    path("presentation/",include('presentation.urls')),
 ]
