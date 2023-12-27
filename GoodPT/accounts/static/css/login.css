@@ -41,9 +41,11 @@ form input {
     border: 0;
     outline: none;
     border-radius: 20px;
-    box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff;
-    color: black;
-  }
+    box-shadow: inset 3px 3px 10px #babebc, inset -5px -5px 12px #fff;
+}
+input::placeholder {
+  color: black !important;
+}
 .form_btn {
     border-radius: 20px;
     border: none;
