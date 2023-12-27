@@ -32,12 +32,15 @@
     height : 40px;
 }
 
+#button-analyze-image{
+    width : 40px;
+}
 .record-button, .stop-button, .play-button{
     background-color: white;
     border: none; 
 }
 
-.stop-button, .play-button{
+.stop-button, .play-button, .analyze-button{
     display : none;
 }
 
