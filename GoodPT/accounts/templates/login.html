@@ -4,7 +4,19 @@
 {% load allauth account socialaccount %}
 {% block content %}
         <link rel="stylesheet" href="{% static '/css/login.css' %}?after" />
-        <script defer src = "{% static '/js/login.js' %}"></script>
+        <link rel="stylesheet" href="{% static '/css/modal.css' %}?after" />
+        <script defer src="{% static 'js/login.js' %}?after"></script>
+        <script defer src="{% static 'js/modal.js' %}?after"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.4.0/js/ngDialog.min.js"></script>
+
+<script type="text/ng-template" id="templateId">
+    <div>
+        <p>{{ modal.injected.propertyInjection }}</p>
+      
+    </div>
+</script>
+
         <div class="wrapper">
             <div class="container-login">
             <div class="sign-up-container">
@@ -20,6 +32,8 @@
                             <input type="email" name = "email" placeholder="이메일">
                             <input type="password" name="password1" placeholder="비밀번호">
                             <input type="password" name="password2" placeholder="비밀번호확인">
+
+
                             <button class="form_btn" name="register">회원가입</button>
                         </form>
                     </div>
@@ -65,7 +79,25 @@
                     <h2> Good-PT에서</h2>
                     <div class = "login_detail">
                         <p>여러분의 발표능력을 향상시켜보세요.</p>
-                    </div>
+
+                        <div ng-app="app">
+                            <script type="text/ng-template" id="templateId">
+                              <div eid-tab-index class="modal-information modal-medium">
+                                <header class="modal-heading">
+                                  <div class="modal-title">{{modal.headingText}}</div>
+                                </header>
+                                <main class="modal-content">{{modal.injected.propertyInjection}}</main>
+                                <footer>
+                                <button type="button" ng-click="modal.close('submit')">동의</button>
+                                  <button type="button" ng-click="modal.close()">닫기</button></footer>
+                              </div>
+                            </script>
+                            <div ng-controller="ModalDemoCtrl as view">
+                              <button ng-click="view.clickToOpen()">약관 동의</button>
+                            </div>
+                          </div>
+
+                    </div>             
                     <button id="signUp" class="overlay_btn">회원가입</button>
                 </div>
             </div>
