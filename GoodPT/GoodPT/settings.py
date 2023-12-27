@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "board",
     "presentation",
     "report",
+    "mypage",
 ]
 
 MIDDLEWARE = [
