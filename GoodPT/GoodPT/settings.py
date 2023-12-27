@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "mypage",
+    "accounts",
     "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -45,12 +47,9 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.naver",
     "allauth.socialaccount.providers.kakao",
     "allauth.socialaccount.providers.google",
-
-    "accounts",
     "board",
     "presentation",
     "report",
-    "mypage",
 ]
 
 MIDDLEWARE = [
