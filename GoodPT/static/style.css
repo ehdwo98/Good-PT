@@ -1,0 +1,16 @@
+nav{
+    position: fixed;
+    top: 0;
+    /* width: 100% */
+    left: 0;
+    right: 0;
+}
+body {
+    padding-top: 90px;
+}
+#mypage_container,#pw_container{
+    width: 50%;
+}
+#question_list,#question_detail,#question_form,#answer_form{
+    width: 60%;
+}
