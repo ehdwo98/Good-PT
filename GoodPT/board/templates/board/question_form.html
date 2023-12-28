@@ -15,11 +15,11 @@
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
-            <textarea class="form-control" name="content" id="content" rows="10">
+            <textarea class="form-control" name="content" id="content" rows="10" style="resize: none;">
 {{ form.content.value|default_if_none:'' }}</textarea
             >
         </div>
-        <button type="submit" class="btn btn-primary">저장하기</button>
+        <button type="submit" class="btn btn-primary" style="background-color:#6671a4; border:#6671a4;">저장하기</button>
     </form>
 </div>
 {% endblock %}
