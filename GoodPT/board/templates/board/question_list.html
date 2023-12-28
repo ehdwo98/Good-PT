@@ -13,16 +13,16 @@
     }
 
 </style>
-<div class="container my-3">
-    <div class="row my-3" >
-        <div class="col-6" style="margin-top: 150px">
+<div class="container my-3" id="question_list">
+    <div class="row my-3"  >
+        <div class="col-6"style="margin-top: 80px">
             {% if user.is_authenticated %}
             <a href="{% url 'board:question_create' %}" class="btn btn-primary" style="background-color:#6671a4; border:#6671a4;">질문 등록하기</a>
             {% else %}
             <a class="btn btn-primary" href="/login" style="background-color: #6671a4; border: #6671a4;">로그인 후 이용가능</a>
             {% endif %}
         </div>
-        <div class="col-6" style="margin-top: 150px">
+        <div class="col-6"style="margin-top: 80px">
             <div class="input-group">
                 <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}"  style="margin-right: 10px;">
                 <div class="input-group-append">
