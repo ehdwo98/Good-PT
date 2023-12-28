@@ -59,7 +59,7 @@ function sendRecording() {
         method: 'post',
         headers: {
             "X-CSRFToken": getCSRFToken(),
-            'Content-Type' : 'application/octet-stream',
+            'enctype': 'multipart/form-data'
         },
         body: data
     })
