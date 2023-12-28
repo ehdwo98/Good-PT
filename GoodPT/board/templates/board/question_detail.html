@@ -1,20 +1,22 @@
 {% extends "layout.html" %} 
 {% load board_filter %}
 {% block content %}
-<div class="container my-3" id="question_detail">
+<div class="container my-3" id="question_detail" style="margin-top: 80px">
     <!-- message 표시 -->
     {% if messages %}
-    <div class="alert alert-danger my-3" role="alert">
         {% for message in messages %}
-        <strong>{{ message.tags }}</strong>
-        <ul>
-            <li>{{ message.message }}</li>
-        </ul>
+            {% if message.tags == 'error' %}
+                <div class="alert alert-danger my-3" role="alert">
+                    <strong>{{ message.tags }}</strong>
+                    <ul>
+                        <li>{{ message.message }}</li>
+                    </ul>
+                </div>
+            {% endif %}
         {% endfor %}
-    </div>
     {% endif %}
     <!-- 질문 -->
-    <h2 class="border-bottom py-2" style="margin-top: 80px">{{ question.subject }}</h2>
+    <h2 class="border-bottom py-2"style="margin-top: 80px">{{ question.subject }}</h2>
     <div class="card my-3">
         <div class="card-body">
             <div class="card-text">{{ question.content|mark }}</div>
