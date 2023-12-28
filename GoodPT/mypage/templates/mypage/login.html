@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    <link href="{% static 'css/login.css'%}" rel="stylesheet" />
+    <div class="entire">
+        <div class="login-border mt-5">
+            <h3>Login</h3>
+        
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="login-form">
+                    <table>
+                        {{ form.as_table}}
+                    </table>
+                </div>
+                <div class="btn-wrap">
+                    <input class="submit-btn" type="submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
