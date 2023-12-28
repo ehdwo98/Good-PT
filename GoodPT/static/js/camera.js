@@ -52,32 +52,24 @@ function playRecording() {
 } 
 
 function sendRecording() {
-    // Assuming `recordedBlob` is the blob containing the recorded video
-    recordedBlob = new Blob(recordedChunks, {type:"video/webm"});
-    console.log('Recorded Blob:', recordedBlob);
-
-    let form = document.createElement('form');
-    form.setAttribute('method', 'post');
-    form.setAttribute('action', '');
-
-    let hiddenField = document.createElement('input');
-    hiddenField.setAttribute('type', 'hidden');
-    hiddenField.setAttribute('name', 'recordedData');  
-    hiddenField.setAttribute('value', recordedBlob);   
-    form.appendChild(hiddenField);
-
-    let csrfTokenInput = document.createElement('input');
-    csrfTokenInput.setAttribute('type', 'hidden');
-    csrfTokenInput.setAttribute('name', 'csrfmiddlewaretoken');
-    csrfTokenInput.setAttribute('value', getCSRFToken()); 
-    form.appendChild(csrfTokenInput);
-
-    console.log('Form Data:', new FormData(form));
-
-    document.body.appendChild(form);
-    form.submit();
+    let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+    const data = new FormData();
+    data.append('recordedData', recordedBlob);
+    fetch('', {
+        method: 'post',
+        headers: {
+            "X-CSRFToken": getCSRFToken(),
+            'Content-Type' : 'application/octet-stream',
+        },
+        body: data
+    })
+        .then((res) => {return res.json()})
+        .then(json => {
+        })
+        .catch(err => {
+            console.log(err)
+        });
 }
-
 function getCSRFToken() {
     const cookieValue = document.cookie
         .split('; ')
