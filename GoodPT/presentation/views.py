@@ -31,10 +31,11 @@ def recording(request):
         cap.release()
         cv2.destroyAllWindows()
         
-        extractAudioFromVideo()
+        audio_path = extractAudioFromVideo()
         if os.path.exists(path):
             os.remove(path)
-
+        if os.path.exists(audio_path):
+            os.remove(audio_path)
             
             
 
