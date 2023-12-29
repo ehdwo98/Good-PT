@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import cv2
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-# from presentation.preprocessing import extractAudioFromVideo
+from presentation.preprocessing import extractAudioFromVideo
 import os
 import sys
 
@@ -31,7 +31,7 @@ def recording(request):
         cap.release()
         cv2.destroyAllWindows()
         
-        # extractAudioFromVideo()
+        extractAudioFromVideo()
         if os.path.exists(path):
             os.remove(path)
 
