@@ -102,14 +102,14 @@ def gesture_analysis(cap):
                 right_wrist_prev = right_wrist
             else:
                 right_wrist = right_wrist_prev
-            print(movement_distance_left_wrist, movement_distance_right_wrist)
+            # print(movement_distance_left_wrist, movement_distance_right_wrist)
         
         # 역동성 측정
         threshold = 10
         if movement_distance_left_wrist <= threshold and movement_distance_right_wrist <= threshold:
             count_static += 1
-        else:
-            print("사람이 역동적으로 움직이고 있습니다.")
+        # else:
+        #     print("사람이 역동적으로 움직이고 있습니다.")
         
         cv2.imshow('presentation', frame)
         count += 1
