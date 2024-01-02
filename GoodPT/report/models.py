@@ -14,7 +14,7 @@ class CATEGORY(models.Model):
 class REPORT(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True)
     reportID = models.AutoField(primary_key=True)
-    category = models.ManyToManyField(CATEGORY)
+    category = models.OneToOneField(CATEGORY,on_delete=models.CASCADE,null=True)
     script = models.TextField()
     questions = models.TextField()
     answers = models.TextField()
@@ -23,7 +23,14 @@ class REPORT(models.Model):
     script_analysis = models.TextField()
     total_analysis = models.TextField()
     rDatetime = models.DateTimeField()
+    staic = models.FloatField(default=0)
+    face_recog = models.FloatField(default=0)
+    filler_word = models.FloatField(default=0)
+    char_count = models.IntegerField(default=0)
+    total_time = models.IntegerField(default=0)
+    empty_count = models.IntegerField(default=0)
+    
     
     def __str__(self):
-        return self.reportID
+        return self.script
 
