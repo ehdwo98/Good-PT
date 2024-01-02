@@ -6,5 +6,6 @@ app_name = 'presentation'
 
 urlpatterns = [
     path('',views.recording,name='presentation'),
+    path('feedback',views.detail,name='feedback'),
 
 ]
