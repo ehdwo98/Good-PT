@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 {% load board_filter %}
 {% block content %}
 <style>
@@ -13,31 +13,34 @@
     }
 
 </style>
+<h4 class="border-bottom pb-2 my-3">{{ category.description }}</h4>
 <div class="container my-3" id="question_list">
-    <div class="row my-3"  >
-        <div class="col-6"style="margin-top: 80px">
-            {% if user.is_authenticated %}
-            <a href="{% url 'board:question_create' %}" class="btn btn-primary" style="background-color:#6671a4; border:#6671a4;">질문 등록하기</a>
-            {% else %}
-            <a class="btn btn-primary" href="/login" style="background-color: #6671a4; border: #6671a4;">로그인 후 이용가능</a>
-            {% endif %}
+    <div class="row justify-content-between my-3"  >
+        <div class="col-2"style="margin-top: 30px">
+            <select class="form-control so">
+                <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
+                <option value="recommend" {% if so == 'recommend' %}selected{% endif %}>추천순</option>
+                <option value="popular" {% if so == 'popular' %}selected{% endif %}>답변순</option>
+            </select>
         </div>
-        <div class="col-6"style="margin-top: 80px">
+        <div class="col-4"style="margin-top: 30px">
             <div class="input-group">
-                <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}"  style="margin-right: 10px;">
+                <input type="text" class="form-control kw" value="{{ kw|default_if_none:'' }}">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
                 </div>
             </div>
         </div>
     </div>
+
     <table class="table">
         <thead>
         <tr class="text-center" id="qnaboard">
-            <th>No.</th>
-            <th style="width:50%">Question</th>
-            <th>user</th>
-            <th>time</th>
+            <th>번호</th>
+            <th>추천</th>
+            <th style="width:50%">제목</th>
+            <th>글쓴이</th>
+            <th>작성일시</th>
         </tr>
         </thead>
         <tbody>
@@ -48,10 +51,18 @@
                 <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                 {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
             </td>
-            <td class="text-start">
-                <a href="{% url 'board:detail' question.id %}">{{ question.subject }}</a>
+            <td>
+                {% if question.voter.all.count > 0 %}
+                    <span class="badge rounded-pill bg-success">👍 {{ question.voter.count }}</span>
+                        <!-- question.voter.count와 완전히 같은 쿼리(SQL문 동일) -->
+                {% else %}
+                    <span class="badge rounded-pill bg-warning">0</span>
+                {% endif %}
+            </td>
+            <td class="text-left">
+                <a href="{{ question.get_absolute_url }}"class="text-primary">{{ question.subject }}</a>
                 {% if question.answer_set.count > 0 %}
-                <span class="text-danger small mx-2">{{ question.answer_set.count }}</span>
+                <span class="badge rounded-pill bg-warning">💬 [{{ question.answer_set.count }}]</span>
                 {% endif %}
             </td>
             <td>{{ question.author.username }}</td>
@@ -69,64 +80,86 @@
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
         {% if question_list.has_previous %}
-        <li class="page-item">
-            <a class="page-link" data-page="{{ question_list.previous_page_number }}"
-           href="javascript:void(0)">이전</a>
-        </li>
+            <li class="page-item">
+                <a class="page-link" data-page="1" href="#">처음</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" data-page="{{ question_list.previous_page_number }}" href="#">이전</a>
+            </li>
         {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-        </li>
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">처음</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
         {% endif %}
         <!-- 페이지리스트 -->
         {% for page_number in question_list.paginator.page_range %}
-        {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
-        {% if page_number == question_list.number %}
-        <li class="page-item active" aria-current="page">
-            <a class="page-link" data-page="{{ page_number }}"
-           href="javascript:void(0)">{{ page_number }}</a>
-        </li>
-        {% else %}
-        <li class="page-item">
-            <a class="page-link" data-page="{{ page_number }}"
-           href="javascript:void(0)">{{ page_number }}</a>
-        </li>
-        {% endif %}
-        {% endif %}
+            {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
+                {% if page_number == question_list.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" data-page="{{ page_number }}"
+                href="javascript:void(0)">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ page_number }}"
+                href="javascript:void(0)">{{ page_number }}</a>
+                </li>
+                {% endif %}
+            {% endif %}
         {% endfor %}
         <!-- 다음페이지 -->
         {% if question_list.has_next %}
-        <li class="page-item">
-            <a class="page-link" data-page="{{ question_list.next_page_number }}"
-           href="javascript:void(0)">다음</a>
-        </li>
+            <li class="page-item">
+                <a class="page-link" data-page="{{ question_list.next_page_number }}" href="#">다음</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" data-page="{{ question_list.paginator.num_pages }}" href="#">끝</a>
+            </li>
         {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-        </li>
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">끝</a>
+            </li>
         {% endif %}
     </ul>
+    {% if user.is_authenticated %}
+        <a href="{% url 'board:question_create' category.name %}" class="btn btn-primary" style="background-color:#6671a4; border:#6671a4;">질문 등록하기</a>
+    {% else %}
+        <a class="btn btn-primary" href="/login" style="background-color: #6671a4; border: #6671a4;">로그인 후 이용가능</a>
+    {% endif %}
     <!-- 페이징처리 끝 -->
 </div>
-<form id="searchForm" method="get" action="{% url 'board:index' %}">
+<form id="searchForm" method="get" action="{{ category.get_absolute_url }}">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
+    <input type="hidden" id="so" name="so" value="{{ so }}">
 </form>
 {% endblock %}
+
 {% block script %}
 <script type='text/javascript'>
-const page_elements = document.getElementsByClassName("page-link");
-Array.from(page_elements).forEach(function(element) {
-    element.addEventListener('click', function() {
-        document.getElementById('page').value = this.dataset.page;
-        document.getElementById('searchForm').submit();
+    $(document).ready(function() {
+        $(".page-link").on('click', function() {
+            $("#page").val($(this).data("page"));
+            $("#searchForm").submit();
+        });
+
+        $("#btn_search").on('click', function() {
+            $("#kw").val($(".kw").val());
+            $("#page").val(1);  // 검색 버튼을 클릭할 경우 1페이지부터 조회한다.
+            $("#searchForm").submit();
+        });
+
+        $(".so").on('change', function() {
+            $("#so").val($(this).val());
+            $("#page").val(1);  // 새로운 기준으로 정렬할 경우 1페이지부터 조회한다.
+            $("#searchForm").submit();
+        });
     });
-});
-const btn_search = document.getElementById("btn_search");
-btn_search.addEventListener('click', function() {
-    document.getElementById('kw').value = document.getElementById('search_kw').value;
-    document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
-    document.getElementById('searchForm').submit();
-});
 </script>
 {% endblock %}
