@@ -96,3 +96,8 @@ recordButton.addEventListener("click",videoStart);
 stopButton.addEventListener("click",stopRecording);
 playButton.addEventListener("click",playRecording);
 analyzeButton.addEventListener("click",sendRecording);
+
+const pmodalBackground = document.querySelector('.pmodal-background')
+pmodalBackground.addEventListener('click',()=>{
+    pmodalBackground.style.display = "none";
+})

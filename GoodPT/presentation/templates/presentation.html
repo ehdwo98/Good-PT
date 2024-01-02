@@ -2,8 +2,12 @@
 
 {% load static %}
 {% block content %}
-<div class="video-wrapper">        
-            
+<div class="video-wrapper">
+    <div class = "pmodal-background">
+        <div class = "pmodal-container">
+            <h1>사용방법</h1>
+        </div>
+    </div>        
     <div class="video-container">            
         <div class="video-item">                
             <video autoplay muted id="preview"></video>
@@ -25,7 +29,6 @@
         <button class="analyze-button">
             <img src='../static/img/icons/btn_analyze.png' id = "button-analyze-image">
         </button>
-        {% comment %} <a class="download-button">다운로드</a> {% endcomment %}
     </div>    
 </div>
 <script defer src = "{% static '/js/camera.js' %}"></script>
