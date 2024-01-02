@@ -16,8 +16,7 @@ def test1(request):
             else:
                 print(form.errors)
                 messages.warning(request,"아이디나 비밀번호가 맞지 않습니다.")
-                # print('login failed')
-                # return redirect('/login')
+
         elif 'register' in request.POST:
             form = UserCreationForm(request.POST)
             if form.is_valid():
