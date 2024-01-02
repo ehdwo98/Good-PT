@@ -2,7 +2,22 @@
 {% load static %}
 {% load i18n %}
 {% load allauth account socialaccount %}
+
 {% block content %}
+{% if messages %}
+
+<ul class="messages">
+
+    {% for message in messages %}
+
+    <script>
+        alert('{{message}}')
+    </script>
+    {% endfor %}
+
+</ul>
+
+{% endif %}
         <link rel="stylesheet" href="{% static '/css/login.css' %}?after" />
         <script defer src = "{% static '/js/login.js' %}"></script>
         <div class="wrapper">
@@ -74,4 +89,6 @@
             <ul class="ft_link">
                 <li><a href="http://localhost:8000/login/privacy" onclick="privacypolicy()">개인정보 처리방침</a></li>
         </footer>
+
 {% endblock content %}
+
