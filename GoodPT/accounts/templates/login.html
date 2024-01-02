@@ -3,37 +3,28 @@
 {% load i18n %}
 {% load allauth account socialaccount %}
 {% block content %}
-        <link rel="stylesheet" href="{% static '/css/login.css' %}?after" />
-        <link rel="stylesheet" href="{% static '/css/modal.css' %}?after" />
-        <script defer src="{% static 'js/login.js' %}?after"></script>
-        <script defer src="{% static 'js/modal.js' %}?after"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.4.0/js/ngDialog.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/login.css' %}?after" />
+    <link rel="stylesheet" href="{% static '/css/modal.css' %}?after" />
+    <script defer src="{% static 'js/login.js' %}?after"></script>
+    <script defer src="{% static 'js/modal.js' %}?after"></script>
+  
+    
+ 
 
-<script type="text/ng-template" id="templateId">
-    <div>
-        <p>{{ modal.injected.propertyInjection }}</p>
-      
-    </div>
-</script>
-
-        <div class="wrapper">
-            <div class="container-login">
+    <div class="wrapper" >
+        <div class="container-login">
             <div class="sign-up-container">
-                <div class = "login_form">
+                <div class="login_form">
                     <div class='elements'>
                         <form method="post">
-                            {%csrf_token%}
+                            {% csrf_token %}
                             <h1>계정 생성하기</h1>
-                            <div class = "login_span">
-                                
+                            <div class="login_span">
                             </div>
                             <input type="text" name="username" placeholder="이름">
-                            <input type="email" name = "email" placeholder="이메일">
+                            <input type="email" name="email" placeholder="이메일">
                             <input type="password" name="password1" placeholder="비밀번호">
-                            <input type="password" name="password2" placeholder="비밀번호확인">
-
-
+                            <input type="password" name="password2" placeholder="비밀번호 확인">
                             <button class="form_btn" name="register">회원가입</button>
                         </form>
                     </div>
@@ -44,13 +35,13 @@
                 <div class="login_form">
                     <div class='elements'>
                         <h1>로그인</h1>
-                        <div class = "login_span">
+                        <div class="login_span">
                             소셜 로그인 또는 사이트 로그인을 해주세요.
                         </div>
-                        <form action="" method = "post">
-                            {%csrf_token%}
-                            <input type="username" name = "username" placeholder="이메일">
-                            <input type="password" name = "password" placeholder="비밀번호">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="username" name="username" placeholder="이메일">
+                            <input type="password" name="password" placeholder="비밀번호">
                             <div class="social-links">
                                 <div>
                                     <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img id="login-logo" src="/static/img/kakao.png"></a>
@@ -59,10 +50,10 @@
                                     <a href="{% provider_login_url 'naver' method='oauth2' %}"><img id="login-logo" src="/static/img/naver.png"></a>
                                 </div>
                                 <div>
-                                    <a href="{% provider_login_url 'google' method='oauth2' %}"><img id="login-logo" src = '/static/img/google.png'></a>
+                                    <a href="{% provider_login_url 'google' method='oauth2' %}"><img id="login-logo" src='/static/img/google.png'></a>
                                 </div>
                             </div>
-                            <button id = "login_button" type="submit" class="form_btn" name="login">로그인</button>
+                            <button id="login_button" type="submit" class="form_btn" name="login">로그인</button>
                         </form>
                     </div>
                 </div>
@@ -70,40 +61,50 @@
             <div class="overlay-container">
                 <div class="overlay-left">
                     <h1>환영합니다!</h1>
-                    <div class = "login_detail">
+                    <div class="login_detail">
                         <p>회원정보를 입력해 가입을 진행해주세요.</p>
                     </div>
                     <button id="signIn" class="overlay_btn">로그인</button>
                 </div>
                 <div class="overlay-right">
                     <h2> Good-PT에서</h2>
-                    <div class = "login_detail">
+                    <div class="login_detail">
                         <p>여러분의 발표능력을 향상시켜보세요.</p>
-
-                        <div ng-app="app">
-                            <script type="text/ng-template" id="templateId">
-                              <div eid-tab-index class="modal-information modal-medium">
-                                <header class="modal-heading">
-                                  <div class="modal-title">{{modal.headingText}}</div>
-                                </header>
-                                <main class="modal-content">{{modal.injected.propertyInjection}}</main>
-                                <footer>
-                                <button type="button" ng-click="modal.close('submit')">동의</button>
-                                  <button type="button" ng-click="modal.close()">닫기</button></footer>
-                              </div>
-                            </script>
-                            <div ng-controller="ModalDemoCtrl as view">
-                              <button ng-click="view.clickToOpen()">약관 동의</button>
-                            </div>
-                          </div>
-
-                    </div>             
-                    <button id="signUp" class="overlay_btn">회원가입</button>
+                        
+                    </div>
+                    <button id="signUp" class="overlay_btn">회원가입</button> 
                 </div>
             </div>
         </div>
-        <footer>
-            <ul class="ft_link">
-                <li><a href="http://localhost:8000/login/privacy" onclick="privacypolicy()">개인정보 처리방침</a></li>
-        </footer>
+    </div>
+    <div class="modal agreement-popup" id="termsConditions">
+        <div class="modal-container with-accept">
+            <div class="top">
+                <h4>이용약관 동의</h4>
+                <span class="close-btn pointer" onclick="toggleModal('termsConditions', false);">
+                    x<i class="fal fa-times" aria-hidden="true"></i>
+                </span>
+            </div>
+            
+            <div class="content-wrapper">
+                <div class="content">
+                 
+                       
+                        <ol id="contentPlaceholder">전달될부분</ol>
+                                
+                            </div>
+                        </div>
+          <div class="bottom blur fixed">
+            
+            <button id = "privacy-accept-button" class="btn-primary">Accept</button>
+          </div>
+    
+       
+    </div>
+</div>
+    <footer>
+        <ul class="ft_link">
+            <li><a href="http://localhost:8000/login/privacy" onclick="privacypolicy()">개인정보 처리방침</a></li>
+        </ul>
+    </footer>
 {% endblock content %}
