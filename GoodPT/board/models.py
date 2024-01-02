@@ -97,4 +97,4 @@ class Comment(models.Model):
             return reverse('board:detail', args=[self.question.id]) + '#comment_question_start'
         else:  # if self.answer:
             return reverse('board:detail', args=[self.answer.question.id]) + \
-                   f'?page={self.answer.get_page()}#comment_{self.id}'  # todo comment_id 가능?
+                   f'?page={self.answer.get_page()}#comment_{self.id}'

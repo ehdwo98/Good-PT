@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 {% block content %}
 <div class="container"  id="question_form" style="margin-top: 30px">
-    <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+    <h5 class="my-3 border-bottom pb-2">[{{ category.description }}] 질문 등록</h5>
     <form method="post" class="post-form my-3">
         {% csrf_token %} {% include "form_errors.html" %}
         <div class="mb-3">
