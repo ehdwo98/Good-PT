@@ -1,5 +1,7 @@
 from django.db import models
 from accounts.models import USER
+from django.conf import settings
+
 # Create your models here.
 
 class CATEGORY(models.Model):
@@ -10,7 +12,7 @@ class CATEGORY(models.Model):
         return self.cName
     
 class REPORT(models.Model):
-    user = models.ForeignKey(USER,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True)
     reportID = models.AutoField(primary_key=True)
     category = models.ManyToManyField(CATEGORY)
     script = models.TextField()

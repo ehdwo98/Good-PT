@@ -3,8 +3,22 @@ body {
 	background: #E5E5E4;
 }
 
+.report{
+	display : flex;
+	flex-direction : row;
+}
+
+.report-list{
+	width : 15%;
+}
+
+.report-main{
+	width : 85%;
+}
+
 .report-container{
     background : white;
+	padding : 2%;
 }
 .wrapper{
 	margin-top: 60px;
