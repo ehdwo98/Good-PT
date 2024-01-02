@@ -1,5 +1,6 @@
-{% extends "layout.html" %} {% block content %}
-<div class="container"  id="question_form" style="margin-top: 80px">
+{% extends "base.html" %} 
+{% block content %}
+<div class="container"  id="question_form" style="margin-top: 30px">
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
     <form method="post" class="post-form my-3">
         {% csrf_token %} {% include "form_errors.html" %}
@@ -15,7 +16,7 @@
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
-            <textarea class="form-control" name="content" id="content" rows="10" style="resize: none;">
+            <textarea class="form-control" name="content" id="content" style="resize: none;">
 {{ form.content.value|default_if_none:'' }}</textarea
             >
         </div>
