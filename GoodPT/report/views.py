@@ -1,9 +1,14 @@
 
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
-from django.contrib.auth import views as auth_views
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login as auth_login
+from django.shortcuts import render,redirect, get_object_or_404
 
+from .models import REPORT
 def report(request):
-    return render(request,'report.html')
+    if request.user.is_authenticated:
+        try:
+            report = REPORT.objects.filter(user=request.user)
+            print(report[0].rDatetime)
+            return render(request,'report.html')
+        except:
+            print('error, multiple returns')
+            redirect('/')
+    return redirect('/')
