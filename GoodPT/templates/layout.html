@@ -14,13 +14,7 @@
     <!-- ===============================================-->
 
     <!--    Favicons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/img/favicons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/img/favicons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/img/favicons/favicon-16x16.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static '/img/favicons/favicon.ico' %}">
-    <link rel="manifest" href="{% static '/img/favicons/manifest.json' %}">
-    <meta name="msapplication-TileImage" content="{% static '/img/favicons/mstile-150x150.png' %}">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="{% static 'img/logo/logo_1.ico' %}"/>
     <!-- ===============================================-->
 
     <!--    Stylesheets-->
@@ -45,7 +39,6 @@
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
               <li class="nav-item px-2"><a class="nav-link" href="/">Home</a></li>
-              <li class="nav-item px-2" ><a class="nav-link" href="/presentation">Presentation</a></li>
               <li class="nav-item px-2" ><a class="nav-link" href="{% url 'board:index' 'qna' %}">Board</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Price</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#team">Team</a></li>
