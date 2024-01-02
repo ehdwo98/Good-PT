@@ -20,7 +20,8 @@ window.onload = ()=>{
     });
 }
 
-function videoStart(event) {    
+function videoStart(event) {
+    previewPlayer.srcObject.getTracks().forEach(track => track.stop());
 	navigator.mediaDevices.getUserMedia({ video:true,audio:true })
 		.then(stream => {        
 			previewPlayer.srcObject = stream;        
