@@ -40,8 +40,11 @@
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
               <li class="nav-item px-2"><a class="nav-link" href="/">Home</a></li>
               <li class="nav-item px-2" ><a class="nav-link" href="{% url 'board:index' 'qna' %}">Board</a></li>
+              {% if request.resolver_match.app_name == 'presentation' %}
+              {% else %}
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Price</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#team">Team</a></li>
+              {% endif %}
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Help</a></li>
             </ul>
             {% if user.is_authenticated %}
