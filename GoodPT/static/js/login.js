@@ -543,7 +543,6 @@ signInBtn.addEventListener("click", () => {
 
 document.addEventListener('DOMContentLoaded', function () {
   var acceptButton = document.querySelector('.modal.agreement-popup .bottom button.btn-primary');
-  console.log(acceptButton)
   if (acceptButton) {
       acceptButton.addEventListener('click', function () {
         var modalId = 'termsConditions';
@@ -551,6 +550,16 @@ document.addEventListener('DOMContentLoaded', function () {
       
           container.classList.add('right-panel-active');
       });
+      acceptButton.addEventListener('click', function () {
+        
+      
+          container.classList.add('right-panel-active');
+      });
   }
 });
 
+if (isOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
