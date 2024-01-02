@@ -1,0 +1,84 @@
+body {
+	font-family: 'Raleway', sans-serif;
+	background: #E5E5E4;
+}
+
+.report-container{
+    background : white;
+}
+.wrapper{
+	margin-top: 60px;
+}
+.hero{
+	height: 400px;
+	background: #F8F8F9;
+	margin: 0;
+
+}
+
+.hero h1, .m-chart h1{
+	font-family: 'Raleway', sans-serif;
+	font-weight: 200;
+}
+.hero p{
+	color: #c62828;
+}
+.hero .bg{
+	background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=080ed40e726c97a170def433fe212832') center center no-repeat scroll;
+	padding-bottom: 226px;
+}
+.description{
+	padding: 50px;
+}
+.no-margin{
+	margin: 0 !important;
+}
+hr{
+	border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+.newsletter{
+	padding-top: 100px;
+	padding-bottom: 100px;
+	background: #F8F8F9;
+}
+.newsletter h1{
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	padding-bottom: 50px;
+}
+.newsletter form{
+	margin: 0 auto;
+	width: 60%;
+	text-align: center;
+}
+.newsletter input[type="text"]{
+	float: left;
+	max-width: 500px;
+	border: solid 1px rgba(0,0,0,0.1);
+	box-shadow: none;
+	padding: 30px;
+}
+.newsletter input[type="submit"]{
+	float: left;
+	min-width: 200px;
+	border: none;
+	outline: none;
+	background: #c62828;
+	color: #FFF;
+	box-shadow: none;
+	padding: 21px;
+	border-radius: 0px;
+}
+.title{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.title h1{
+	font-family: 'Raleway', sans-serif;
+	font-weight: 200;
+}
+
+.ct-perfect-fourth:before{
+
+    padding-bottom : 30%;
+}
