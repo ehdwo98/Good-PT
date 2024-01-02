@@ -13,16 +13,17 @@
     }
 
 </style>
+<h4 class="border-bottom pb-2 my-3">{{ category.description }}</h4>
 <div class="container my-3" id="question_list">
     <div class="row justify-content-between my-3"  >
-        <div class="col-2"style="margin-top: 80px">
+        <div class="col-2"style="margin-top: 30px">
             <select class="form-control so">
                 <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
                 <option value="recommend" {% if so == 'recommend' %}selected{% endif %}>추천순</option>
                 <option value="popular" {% if so == 'popular' %}selected{% endif %}>답변순</option>
             </select>
         </div>
-        <div class="col-4"style="margin-top: 80px">
+        <div class="col-4"style="margin-top: 30px">
             <div class="input-group">
                 <input type="text" class="form-control kw" value="{{ kw|default_if_none:'' }}">
                 <div class="input-group-append">
@@ -52,16 +53,16 @@
             </td>
             <td>
                 {% if question.voter.all.count > 0 %}
-                    <span class="badge badge-warning px-2 py-1"style="color:#000000;">{{ question.voter.count }}</span>
+                    <span class="badge rounded-pill bg-success">👍 {{ question.voter.count }}</span>
                         <!-- question.voter.count와 완전히 같은 쿼리(SQL문 동일) -->
                 {% else %}
-                    <span class="badge badge-light px-2 py-1" style="color:#000000;">0</span>
+                    <span class="badge rounded-pill bg-warning">0</span>
                 {% endif %}
             </td>
             <td class="text-left">
                 <a href="{{ question.get_absolute_url }}"class="text-primary">{{ question.subject }}</a>
                 {% if question.answer_set.count > 0 %}
-                <span class="text-danger small ml-2">[{{ question.answer_set.count }}]</span>
+                <span class="badge rounded-pill bg-warning">💬 [{{ question.answer_set.count }}]</span>
                 {% endif %}
             </td>
             <td>{{ question.author.username }}</td>
