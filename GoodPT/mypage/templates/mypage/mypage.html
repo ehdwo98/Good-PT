@@ -1,7 +1,8 @@
-{% extends "layout.html" %} {% block content %}
-<div class="container page-body" id="layout_container">
+{% extends "layout.html" %} 
+{% block content %}
+<div class="container page-body" id="mypage_container">
     <div class="row">
-        <div class="col-sm-12" style="margin-top: 150px">
+        <div class="col-sm-12" style="margin-top: 80px">
             <h1>My Info</h1>
             <br />
             <ul class="list-group list-group">
@@ -12,7 +13,7 @@
                 <li class="list-group-item">Signup : {{user.date_joined}}</li>
             </ul>
             <br />
-            <a class="btn btn-secondary" href="{% url 'mypage:password_change' %}">암호 변경하기</a>
+            <a class="btn btn-secondary" href="{% url 'mypage:password_change' %}">패스워드 변경</a>
         </div>
     </div>
 </div>
