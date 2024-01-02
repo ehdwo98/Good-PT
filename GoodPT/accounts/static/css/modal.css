@@ -9,6 +9,12 @@
   align-items: flex-start;
 }
 
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
 /* Variables from :root */
 .checkbox-wrap label:before,
 .checkbox-wrap label:after,
