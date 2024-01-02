@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{% static 'theme-rtl.min.css' %}">
     <link rel="stylesheet" href="{% static 'theme.css' %}">
     <link rel="stylesheet" href="{% static 'theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 
     <!-- ===============================================-->
   </head>
@@ -72,11 +73,6 @@
       <!-- <section> begin ============================-->
       <div>
         {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
         {% endif %} {% block content %} {% endblock %}
       </div>
 
@@ -86,11 +82,11 @@
 
         <div class="container">
           <div class="row align-items-center justify-content-xl-between py-5 border-klean">
-            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/robinhood.png' %}" height="40" alt="..." /></div>
-            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/reddit.png' %}" height="40" alt="..." /></div>
-            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/upcase.png' %}" height="40" alt="..." /></div>
-            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/hubspot.png' %}" height="40" alt="..." /></div>
-            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/tunein.png' %}" height="40" alt="..." /></div>
+            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/django.png' %}" height="40" alt="..." /></div>
+            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/bootstrap.png' %}" height="40" alt="..." /></div>
+            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/python.png' %}" height="40" alt="..." /></div>
+            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/opencv.png' %}" height="40" alt="..." /></div>
+            <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="{% static '/img/gallery/openai.png' %}" height="40" alt="..." /></div>
           </div>
         </div>
         <!-- end of .container-->
@@ -108,30 +104,12 @@
         <div class="container">
           <div class="row min-vh-75 min-vh-xl-50 pt-10">
             <div class="col-6 col-md-4 col-xl-3 mb-3">
-              <h5 class="lh-lg fw-bold text-white">HOSTING</h5>
+              <h5 class="lh-lg fw-bold text-white">KT 에이블스쿨</h5>
               <ul class="list-unstyled mb-md-4 mb-lg-0">
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Shared Hosting</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">VPS Hosting</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Cloud Hosting</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Wordpress Hosting</a></li>
-              </ul>
-            </div>
-            <div class="col-6 col-md-4 col-xl-3 mb-3">
-              <h5 class="lh-lg fw-bold text-white">FEATURES</h5>
-              <ul class="list-unstyled mb-md-4 mb-lg-0">
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Beginner Guide</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Move to Servion</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Website Builder</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Tools and Resources</a></li>
-              </ul>
-            </div>
-            <div class="col-6 col-md-4 col-xl-3 mb-3">
-              <h5 class="lh-lg fw-bold text-white">SUPPORT</h5>
-              <ul class="list-unstyled mb-md-4 mb-lg-0">
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Help Center</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Submit a Ticket</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Contact Us</a></li>
-                <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Blog</a></li>
+                <li class="lh-lg"><a class="text-200 text-decoration-none" href="https://aivle.kt.co.kr/home/main/indexMain" target = "_blank">공식페이지</a></li>
+                <li class="lh-lg"><a class="text-200 text-decoration-none" href="https://cafe.naver.com/aivleschool" target = "_blank">네이버 Cafe</a></li>
+                <li class="lh-lg"><a class="text-200 text-decoration-none" href="https://www.youtube.com/playlist?list=PL_WCuvyChN3giYr6Xa2gWMOvRjDUrfb0a" target = "_blank">YouTube 채널</a></li>
+                <li class="lh-lg"><a class="text-200 text-decoration-none" href="https://www.instagram.com/aivlestory?igshid=YmMyMTA2M2Y%3D" target = "_blank">인스타그램</a></li>
               </ul>
             </div>
             <div class="col-xl-3 mb-3">
@@ -140,7 +118,6 @@
                 <li class="list-inline-item mr-2"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="{% static '/img/gallery/visa.png' %}" width="50" alt="..." /></a></li>
                 <li class="list-inline-item mr-2"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="{% static '/img/gallery/master-card.png' %}" width="50" alt="..." /></a></li>
                 <li class="list-inline-item mr-2"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="{% static '/img/gallery/union-pay.png' %}" width="50" alt="..." /></a></li>
-                <li class="list-inline-item"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="{% static '/img/gallery/express.png' %}" width="50" alt="..." /></a></li>
               </ul>
             </div>
           </div>
