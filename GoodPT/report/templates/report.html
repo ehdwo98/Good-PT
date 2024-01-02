@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<link rel="stylesheet" href="https://wowjs.uk/css/libs/animate.css">
+<script src="https://wowjs.uk/dist/wow.min.js"></script>
+
+<script defer src = "{% static '/js/report.js' %}"></script>
+<link rel="stylesheet" href="{% static '/report.css' %}" />
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+<body>
+    <div class = "report">
+        <div class = "report-list">
+        </div>
+        <div class = "report-main">
+            <div class="report-row report-container">
+                <div class="large-12 columns">
+                    <div class="report-row">
+                    </div>
+                </div>
+                <div class="large-12 columns">
+                    <div class="report-row hero" data-equalizer>
+                        <div class="large-6 columns panel" data-equalizer-watch>
+                            <h1>Search results</h1>
+                            <p>Report for search results in website.com</p>
+                        </div>
+                        <div class="large-6 columns panel bg" data-equalizer-watch>&nbsp;</div>
+                    </div>
+                </div>
+                <div class="report-row">
+                    <div class="large-12 columns title text-center wow fadeInUp">
+                        <h1>Graphs</h1>
+                        <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
+                    </div>
+                    <div class="large-6 columns m-chart wow fadeInUp" data-wow-delay="0.5s">
+                        <h1 class="text-center">Search by day</h1>
+                        <p class="text-center">Search results this week</p>
+                        <div class="ct-chart ct-perfect-fourth"></div>
+                    </div>
+                    <div class="large-6 columns description wow fadeInDown" data-wow-delay="1s">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec metus turpis. Sed dui ligula, luctus id lorem vitae, tempor placerat ex. Proin accumsan mi quam, at sollicitudin magna varius quis. </p>
+                        <p>In ut aliquet eros, vel luctus augue. Sed eu tellus dictum, elementum eros vel, accumsan ipsum. Nullam sodales, diam id egestas aliquet, metus turpis vehicula odio, non tincidunt velit magna et ligula. </p>
+                    </div>
+                </div>
+                <div class="report-row">
+                    <div class="large-6 columns description wow fadeInDown" data-wow-delay="0.5s">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec metus turpis. Sed dui ligula, luctus id lorem vitae, tempor placerat ex. Proin accumsan mi quam, at sollicitudin magna varius quis. </p>
+                        <p>Vivamus diam est, porttitor ut viverra in, blandit in risus. Pellentesque fermentum neque lobortis volutpat tristique.</p>
+                        <p>Nullam aliquam nibh a auctor ultrices. Praesent interdum varius ligula ut placerat. In tincidunt et sem ac varius.</p>
+                    </div>
+                    <div class="large-6 columns m-chart wow fadeInUp" data-wow-delay="1s">
+                        <h1 class="text-center">Search by word</h1>
+                        <p class="text-center">The top 10 searchs</p>
+                        <div class="ct-chart-2 ct-perfect-fourth"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
