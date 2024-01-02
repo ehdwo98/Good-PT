@@ -6,7 +6,7 @@
             
     <div class="video-container">            
         <div class="video-item">                
-            <video autoplay muted id="preview"></video>            
+            <video autoplay muted id="preview"></video>
         </div>            
         <div class="video-item">                
             <video id="recording" style="display:none"></video>            
@@ -14,16 +14,16 @@
     </div>
     <div class="button-container">            
         <button class="record-button">
-            <img src='../static/img/icons/record.png' id = "button-record-image">
+            <img src="{% static '/img/icons/btn_record.png' %}" id = "button-record-image">
         </button>           
         <button class="stop-button">
-            <img src='../static/img/icons/stop.png' id = "button-stop-image">
+            <img src='../static/img/icons/btn_stop.png' id = "button-stop-image">
         </button>            
         <button class="play-button">
-            <img src='../static/img/icons/play.png' id = "button-play-image">
+            <img src='../static/img/icons/btn_play.png' id = "button-play-image">
         </button>
         <button class="analyze-button">
-            <img src='../static/img/icons/analyze.png' id = "button-analyze-image">
+            <img src='../static/img/icons/btn_analyze.png' id = "button-analyze-image">
         </button>
         {% comment %} <a class="download-button">다운로드</a> {% endcomment %}
     </div>    
