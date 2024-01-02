@@ -1,13 +1,13 @@
 {% extends "base.html" %} 
 {% load board_filter %}
 {% block content %}
-<div class="container my-3" id="question_detail" style="margin-top: 80px">
+<div class="container my-3" id="question_detail" style="margin-top: 30px">
     <!-- message 표시 -->
     {% if messages %}
         {% for message in messages %}
             {% if message.tags == 'error' %}
                 <div class="alert alert-danger my-3" role="alert">
-                    <strong>{{ message.tags }}</strong>
+                    <strong>&nbsp;오류!</strong>
                     <ul>
                         <li>{{ message.message }}</li>
                     </ul>
@@ -41,7 +41,7 @@
                 <a href="{% url 'board:question_modify' question.id  %}"
                    class="btn btn-sm btn-outline-secondary">수정</a>
                 <a href="javascript:void(0)" class="delete btn btn-sm btn-outline-secondary"
-                   data-uri="{% url 'board:vote_question' question.id  %}">삭제</a>
+                   data-uri="{% url 'board:question_delete' question.id  %}">삭제</a>
                 {% endif %}
             </div>
         </div>
@@ -199,7 +199,10 @@
         <textarea {% if not user.is_authenticated %} disabled {% endif %}
                   name="content" id="content" class="form-control" rows="10"></textarea>
     </div>
+    <br/>
+    <div>
         <input type="submit" value="답변등록" class="btn btn-primary">
+    </div>
 </form>
 <!-- 답변 등록폼 End -->
 

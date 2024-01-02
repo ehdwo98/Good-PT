@@ -24,30 +24,27 @@
     <!-- ===============================================-->
 
     <!--    Stylesheets-->
+    
     <link rel="stylesheet" href="{% static 'theme-rtl.css' %}">
     <link rel="stylesheet" href="{% static 'theme-rtl.min.css' %}">
     <link rel="stylesheet" href="{% static 'theme.css' %}">
     <link rel="stylesheet" href="{% static 'theme.min.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-
     <!-- ===============================================-->
   </head>
 
   <body>
-
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-4 d-block" data-navbar-on-scroll="data-navbar-on-scroll" style="background-color:#424D83">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-4 d-block" data-navbar-on-scroll="data-navbar-on-scroll" style="background-color:#424D83"id="main_nav">
         <div class="container"><a class="navbar-brand" href="/"><img src="{% static '/img/gallery/logo.png' %}" height="24" alt="..." /></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Home</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="/">Home</a></li>
               <li class="nav-item px-2" ><a class="nav-link" href="{% url 'board:index' 'qna' %}">Board</a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Price</a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#team">Team</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Help</a></li>
             </ul>
             {% if user.is_authenticated %}
@@ -68,16 +65,13 @@
           </div>
         </div>
       </nav>
-      
       <!-- ============================================-->
     <!-- 기본 템플릿 안에 삽입될 내용 Start -->
     <div class="container my-3">
         <div class="row">
-
             <div class="col-sm-12 col-md-3 col-lg-2 p-2">
                 {% include "sidebar.html" %}
             </div>
-
             <div class="col-sm-12 col-md-9 col-lg-10 p-2">
                 <div id="content" class="border-top border-secondary">
                     <div class="content_block p-2">
@@ -86,7 +80,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- 기본 템플릿 안에 삽입될 내용 End -->
@@ -169,10 +162,10 @@
     <!-- jQuery JS -->
     <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap" rel="stylesheet">
-  <!-- 자바스크립트 Start -->
-  {% block script %}
-  {% endblock %}
-  <!-- 자바스크립트 End -->
+    <!-- 자바스크립트 Start -->
+    {% block script %}
+    {% endblock %}
+    <!-- 자바스크립트 End -->
   </body>
 </html>
 {% comment %} <script>
