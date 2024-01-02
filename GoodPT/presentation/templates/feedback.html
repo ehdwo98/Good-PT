@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script> 
+<script> 
+		$(document).ready(function() { 
+			// Send the form on enter keypress and avoid if shift is pressed 
+			$('#prompt').keypress(function(event) { 
+				if (event.keyCode === 13 && !event.shiftKey) { 
+					event.preventDefault(); 
+					$('form').submit(); 
+				} 
+			}); 
+			$('form').on('submit', function(event) { 
+				event.preventDefault(); 
+			// get the CSRF token from the cookie 
+			var csrftoken = Cookies.get('csrftoken'); 
+			
+			// set the CSRF token in the AJAX headers 
+			$.ajaxSetup({ 
+				headers: { 'X-CSRFToken': csrftoken } 
+			}); 
+				// Get the prompt 
+				var prompt = $('#prompt').val(); 
+				var dateTime = new Date(); 
+				var time = dateTime.toLocaleTimeString(); 
+				// Add the prompt to the response div 
+				$('#response').append('<p>('+ time + ') <i class="bi bi-person"></i>: ' + prompt + '</p>'); 
+				// Clear the prompt 
+				$('#prompt').val(''); 
+				$.ajax({ 
+					url: '/', 
+					type: 'POST', 
+					data: {prompt: prompt}, 
+					dataType: 'json', 
+					success: function(data) { 
+						$('#response').append('<p>('+ time + ') <i class="bi bi-robot"></i>: ' + data.response + '</p>'); 
+					} 
+				}); 
+			}); 
+		}); 
+</script> 
+{% block content %}
+<div class="container p-3 rounded-lg shadow-sm" style="margin-top: 30px">
+    <h3 class="text-center mb-4">Q&A Session</h3>
+
+    <div class="chat-container">
+        <div class="chat-history-wrapper overflow-auto" id="response">
+            </div>
+
+        <div class="chat-input-wrapper">
+            <form method="post">
+                {% csrf_token %}
+                <textarea class="form-control" type="textarea" id="prompt" name="prompt" rows="3" placeholder="Type your response here..."></textarea>
+                <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-send"></i> Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

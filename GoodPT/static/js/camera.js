@@ -20,7 +20,8 @@ window.onload = ()=>{
     });
 }
 
-function videoStart(event) {    
+function videoStart(event) {
+    previewPlayer.srcObject.getTracks().forEach(track => track.stop());
 	navigator.mediaDevices.getUserMedia({ video:true,audio:true })
 		.then(stream => {        
 			previewPlayer.srcObject = stream;        
@@ -96,3 +97,8 @@ recordButton.addEventListener("click",videoStart);
 stopButton.addEventListener("click",stopRecording);
 playButton.addEventListener("click",playRecording);
 analyzeButton.addEventListener("click",sendRecording);
+
+const pmodalBackground = document.querySelector('.pmodal-background')
+pmodalBackground.addEventListener('click',()=>{
+    pmodalBackground.style.display = "none";
+})
