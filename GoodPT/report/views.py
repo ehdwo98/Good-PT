@@ -33,8 +33,7 @@ def report(request):
                                                   'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 'script_analysis': script_analysis,
                                                   'date': date, 'report_list': report})
         except:
-            print('error, multiple returns')
-            redirect('/')
+            return render(request,'zeroReport.html')
     return redirect('/')
 
 def detail(request, no):
