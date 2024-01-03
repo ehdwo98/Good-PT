@@ -105,6 +105,9 @@ DATABASES = {
         'NAME' : 'GoodPT',
         'USER' : 'master',
         'PASSWORD' : 'masterDB',
+        'OPTIONS': {
+        'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
 
