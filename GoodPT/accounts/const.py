@@ -7,3 +7,4 @@ errorDictionary['This password is too common.'] = '비밀번호가 너무 단순
 errorDictionary['This field is required.'] = '빈 작성란이 존재합니다. 작성란을 채워주세요.'
 errorDictionary['Enter a valid email address.'] = '이메일 양식이 맞이 않습니다.'
 errorDictionary['The password is too similar to the username.'] = '아이디와 비밀번호가 너무 유사합니다.'
+errorDictionary['The password is too similar to the email address.'] = '비밀번호와 이메일이 너무 유사합니다.'
