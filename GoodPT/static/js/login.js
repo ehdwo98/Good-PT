@@ -494,22 +494,24 @@ const container = document.querySelector(".container-login");
 const loginBtn = document.getElementById("login_button")
 
 
+
 function toggleModal(id, show = true) {
     let modal = document.getElementById(id),
-    isVisible = modal.classList.contains('show'),
-    body = document.querySelector('body');
+        isVisible = modal.classList.contains('show'),
+        body = document.querySelector('body');
 
     if (!modal) return;
 
     if (show && !isVisible) {
         getScrollY = window.scrollY;
-        body.style.top = `${-getScrollY}px`;
+        body.style.overflow = 'hidden';  // 스크롤을 숨기는 부분
 
         modal.classList.add('show');
 
         updateModalContent();
     } else {
         modal.classList.remove('show');
+        body.style.overflow = '';  // 스크롤을 다시 보이게 하는 부분
         window.scrollTo(0, getScrollY);
     }
 }
@@ -543,11 +545,15 @@ signInBtn.addEventListener("click", () => {
 
 document.addEventListener('DOMContentLoaded', function () {
   var acceptButton = document.querySelector('.modal.agreement-popup .bottom button.btn-primary');
-  console.log(acceptButton)
   if (acceptButton) {
       acceptButton.addEventListener('click', function () {
         var modalId = 'termsConditions';
         toggleModal(modalId, false);
+      
+    
+      });
+      acceptButton.addEventListener('click', function () {
+        
       
           container.classList.add('right-panel-active');
       });
