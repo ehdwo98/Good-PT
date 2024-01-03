@@ -1,13 +1,20 @@
-from django import template
 import markdown
+from django import template
 from django.utils.safestring import mark_safe
+
 
 register = template.Library()
 
 
 @register.filter
-def sub(value, arg):
-    return value - arg
+def sub(value, reg):
+    return value - reg
+
+
+@register.filter
+def div(value, reg):
+    return value // reg
+
 
 @register.filter
 def mark(value):

@@ -1,15 +1,10 @@
 {% extends "layout.html" %}
-
 {% load static %}
 {% block content %}
 <div class="video-wrapper">
     <div class = "pmodal-background">
-        <div class = "pmodal-container">
-            <h1>주의사항</h1>
-            <p>1.녹화버튼을 눌러주세요.</p>
-            <p>2.녹화완료후 자신의 영상을 확인해주세요.</p>
-            <p>3.분석하기 버튼을 눌러주세요.</p>
-            <p>4.조용한 곳에서 진행해주세요.</p>
+        <div class = "notice-box">
+            <img class="notice-img" src="{% static '/img/gallery/presentation-notice.jpg' %}">
         </div>
     </div>        
     <div class="video-container">            
