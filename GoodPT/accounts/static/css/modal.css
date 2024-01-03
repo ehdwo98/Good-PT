@@ -85,14 +85,6 @@ abutton,
   border-width: 0 2px 2px 0;
 }
 
-.checkbox-wrap input[type='checkbox']:checked + label:before {
-  background-color: #424D83; /* --primary */
-  border-color: #424D83; /* --primary */
-}
-
-.checkbox-wrap input[type='checkbox']:checked + label:after {
-  display: inline-block;
-}
 
 /* CASE 2 - AGREEMENT WITH CUSTOM CHECKBOX */
 .agreement2 {
@@ -109,42 +101,8 @@ abutton,
   color: #424D83; /* --primary */
 }
 
-.checkbox-field input[type='checkbox'] {
-  display: none;
-}
 
-.custom-checkbox {
-  position: relative;
-  height: 1.25rem;
-  width: 1.25rem;
-  min-width: 1.25rem;
-  margin: 0;
-  border-radius: 5px; /* --radius */
-  border: 2px solid #B3B7C5; /* --neutrals-300 */
-  cursor: pointer;
-}
 
-.custom-checkbox:after {
-  content: '';
-  display: none;
-  position: absolute;
-  left: .35rem;
-  top: .08rem;
-  width: .25rem;
-  height: .5rem;
-  border: solid #FFFFFF; /* --white */
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.checkbox-field input[type='checkbox']:checked + .custom-checkbox {
-  background-color: #424D83; /* --primary */
-  border-color: #424D83; /* --primary */
-}
-
-.checkbox-field input[type='checkbox']:checked + .custom-checkbox:after {
-  display: block;
-}
 
 /* MODAL */
 /* AGREEMENT EXTRA CUSTOM MODAL */
@@ -179,13 +137,13 @@ abutton,
 
 /* CUSTOM BLUR */
 .blur {
-  position: relative;
+  position: fixed;
   z-index: 1;
 }
 
 .blur:before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: -1rem;
   left: 0;
   right: 0;
@@ -194,12 +152,7 @@ abutton,
   z-index: 1;
 }
 
-.blur.blur-bottom:before {
-  top: initial;
-  bottom: 0;
-  height: 3rem;
-  border-radius: 5px; /* --radius */
-}
+
 
 .fixed {
   position: fixed;
@@ -241,14 +194,7 @@ abutton,
 /* MODAL *********************************/
 /*****************************************/
 /* PREVENT SCROLLING */
-body.no-scroll {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: scroll;
-}
+
 
 .modal { /* overlay */
   position: fixed;
@@ -305,7 +251,7 @@ body.no-scroll {
     padding: 0 2rem;
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+   
     overscroll-behavior-y: contain;
 }
 
@@ -349,26 +295,11 @@ body.no-scroll {
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+   
     overscroll-behavior-y: contain;
 }
 
-::-webkit-scrollbar {
-    margin-left: .5rem;
-}
 
-::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(10, 10, 13, .2);
-    border-radius: 5px; /* --radius */
-}
 
 /* MEDIA QUERY *****************************************/
 @media (max-width: 48em) { /* 768px */
