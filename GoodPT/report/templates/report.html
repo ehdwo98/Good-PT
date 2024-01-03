@@ -10,9 +10,53 @@
 <script defer src = "{% static '/js/report.js' %}"></script>
 <link rel="stylesheet" href="{% static '/report.css' %}" />
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+<style>
+    ul {
+        padding:0; 
+        margin:0
+    }
+    .navlist {
+        margin-top: 50px;
+    }
+    .nav a, .nav label {
+        display: block;
+        width:200px;
+        height:50px;
+        line-height:50px;
+        text-align:center;
+        color:#989898;
+        background-color: #f1f1f1;
+        -webkit-transition: all .25s ease-in;
+        transition: all .25s ease-in;
+        border:1px solid #d7d7d7;
+    }
+    .nav a:focus, .nav a:hover, .nav label:focus, .nav label:hover {
+        color: rgba(255, 255, 255, 0.9);
+        background: #424D83;
+    }
+
+    .nav label{
+        display:block;
+        cursor:pointer;
+        font-size: 10px;
+        -webkit-transition: all .25s ease-in;
+        transition: all .25s ease-in;
+    }
+    .navlist input[type=checkbox]:checked + label + ul {
+        max-height: 1000px; 
+    }
+</style>
 <body>
     <div class = "report">
         <div class = "report-list">
+            <nav class="nav" role="navigation">
+                <ul class="navlist">
+                    {% for report in report_list %}
+                        <li><label>[Report {{report.reportID}}] {{report.rDatetime}}</label></li>
+                    {% endfor %}
+                </ul>
+             </nav>
+             
         </div>
         <div class = "report-main">
             <div class="report-row report-container">
@@ -24,8 +68,8 @@
                     <div class="report-row hero" data-equalizer>
                         <div class="large-6 columns panel" data-equalizer-watch>
                             <h1>발표 분석 결과</h1>
-                            <p>{{ user.username }}님의 <몇>번째 발표 분석 결과입니다.</p>
-                            <p>날짜 ex) 2023.11.03</p>
+                            <p><b>{{ user }}님의 {{reportID}}번째 발표 분석 결과입니다.</b></p>
+                            <p>발표 날짜: {{date}}</p>
                         </div>
                         <div class="large-6 columns panel bg" data-equalizer-watch>&nbsp;</div>
                     </div>
@@ -38,10 +82,7 @@
                             <tr align="center">
                                 <td width=300>
                                     <h6>
-                                        &quot;I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is&quot;
+                                        &quot;{{attitude_analysis}}&quot;
                                     </h6>
                                     
                                 </td>
@@ -62,10 +103,7 @@
                             <tr align="center">
                                 <td width=300>
                                     <h6>
-                                        &quot;I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is&quot;
+                                        &quot;{{voice_analysis}}&quot;
                                     </h6>
                                     
                                 </td>
@@ -87,16 +125,42 @@
                             <tr align="center">
                                 <td width=300>
                                     <h6>
-                                        &quot;I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is
-                                        I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is&quot;
+                                        &quot;{{script_analysis}}&quot;
                                     </h6>
-                                    
                                 </td>
                             </tr>
                         </table>
-                        <div class="ct-chart ct-perfect-fourth"></div>
+                    </div>
+                    <hr>
+                    <div class="large-12 columns title text-center">
+                        <h1>발표 내용 확인</h1>
+                        <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
+                        <h1>Script</h1>
+                        <h6>
+                            &quot;{{script}}&quot;
+                        </h6>
+                    </div>
+                    <div class="large-12 columns title text-center">
+                        <h1>Q&A</h1>
+                        <h6>
+                            Q1 : &quot;{{q1}}&quot;
+                        </h6>
+                        <h6>
+                            A1 : &quot;{{a1}}&quot;
+                        </h6>
+                        <h6>
+                            Q2 : &quot;{{q2}}&quot;
+                        </h6>
+                        <h6>
+                            A2 : &quot;{{a2}}&quot;
+                        </h6>
+                        <h6>
+                            Q3 : &quot;{{q3}}&quot;
+                        </h6>
+                        <h6>
+                            A3 : &quot;{{a3}}&quot;
+                        </h6>
+                    </div>
                     </div>
                 </div>
             </div>
