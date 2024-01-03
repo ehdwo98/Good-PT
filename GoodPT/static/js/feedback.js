@@ -17,10 +17,6 @@ window.onload = () => {
         .catch((error) => {
             console.error('Error accessing camera:', error);
         });
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-        previewPlayer.srcObject = stream;
-        startRecording(previewPlayer.captureStream());
-    });
 };
 
 function videoStart(event) {
