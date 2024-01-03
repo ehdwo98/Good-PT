@@ -1,0 +1,10 @@
+errorDictionary = {}
+errorDictionary['Please enter a correct username and password. Note that both fields may be case-sensitive.'] = '올바른 사용자 이름과 비밀번호를 입력해주세요. 대소문자를 구분할 수 있습니다.'
+errorDictionary['The two password fields didn’t match.'] = '비밀번호와 비밀번호확인이 맞지 않습니다.'
+errorDictionary['A user with that username already exists.'] = '해당 아이디를 사용하는 유저가 이미 있습니다.'
+errorDictionary['This password is too short. It must contain at least 8 characters.'] = '비밀번호가 너무 짧습니다. 최소 8자는 되어야 합니다.'
+errorDictionary['This password is too common.'] = '비밀번호가 너무 단순합니다.'
+errorDictionary['This field is required.'] = '빈 작성란이 존재합니다. 작성란을 채워주세요.'
+errorDictionary['Enter a valid email address.'] = '이메일 양식이 맞이 않습니다.'
+errorDictionary['The password is too similar to the username.'] = '아이디와 비밀번호가 너무 유사합니다.'
+errorDictionary['The password is too similar to the email address.'] = '비밀번호와 이메일이 너무 유사합니다.'
