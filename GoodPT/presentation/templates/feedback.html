@@ -29,7 +29,7 @@
 				// Clear the prompt 
 				$('#prompt').val(''); 
 				$.ajax({ 
-					url: '/', 
+					url: '/detail/', 
 					type: 'POST', 
 					data: {prompt: prompt}, 
 					dataType: 'json', 
@@ -41,6 +41,18 @@
 		}); 
 </script> 
 {% block content %}
+<div class="video-wrapper">  
+    <div class="video-container">            
+        <div class="video-item">                
+            <video autoplay muted id="preview"></video>
+        </div>            
+        <div class="video-item">                
+            <video id="recording" style="display:none"></video>            
+        </div>
+    </div>
+</div>
+<script defer src = "{% static '/js/feedback.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'camera.css' %}">
 <div class="container p-3 rounded-lg shadow-sm" style="margin-top: 30px">
     <h3 class="text-center mb-4">Q&A Session</h3>
 
@@ -49,7 +61,7 @@
             </div>
 
         <div class="chat-input-wrapper">
-            <form method="post">
+            <form method="post" id="myform">
                 {% csrf_token %}
                 <textarea class="form-control" type="textarea" id="prompt" name="prompt" rows="3" placeholder="Type your response here..."></textarea>
                 <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-send"></i> Send</button>
