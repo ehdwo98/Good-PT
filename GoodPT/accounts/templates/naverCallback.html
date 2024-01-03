@@ -1,8 +1,0 @@
-{% load socialaccount %}
-<div>
-    {% if user.is_authenticated %}
-        <a href="/accounts/logout" type="button" class="h1">Logout</a>   
-    {% else %}                
-    <h2><a href="{% provider_login_url 'naver' method='oauth2' %}">페이스북 로그인</a></h2>    
-    {% endif %}
-</div>

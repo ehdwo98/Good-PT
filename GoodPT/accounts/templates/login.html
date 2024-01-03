@@ -2,12 +2,17 @@
 {% load static %}
 {% load i18n %}
 {% load allauth account socialaccount %}
+
 {% block content %}
     <link rel="stylesheet" href="{% static '/css/login.css' %}?after" />
     <link rel="stylesheet" href="{% static '/css/modal.css' %}?after" />
     <script defer src="{% static 'js/login.js' %}?after"></script>
-    
- 
+    <script defer src="{% static 'js/modal.js' %}?after"></script>
+  
+    {% for message in messages %}
+        <script>alert('{{message}}')</script>
+
+    {% endfor %}
 
     <div class="wrapper" >
         <div class="container-login">
