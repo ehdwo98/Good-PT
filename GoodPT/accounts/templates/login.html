@@ -9,7 +9,10 @@
     <script defer src="{% static 'js/login.js' %}?after"></script>
     <script defer src="{% static 'js/modal.js' %}?after"></script>
   
- 
+    {% for message in messages %}
+        <script>alert('{{message}}')</script>
+
+    {% endfor %}
 
     <div class="wrapper" >
         <div class="container-login">
