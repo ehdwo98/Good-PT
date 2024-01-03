@@ -2,7 +2,7 @@
 {% load static %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script> 
-<script> 
+<!-- <script> 
 		$(document).ready(function() { 
 			// Send the form on enter keypress and avoid if shift is pressed 
 			$('#prompt').keypress(function(event) { 
@@ -29,7 +29,7 @@
 				// Clear the prompt 
 				$('#prompt').val(''); 
 				$.ajax({ 
-					url: '/detail/', 
+					url: '/feedback/', 
 					type: 'POST', 
 					data: {prompt: prompt}, 
 					dataType: 'json', 
@@ -39,7 +39,7 @@
 				}); 
 			}); 
 		}); 
-</script>
+</script> -->
 {% block content %}
 <div id="main" style="margin-top:20px;">
     <div id="screen">
@@ -80,8 +80,10 @@
             <div class="chat-input-wrapper">
                 <form method="post" id="myform">
                     {% csrf_token %}
-                    <textarea class="form-control" type="textarea" id="prompt" name="prompt" rows="3" placeholder="Type your response here..."></textarea>
-                    <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-send"></i> Send</button>
+                    <textarea class="form-control" type="textarea" id="prompt" name="prompt" rows="3" placeholder="STT your response here..."></textarea>
+                    <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-send"></i>입력</button>
+                    <button class="btn btn-primary mt-2" onclick="sendSpeech();">STT 버튼</button>
+                    <p class="output">...diagnostic messages</p>
                 </form>
             </div>
         </div>
