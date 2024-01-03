@@ -52,7 +52,7 @@
             <nav class="nav" role="navigation">
                 <ul class="navlist">
                     {% for report in report_list %}
-                        <li><label>[Report {{report.reportID}}] {{report.rDatetime}}</label></li>
+                        <li><a href="/report/{{report.reportID}}"><label>[Report {{report.reportID}}] {{report.rDatetime}}</label></a></li>
                     {% endfor %}
                 </ul>
              </nav>
@@ -135,10 +135,6 @@
                     <div class="large-12 columns title text-center">
                         <h1>발표 내용 확인</h1>
                         <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
-                        <h1>Script</h1>
-                        <h6>
-                            &quot;{{script}}&quot;
-                        </h6>
                     </div>
                     <div class="large-12 columns title text-center">
                         <h1>Q&A</h1>
