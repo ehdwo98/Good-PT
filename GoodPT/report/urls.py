@@ -2,10 +2,9 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from . import views
 
-app_name = 'login'
+app_name = 'report'
 
 urlpatterns = [
-    path('',views.test1,name='login'),
-    path('privacy',views.test4)
+    path('',views.report,name='report'),
 
 ]

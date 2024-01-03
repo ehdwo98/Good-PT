@@ -1,0 +1,365 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.regular {
+  margin-top: 2rem;
+  align-items: flex-start;
+}
+
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+/* Variables from :root */
+.checkbox-wrap label:before,
+.checkbox-wrap label:after,
+.custom-checkbox:after,
+.blur:before,
+.fixed,
+.abutton,
+abutton,
+.close-btn {
+  border-radius: 5px;
+}
+
+.agreement.checkbox-wrap {
+  display: flex;
+  margin: 2rem 0;
+  color: #303441; /* --neutrals-800 */
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+.agreement .terms-conditions {
+  color: #424D83; /* --primary */
+}
+
+.agreement .terms-conditions:hover {
+  opacity: .8;
+}
+
+.checkbox-wrap input {
+  display: none;
+}
+
+.checkbox-wrap label {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.checkbox-wrap label:before,
+.checkbox-wrap label:after {
+  content: '';
+  transition: all .2s ease-in-out;
+}
+
+.checkbox-wrap label:before {
+  display: inline-block;
+  height: 1rem;
+  min-height: 1rem;
+  width: 1rem;
+  min-width: 1rem;
+  margin-right: .5rem;
+  border-radius: 5px; /* --radius */
+  border: 2px solid #B3B7C5; /* --neutrals-300 */
+}
+
+/* custom check mark */
+.checkbox-wrap label:after {
+  display: none;
+  position: absolute;
+  left: .45rem;
+  top: .2rem;
+  width: .25rem;
+  height: .5rem;
+  transform: rotate(45deg);
+  border: solid #FFFFFF; /* --white */
+  border-width: 0 2px 2px 0;
+}
+
+
+/* CASE 2 - AGREEMENT WITH CUSTOM CHECKBOX */
+.agreement2 {
+  display: flex;
+}
+
+.agreement2 p {
+  margin-left: .75rem;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.agreement2 .terms-conditions {
+  color: #424D83; /* --primary */
+}
+
+
+
+
+/* MODAL */
+/* AGREEMENT EXTRA CUSTOM MODAL */
+.agreement-popup .top h4 {
+  margin: 0;
+  color: #303441; /* --neutrals-800 */
+  text-align: center;
+  font-family: 'lato';
+  font-size: 1.125rem;
+}
+
+.modal.agreement-popup .modal-container .content {
+  min-height: 8vh;
+  max-height: 50vh;
+  padding: .5rem 2rem 2rem;
+}
+
+.agreement-popup .content p {
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* with an accept button */
+.agreement-popup .modal-container.with-accept .content {
+  padding: .5rem 2rem 0;
+  margin-bottom: 6.25rem;
+}
+
+.agreement-popup .modal-container.with-accept .bottom button {
+  max-width: 100%;
+}
+
+/* CUSTOM BLUR */
+.blur {
+  position: fixed;
+  z-index: 1;
+}
+
+.blur:before {
+  content: '';
+  position: fixed;
+  top: -1rem;
+  left: 0;
+  right: 0;
+  height: 2rem;
+  background: linear-gradient(to top, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0));
+  z-index: 1;
+}
+
+
+
+.fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 5px; /* --radius */
+  background-color: #FFFFFF; /* --white */
+  z-index: 1;
+}
+
+/* BUTTON STYLE */
+#privacy-accept-button {
+  height: 3rem;
+  padding: 0.375rem 0.875rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.125rem;
+  border: 0;
+  border-radius: 5px; /* --radius */
+  line-height: 1;
+  background-color: #FFFFFF; /* --white */
+  cursor: pointer;
+}
+
+#privacy-accept-button {
+  border: 1px solid #424D83; /* --primary */
+  background-color: #424D83; /* --primary */
+  color: #FFFFFF; /* --white */
+  transition: all .3s ease-in-out;
+}
+
+#privacy-accept-button:hover,
+#privacy-accept-button:active {
+  opacity: .8;
+}
+
+/*****************************************/
+/* MODAL *********************************/
+/*****************************************/
+/* PREVENT SCROLLING */
+
+
+.modal { /* overlay */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  background-color: rgba(48, 52, 64, 0.8);
+  transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 32rem;
+    max-height: 80%;
+    margin: auto;
+    border-radius: 5px; /* --radius */
+    background-color: #FFFFFF; /* --white */
+    box-shadow: 0px 5px 20px rgba(52, 68, 115, 0.149);
+    transform: scale(0.9);
+    transition: transform .3s ease-in-out;
+    z-index: 6;
+}
+
+/* MODAL ACTIVE */
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal.show .modal-container {
+    transform: scale(1);
+}
+
+.modal .inner-container {
+    height: 100%;
+    overflow: hidden;
+}
+
+.modal .modal-container .content {
+    width: 100%;
+    height: 100%;
+    max-height: 45vh;
+    padding: 0 2rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+   
+    overscroll-behavior-y: contain;
+}
+
+.modal .top {
+    padding: 2rem 2rem 1rem;
+}
+
+.modal .bottom {
+    padding: 1rem 2rem 2rem;
+}
+
+/* MODAL CLOSE */
+.close-btn i.fal.fa-times::before {
+  content: none; 
+}
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: -3rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #B3B7C5; /* --neutrals-300 */
+    background-color: #FFFFFF; /* --white */
+    border-radius: 5px; /* --radius */
+    font-size: 1.1rem;
+    overflow: hidden;
+    z-index: 7;
+}
+
+.close-btn:hover svg {
+    opacity: .8;
+    transition: opcity .3s ease-in-out; /* Fix typo: opacity */
+}
+
+/* SCROLL - CONTENT */
+.modal-scroll-y {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+   
+    overscroll-behavior-y: contain;
+}
+
+
+
+/* MEDIA QUERY *****************************************/
+@media (max-width: 48em) { /* 768px */
+
+    .modal-container {
+        height: 100%;
+        max-width: 100% !important;
+        max-height: 100%;
+        border-radius: 0;
+    }
+
+    .modal .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-btn {
+        width: auto;
+        height: auto;
+        position: static;
+        font-size: 1.15rem;
+        background-color: transparent;
+    }
+
+    /* MODAL */
+    .modal.agreement-popup .modal-container .content {
+        max-height: calc(100vh - 9rem);
+        padding: .5rem 1.5rem 2rem;
+    }
+
+    .agreement-popup .modal-container.with-accept .content {
+        padding: .5rem 1.5rem 0;
+    }
+}
+
+@media (max-width: 36em) { /* 576px */
+
+    .modal .modal-container .content {
+        padding: 0 1.5rem;
+    }
+
+    .modal .top {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+
+    .modal .bottom,
+    .modal .bottom.fixed {
+        padding: 1rem 1.5rem 1.5rem;
+    }
+
+    /* Custom modal - notes */
+    .notes-popup .bottom {
+        padding: 0 1.5rem 1.5rem;
+    }
+}
+
+@media (min-width: 48.1em) and (max-height: 50em) { /* 768px */
+
+    .modal-container {
+        max-height: 90%;
+    }
+}
