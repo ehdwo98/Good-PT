@@ -15,9 +15,6 @@ from django.shortcuts import render
 from django.http import JsonResponse 
 import openai
 import os
-from pyaudio import PyAudio
-from speech_recognition import Microphone, Recognizer
-from django.http import HttpResponse
 from presentation.LLM_gpt_24 import question_contents
 
 openai.api_key=''
