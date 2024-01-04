@@ -101,6 +101,9 @@ hr{
 	font-weight: 600;
 	font-size: .8rem;
 }
+.progress-bar {
+	margin-top: 30px;
+}
 .progress-bar .progress {
 	width: 72%;
 	height: 30px;

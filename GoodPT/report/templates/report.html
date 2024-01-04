@@ -85,13 +85,19 @@
                                 </td>
                                 <td width=300 style="padding-left: 20px;">
                                     <div class="graph-box">
-                                        <h6 style="color: white; text-align: left;">손 제스쳐 비율</h6>
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">손 제스쳐 비율</span>
+                                            <span style="float: right;">{{static_rate}} %</span>
+                                        </h6>
                                         <div class="progress-bar">           
                                             <div class="progress"> </div>
                                         </div>
                                     </div>
                                     <div class="graph-box">
-                                        <h6 style="color: white; text-align: left;">정면 응시 비율</h6>
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">정면 응시 비율</span>
+                                            <span style="float: right;">{{face_recog_rate}} %</span>
+                                        </h6>
                                         <div class="progress-bar">           
                                             <div class="progress"> </div>
                                         </div>
@@ -114,13 +120,19 @@
                                 </td>
                                 <td width=300 style="padding-left: 20px;">
                                     <div class="graph-box">
-                                        <h6 style="color: white; text-align: left;">음성적 잉여 비율</h6>
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">음성적 잉여 비율</span>
+                                            <span style="float: right;">{{surplus_rate}} %</span>
+                                        </h6>
                                         <div class="progress-bar">           
                                             <div class="progress"> </div>
                                         </div>
                                     </div>
                                     <div class="graph-box">
-                                        <h6 style="color: white; text-align: left;">발표 빠르기</h6>
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">발표 빠르기</span>
+                                            <span style="float: right;">{{speed_rate}} %</span>
+                                        </h6>
                                         <div class="progress-bar">           
                                             <div class="progress"> </div>
                                         </div>
@@ -175,4 +187,10 @@
         </div>
     </div>
 </body>
+<script>
+    progressBar = document.querySelectorAll('.progress-bar .progress')[0]
+    console.log(progressBar)
+    console.log({{static_rate}})
+    progressBar.style.width = {{static_rate}}
+</script>
 {% endblock content %}

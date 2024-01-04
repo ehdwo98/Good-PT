@@ -15,6 +15,13 @@ def report(request):
             voice_analysis = report_last.voice_analysis
             attitude_analysis = report_last.attitude_analysis
             script_analysis = report_last.script_analysis
+            total_analysis = report_last.total_analysis
+            static_rate = report_last.static_rate
+            face_recog_rate = report_last.face_recog_rate
+            gap_rate = report_last.gap_rate
+            speed_rate = report_last.speed_rate
+            surplus_rate = report_last.surplus_rate
+            
             date = report_last.rDatetime
             
             #Q & A split
@@ -30,8 +37,11 @@ def report(request):
             return render(request,'report.html', {'user': user, 'reportID': reportID,
                                                   'q1': q1, 'q2': q2, 'q3': q3,
                                                   'a1': a1, 'a2': a2, 'a3': a3,
-                                                  'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 'script_analysis': script_analysis,
-                                                  'date': date, 'report_list': report})
+                                                  'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
+                                                  'script_analysis': script_analysis, 'total_analysis':total_analysis,
+                                                  'date': date, 'report_list': report,
+                                                  'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
+                                                  'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
         except:
             return render(request,'zeroReport.html')
     return redirect('/')
