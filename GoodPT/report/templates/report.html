@@ -11,37 +11,6 @@
 <link rel="stylesheet" href="{% static '/report.css' %}" />
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
 
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
-        ["Copper", 8.94, "#b87333"],
-        ["Silver", 10.49, "silver"],
-        ["Gold", 19.30, "gold"],
-        ["Platinum", 21.45, "color: #e5e4e2"]
-      ]);
-
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
-
-      var options = {
-        title: "Density of Precious Metals, in g/cm^3",
-        width: 600,
-        height: 400,
-        bar: {groupWidth: "95%"},
-        legend: { position: "none" },
-      };
-      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-      chart.draw(view, options);
-  }
-  </script>
 
 <style>
     ul {
@@ -108,17 +77,31 @@
                         <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
                         <table align="center">
                             <tr align="center">
-                                <td width=300>
+                                <td width=300 style="padding-right: 20px;">
                                     <h6>
                                         &quot;{{attitude_analysis}}&quot;
                                     </h6>
                                     
                                 </td>
-                                <td width=300>
-                                    <h6>제스쳐 비율</h6>
-                                    <img src="' %}" width=150 height=150/>
-                                    <h6>정면 응시 비율</h6>
-                                    <img src="' %}" width=150 height=150/>
+                                <td width=300 style="padding-left: 20px;">
+                                    <div class="graph-box">
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">손 제스쳐 비율</span>
+                                            <span style="float: right;">{{static_rate}} %</span>
+                                        </h6>
+                                        <div class="progress-bar">           
+                                            <div class="progress"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="graph-box">
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">정면 응시 비율</span>
+                                            <span style="float: right;">{{face_recog_rate}} %</span>
+                                        </h6>
+                                        <div class="progress-bar">           
+                                            <div class="progress"> </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -129,21 +112,34 @@
                         <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
                         <table align="center">
                             <tr align="center">
-                                <td width=300>
+                                <td width=300 style="padding-right: 20px;">
                                     <h6>
                                         &quot;{{voice_analysis}}&quot;
                                     </h6>
                                     
                                 </td>
-                                <td width=300>
-                                    <h6>음성적 잉여 비율</h6>
-                                    <img src="' %}" width=150 height=150/>
-                                    <h6>발표 빠르기</h6>
-                                    <img src="' %}" width=150 height=150/>
+                                <td width=300 style="padding-left: 20px;">
+                                    <div class="graph-box">
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">음성적 잉여 비율</span>
+                                            <span style="float: right;">{{surplus_rate}} %</span>
+                                        </h6>
+                                        <div class="progress-bar">           
+                                            <div class="progress"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="graph-box">
+                                        <h6 style="color: white;">
+                                            <span style="float: left;">발표 빠르기</span>
+                                            <span style="float: right;">{{speed_rate}} %</span>
+                                        </h6>
+                                        <div class="progress-bar">           
+                                            <div class="progress"> </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
-                        <div id="barchart_values" style="width: 900px; height: 300px;"></div>
                     </div>
                     <hr>
                     <div class="large-12 columns title text-center">
@@ -191,4 +187,10 @@
         </div>
     </div>
 </body>
+<script>
+    progressBar = document.getElementsByClassName('progress')[0]
+    console.log(progressBar)
+    percentage_static_rate = {{static_rate}}*100
+    progressBar.style.width = percentage_static_rate+'%'
+</script>
 {% endblock content %}
