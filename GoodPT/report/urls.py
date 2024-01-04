@@ -6,5 +6,5 @@ app_name = 'report'
 
 urlpatterns = [
     path('',views.report,name='report'),
-
+    path('/<int:no>',views.detail),
 ]

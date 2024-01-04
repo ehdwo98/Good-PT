@@ -29,5 +29,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('mypage/', include('mypage.urls')),
     path("presentation/",include('presentation.urls')),
-    path("report",include('report.urls'))
+    path("report/",include('report.urls'))
 ]

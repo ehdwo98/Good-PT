@@ -2,12 +2,20 @@
 {% load static %}
 {% load i18n %}
 {% load allauth account socialaccount %}
+
 {% block content %}
     <link rel="stylesheet" href="{% static '/css/login.css' %}?after" />
     <link rel="stylesheet" href="{% static '/css/modal.css' %}?after" />
     <script defer src="{% static 'js/login.js' %}?after"></script>
-    
- 
+    <script defer src="{% static 'js/modal.js' %}?after"></script>
+  
+    {% for message in messages %}
+        {% if message.tags == 'warning' %}
+        <script>
+            alert('{{message}}')
+        </script>
+        {% endif %}
+    {% endfor %}
 
     <div class="wrapper" >
         <div class="container-login">
@@ -21,7 +29,7 @@
                                 
                             </div>
                             <input type="text" name="username" placeholder="이름">
-                            <input type="email" name="email" placeholder="이메일">
+                            <input type="email" name="email" placeholder="이메일(선택)">
                             <input type="password" name="password1" placeholder="비밀번호">
                             <input type="password" name="password2" placeholder="비밀번호 확인">
                             <button class="form_btn" name="register">회원가입</button>
