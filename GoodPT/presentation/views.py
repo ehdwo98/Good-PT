@@ -11,8 +11,11 @@ from django.shortcuts import render
 from django.http import JsonResponse 
 import openai
 import os
+from pyaudio import PyAudio
+from speech_recognition import Microphone, Recognizer
+from django.http import HttpResponse
 
-openai.api_key='s--y'
+openai.api_key=''
 # Create your views here.
 
 def recording(request):
@@ -32,17 +35,46 @@ def recording(request):
         #     os.remove(audio_path)
     return render(request,'presentation.html')
 
-def get_completion(prompt): 
-	print(prompt) 
-	query = { 'content': ['안녕하세요','반가워요']}
-	response = query['content']
-	print(response) 
-	return response 
+def get_completion(prompt):
+    # GPT-3.5 Turbo에 요청을 보내는 코드
+    response = {
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "The 2020 World Series was played in Texas at Globe Life Field in Arlington.",
+        "role": "assistant"
+      },
+    }
+  ],
+  "created": 1677664795,
+  "id": "chatcmpl-7QyqpwdfhqwajicIEznoc6Q47XAyW",
+  "model": "gpt-3.5-turbo-0613",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 17,
+    "prompt_tokens": 57,
+    "total_tokens": 74
+  }
+}
+    return response.choices.message['content']
 
 def detail(request):
-    if  request.method == 'POST': 
-        prompt = request.POST.get('prompt') 
-        prompt=str(prompt)
+    if request.method == 'POST':
+        prompt = request.POST.get('prompt')
         response = get_completion(prompt)
-        return JsonResponse({'response': response})
-    return render(request, 'feedback.html') 
+        return render(request, 'feedback.html',{'res':JsonResponse({'response': response})})
+    return render(request, 'feedback.html')
+  
+# def stt(request):
+#     pyaudio = PyAudio()
+#     audio = pyaudio.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1024)
+#     stream = Microphone(audio, chunk_size=1024)
+
+#     recognizer = Recognizer()
+#     speech = recognizer.record(stream)
+
+#     transcript = recognizer.recognize_google(speech)
+
+#     return render(request, 'feedback.html',{'stt':transcript})

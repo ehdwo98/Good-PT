@@ -23,7 +23,7 @@
             <div class="d-flex justify-content-end">
                 {% if question.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
-                    <div class="mb-2">modified at</div>
+                    <div class="mb-2">(수정됨)</div>
                     <div>{{ question.modify_date }}</div>
                 </div>
                 {% endif %}
@@ -54,7 +54,7 @@
         <h5>{{ answer_set.paginator.count }}개의 답변이 있습니다.</h5>
     </div>
     <div class="col-2">
-        <select class="form-control so">
+        <select class="form-control so" style="text-align:center;">
             <option value="recommend" {% if so == 'recommend' %}selected{% endif %}>추천순</option>
             <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
         </select>
@@ -79,7 +79,7 @@
                 <div class="d-flex justify-content-end">
                     {% if answer.modify_date %}
                     <div class="badge badge-light p-2 text-left mx-3">
-                        <div class="mb-2">modified at</div>
+                        <div class="mb-2">(수정됨)</div>
                         <div>{{ answer.modify_date }}</div>
                     </div>
                     {% endif %}
