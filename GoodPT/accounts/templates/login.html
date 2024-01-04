@@ -10,8 +10,11 @@
     <script defer src="{% static 'js/modal.js' %}?after"></script>
   
     {% for message in messages %}
-        <script>alert('{{message}}')</script>
-
+        {% if message.tags == 'warning' %}
+        <script>
+            alert('{{message}}')
+        </script>
+        {% endif %}
     {% endfor %}
 
     <div class="wrapper" >
