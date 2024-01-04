@@ -24,7 +24,7 @@ def recording(request):
   if request.method == 'POST':
     recorded_data = request.FILES.get('recordedData')
     path = default_storage.save('tmp/myvideo.mp4', ContentFile(recorded_data.read()))
-  
+
   return render(request,'presentation.html')
       
 
@@ -35,12 +35,19 @@ def get_completion(prompt):
     return response
 
 def detail(request):
-  
+    answer_list = []
+    question_list = ['empty1','empty2','empty3']
     if request.method == 'POST':
-      
-        prompt = request.POST.get('prompt')
-        response = get_completion(prompt)
-        return render(request, 'feedback.html',{'response': response})
+        recorded_data = request.FILES.get('recordedData')
+        path = default_storage.save('tmp/myAnswer.mp4', ContentFile(recorded_data.read()))
+        audio_path = extractAudioFromVideo("tmp/myAnswer.mp4","tmp/myAnswer.wav")
+        total_script,content = pt_analysis(audio_path)
+        print('myVoice TTS : ' + total_script)
+        if os.path.exists(path):
+            os.remove(path)
+        if os.path.exists(audio_path):
+            os.remove(audio_path)
+        answer_list.append(content)
     else:
         path = 'tmp/myvideo.mp4'
         cap = cv2.VideoCapture(path)
@@ -51,7 +58,7 @@ def detail(request):
         # 태도 분석
         
         #음성 파일
-        audio_path = extractAudioFromVideo()
+        audio_path = extractAudioFromVideo("tmp/myvideo.mp4","tmp/myaudio.wav")
         
         # 음성 분석
         total_script,content = pt_analysis(audio_path)
@@ -61,16 +68,5 @@ def detail(request):
             os.remove(path)
         if os.path.exists(audio_path):
             os.remove(audio_path)
-    return render(request, 'feedback.html')
+    return render(request, 'feedback.html',{'question_list':question_list})
   
-# def stt(request):
-#     pyaudio = PyAudio()
-#     audio = pyaudio.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1024)
-#     stream = Microphone(audio, chunk_size=1024)
-
-#     recognizer = Recognizer()
-#     speech = recognizer.record(stream)
-
-#     transcript = recognizer.recognize_google(speech)
-
-#     return render(request, 'feedback.html',{'stt':transcript})
