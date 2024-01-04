@@ -1,33 +1,35 @@
 body {
 	font-family: 'Raleway', sans-serif;
+	background: #E5E5E4;
 }
 
 .report{
 	display : flex;
 	flex-direction : row;
+	height : 100vh;
 }
 
 .report-list{
-	width : 18%;
-	background-color: #e5e9ff;
-	border-right: 1px solid black;
+	width : 15%;
 }
 
 .report-main{
-	width : 82%;
+	width : 85%;
 }
 
 .report-container{
     background : white;
 	padding : 2%;
+	height : 100%;
 }
 .wrapper{
 	margin-top: 60px;
 }
 .hero{
 	height: 400px;
+	background: #F8F8F9;
 	margin: 0;
-	text-align: center;
+
 }
 
 .hero h1, .m-chart h1{
