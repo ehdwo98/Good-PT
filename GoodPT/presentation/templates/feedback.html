@@ -2,7 +2,7 @@
 {% load static %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script> 
-<!-- <script> 
+    <script> 
 		$(document).ready(function() { 
 			// Send the form on enter keypress and avoid if shift is pressed 
 			$('#prompt').keypress(function(event) { 
@@ -39,7 +39,7 @@
 				}); 
 			}); 
 		}); 
-</script> -->
+    </script>
 {% block content %}
 <div id="main" style="margin-top:20px;">
     <div id="screen">
@@ -75,6 +75,9 @@
 
         <div class="chat-container">
             <div class="chat-history-wrapper overflow-auto" id="response">
+                {% for question in question_list %}
+                    <p>{{question}}</p>
+                {% endfor %}
                 </div>
 
             <div class="chat-input-wrapper">
