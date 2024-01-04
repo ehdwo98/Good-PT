@@ -8,3 +8,7 @@ errorDictionary['This field is required.'] = '빈 작성란이 존재합니다. 
 errorDictionary['Enter a valid email address.'] = '이메일 양식이 맞이 않습니다.'
 errorDictionary['The password is too similar to the username.'] = '아이디와 비밀번호가 너무 유사합니다.'
 errorDictionary['The password is too similar to the email address.'] = '비밀번호와 이메일이 너무 유사합니다.'
+errorDictionary['Your password can’t be too similar to your other personal information.']= '비밀번호가 다른 사람의 정보와 너무 유사합니다. 다른 비밀번호를 사용해주세요.'
+errorDictionary['Your password can’t be a commonly used password.'] = '비밀번호가 너무 흔합니다.'
+errorDictionary['Your password can’t be entirely numeric.'] = '비밀번호가 전부 숫자로 이루어질 수 없습니다.'
+errorDictionary['Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'] = '비밀번호는 150자 이내여야 하고 문자, 숫자 및 @/+--만 사용할 수 있습니다.'
