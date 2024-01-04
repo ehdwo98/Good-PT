@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<link rel="stylesheet" href="https://wowjs.uk/css/libs/animate.css">
+<script src="https://wowjs.uk/dist/wow.min.js"></script>
+
+<script defer src = "{% static '/js/report.js' %}"></script>
+<link rel="stylesheet" href="{% static '/zeroReport.css' %}" />
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+
+<body>
+    <div class = "report">
+        <div class = "report-list">
+            <nav class="nav" role="navigation">
+                <ul class="navlist">
+                    {% for report in report_list %}
+                        <li><a href="/report/{{report.reportID}}"><label>[Report {{report.reportID}}] {{report.rDatetime}}</label></a></li>
+                    {% endfor %}
+                </ul>
+             </nav>
+             
+        </div>
+        <div class = "report-main">
+            <div class = "report-container">
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
