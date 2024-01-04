@@ -82,7 +82,10 @@ function sendRecording() {
         })
         .catch(err => {
             console.log(err)
+            window.location.href = '/presentation/feedback'
+
         });
+    
 }
 function getCSRFToken() {
     const cookieValue = document.cookie
