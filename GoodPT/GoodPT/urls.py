@@ -21,6 +21,7 @@ from django.shortcuts import render
 def index(request):
     return render(request,'index.html')
 
+
 urlpatterns = [
     path("", index),
     path("admin/", admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('mypage/', include('mypage.urls')),
     path("presentation/",include('presentation.urls')),
-    path("report/",include('report.urls'))
-]
+    path("report/",include('report.urls')),
+    ]
+handler404 = 'common.views.page_not_found'
