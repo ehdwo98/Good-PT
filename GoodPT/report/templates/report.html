@@ -10,17 +10,50 @@
 <script defer src = "{% static '/js/report.js' %}"></script>
 <link rel="stylesheet" href="{% static '/report.css' %}" />
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Copper", 8.94, "#b87333"],
+        ["Silver", 10.49, "silver"],
+        ["Gold", 19.30, "gold"],
+        ["Platinum", 21.45, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Density of Precious Metals, in g/cm^3",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+
 <style>
     ul {
         padding:0; 
         margin:0
     }
-    .navlist {
+    .nav {
         margin-top: 50px;
     }
     .nav a, .nav label {
         display: block;
-        width:200px;
+        width:250px;
         height:50px;
         line-height:50px;
         text-align:center;
@@ -38,7 +71,7 @@
     .nav label{
         display:block;
         cursor:pointer;
-        font-size: 10px;
+        font-size: 13px;
         -webkit-transition: all .25s ease-in;
         transition: all .25s ease-in;
     }
@@ -52,21 +85,16 @@
             <nav class="nav" role="navigation">
                 <ul class="navlist">
                     {% for report in report_list %}
-                        <li><label>[Report {{report.reportID}}] {{report.rDatetime}}</label></li>
+                        <li><a href="/report/{{report.reportID}}"><label>[Report {{report.reportID}}] {{report.rDatetime}}</label></a></li>
                     {% endfor %}
                 </ul>
              </nav>
-             
         </div>
         <div class = "report-main">
             <div class="report-row report-container">
                 <div class="large-12 columns">
-                    <div class="report-row">
-                    </div>
-                </div>
-                <div class="large-12 columns">
-                    <div class="report-row hero" data-equalizer>
-                        <div class="large-6 columns panel" data-equalizer-watch>
+                    <div class="report-row hero">
+                        <div class="large-6 columns panel">
                             <h1>발표 분석 결과</h1>
                             <p><b>{{ user }}님의 {{reportID}}번째 발표 분석 결과입니다.</b></p>
                             <p>발표 날짜: {{date}}</p>
@@ -115,7 +143,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <div class="ct-chart ct-perfect-fourth"></div>
+                        <div id="barchart_values" style="width: 900px; height: 300px;"></div>
                     </div>
                     <hr>
                     <div class="large-12 columns title text-center">
@@ -135,10 +163,6 @@
                     <div class="large-12 columns title text-center">
                         <h1>발표 내용 확인</h1>
                         <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
-                        <h1>Script</h1>
-                        <h6>
-                            &quot;{{script}}&quot;
-                        </h6>
                     </div>
                     <div class="large-12 columns title text-center">
                         <h1>Q&A</h1>

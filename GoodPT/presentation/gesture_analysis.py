@@ -5,15 +5,7 @@ import cv2
 import warnings
 warnings.filterwarnings("ignore")
 
-model_name = "movenet_lightning"
-
-if "movenet_lightning" in model_name:
-    module = hub.load("https://tfhub.dev/google/movenet/singlepose/lightning/4")
-    input_size = 192
-else:
-    raise ValueError("Unsupported model name: %s" % model_name)
-
-def movenet(input_image):
+def movenet(input_image, module):
     """Runs detection on an input image.
 
     Args:
@@ -36,6 +28,14 @@ def movenet(input_image):
     return keypoints_with_scores
 
 def gesture_analysis(cap):
+    model_name = "movenet_lightning"
+
+    if "movenet_lightning" in model_name:
+        module = hub.load("https://tfhub.dev/google/movenet/singlepose/lightning/4")
+        input_size = 192
+    else:
+        raise ValueError("Unsupported model name: %s" % model_name)
+    
     count = 0
     flag = -1
     count_action = {1:0, 2:0} # action = {1:'back', 2:'turn'}
@@ -60,7 +60,7 @@ def gesture_analysis(cap):
         input_image = tf.image.resize_with_pad(input_image, input_size, input_size)
 
         # Run model inference.
-        keypoints_with_scores = movenet(input_image)
+        keypoints_with_scores = movenet(input_image, module)
 
         keypoints = np.squeeze(np.multiply(keypoints_with_scores, [1000, 1000, 1]))
         keypoints_shown = [i for i in range(17) if keypoints[i][2]>0.4]

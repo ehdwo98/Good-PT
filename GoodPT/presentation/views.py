@@ -18,6 +18,9 @@ from django.shortcuts import render
 from django.http import JsonResponse 
 import openai
 import os
+from pyaudio import PyAudio
+from speech_recognition import Microphone, Recognizer
+from django.http import HttpResponse
 
 openai.api_key=''
 # Create your views here.
@@ -80,5 +83,17 @@ def detail(request):
     if request.method == 'POST':
         prompt = request.POST.get('prompt')
         response = get_completion(prompt)
-        return JsonResponse({'response': response})
+        return render(request, 'feedback.html',{'res':JsonResponse({'response': response})})
     return render(request, 'feedback.html')
+  
+# def stt(request):
+#     pyaudio = PyAudio()
+#     audio = pyaudio.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1024)
+#     stream = Microphone(audio, chunk_size=1024)
+
+#     recognizer = Recognizer()
+#     speech = recognizer.record(stream)
+
+#     transcript = recognizer.recognize_google(speech)
+
+#     return render(request, 'feedback.html',{'stt':transcript})

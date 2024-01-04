@@ -2,7 +2,7 @@
 {% load static %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script> 
-<script> 
+<!-- <script> 
 		$(document).ready(function() { 
 			// Send the form on enter keypress and avoid if shift is pressed 
 			$('#prompt').keypress(function(event) { 
@@ -29,7 +29,7 @@
 				// Clear the prompt 
 				$('#prompt').val(''); 
 				$.ajax({ 
-					url: '/detail/', 
+					url: '/feedback/', 
 					type: 'POST', 
 					data: {prompt: prompt}, 
 					dataType: 'json', 
@@ -39,35 +39,59 @@
 				}); 
 			}); 
 		}); 
-</script> 
+</script> -->
 {% block content %}
-<div class="video-wrapper">  
-    <div class="video-container">            
-        <div class="video-item">                
-            <video autoplay muted id="preview"></video>
-        </div>            
-        <div class="video-item">                
-            <video id="recording" style="display:none"></video>            
+<div id="main" style="margin-top:20px;">
+    <div id="screen">
+      <h1>Screen</h1>
+      <div class="video-wrapper rounded-lg shadow-sm" id="chatcamera">  
+        <div class="video-container">            
+            <div class="video-item2">                
+                <video autoplay muted id="preview"></video>
+            </div>            
+            <div class="video-item2">                
+                <video id="recording" style="display:none"></video>            
+            </div>
+        </div>
+        <div class="button-container">            
+            <button class="record-button">
+                <img src="{% static '/img/icons/btn_record.png' %}" id = "button-record-image">
+            </button>           
+            <button class="stop-button">
+                <img src='../static/img/icons/btn_stop.png' id = "button-stop-image">
+            </button>            
+            <button class="play-button">
+                <img src='../static/img/icons/btn_play.png' id = "button-play-image">
+            </button>
+            <button class="analyze-button">
+                <img src='../static/img/icons/btn_analyze.png' id = "button-analyze-image">
+            </button>
+        </div>  
+    </div>
+    </div>
+    <div id="dialog">
+        <div class="container p-3 rounded-lg shadow-sm" id="chat">
+        <h3 class="text-center mb-4">Q&A Dialog</h3>
+
+        <div class="chat-container">
+            <div class="chat-history-wrapper overflow-auto" id="response">
+                </div>
+
+            <div class="chat-input-wrapper">
+                <form method="post" id="myform">
+                    {% csrf_token %}
+                    <textarea class="form-control" type="textarea" id="prompt" name="prompt" rows="3" placeholder="STT your response here..."></textarea>
+                    <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-send"></i>입력</button>
+                    <button class="btn btn-primary mt-2" onclick="sendSpeech();">STT 버튼</button>
+                    <p class="output">...diagnostic messages</p>
+                </form>
+            </div>
         </div>
     </div>
+    </div>
 </div>
+
 <script defer src = "{% static '/js/feedback.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'camera.css' %}">
-<div class="container p-3 rounded-lg shadow-sm" style="margin-top: 30px">
-    <h3 class="text-center mb-4">Q&A Session</h3>
-
-    <div class="chat-container">
-        <div class="chat-history-wrapper overflow-auto" id="response">
-            </div>
-
-        <div class="chat-input-wrapper">
-            <form method="post" id="myform">
-                {% csrf_token %}
-                <textarea class="form-control" type="textarea" id="prompt" name="prompt" rows="3" placeholder="Type your response here..."></textarea>
-                <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-send"></i> Send</button>
-            </form>
-        </div>
-    </div>
-</div>
 
 {% endblock content %}

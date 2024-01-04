@@ -10,8 +10,11 @@
     <script defer src="{% static 'js/modal.js' %}?after"></script>
   
     {% for message in messages %}
-        <script>alert('{{message}}')</script>
-
+        {% if message.tags == 'warning' %}
+        <script>
+            alert('{{message}}')
+        </script>
+        {% endif %}
     {% endfor %}
 
     <div class="wrapper" >
@@ -98,17 +101,13 @@
                                 
                             </div>
                         </div>
-          <div class="bottom blur fixed">
+            <div class="bottom blur fixed">
             
             <button id = "privacy-accept-button" class="btn-primary">Accept</button>
-          </div>
+            </div>
     
        
     </div>
 </div>
-    <footer>
-        <ul class="ft_link">
-            <li><a href="http://localhost:8000/login/privacy" onclick="privacypolicy()">개인정보 처리방침</a></li>
-        </ul>
-    </footer>
+ 
 {% endblock content %}
