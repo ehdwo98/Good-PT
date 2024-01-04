@@ -188,9 +188,9 @@
     </div>
 </body>
 <script>
-    progressBar = document.querySelectorAll('.progress-bar .progress')[0]
+    progressBar = document.getElementsByClassName('progress')[0]
     console.log(progressBar)
-    console.log({{static_rate}})
-    progressBar.style.width = {{static_rate}}
+    percentage_static_rate = {{static_rate}}*100
+    progressBar.style.width = percentage_static_rate+'%'
 </script>
 {% endblock content %}
