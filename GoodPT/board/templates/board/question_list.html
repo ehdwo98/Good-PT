@@ -56,13 +56,15 @@
                     <span class="badge rounded-pill bg-success">👍 {{ question.voter.count }}</span>
                         <!-- question.voter.count와 완전히 같은 쿼리(SQL문 동일) -->
                 {% else %}
-                    <span class="badge rounded-pill bg-warning">0</span>
+                    <span class="badge rounded-pill bg-success">👍 0</span>
                 {% endif %}
             </td>
             <td class="text-left">
                 <a href="{{ question.get_absolute_url }}"class="text-primary">{{ question.subject }}</a>
                 {% if question.answer_set.count > 0 %}
                 <span class="badge rounded-pill bg-warning">💬 [{{ question.answer_set.count }}]</span>
+                {% else %}
+                <span class="badge rounded-pill bg-warning">💬 0</span>
                 {% endif %}
             </td>
             <td>{{ question.author.username }}</td>
