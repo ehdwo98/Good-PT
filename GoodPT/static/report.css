@@ -1,6 +1,5 @@
 body {
 	font-family: 'Raleway', sans-serif;
-	background: #E5E5E4;
 }
 
 .report{
@@ -9,11 +8,13 @@ body {
 }
 
 .report-list{
-	width : 15%;
+	width : 18%;
+	background-color: #e5e9ff;
+	border-right: 1px solid black;
 }
 
 .report-main{
-	width : 85%;
+	width : 82%;
 }
 
 .report-container{
@@ -25,9 +26,8 @@ body {
 }
 .hero{
 	height: 400px;
-	background: #F8F8F9;
 	margin: 0;
-
+	text-align: center;
 }
 
 .hero h1, .m-chart h1{
