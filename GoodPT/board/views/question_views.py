@@ -14,6 +14,10 @@ def question_create(request, category_name):
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
+            try:
+                question.image = request.FILES['image']
+            except:
+                question.image = None
             question.author = request.user  # author 속성에 로그인 계정 저장
             question.create_date = timezone.now()
             question.category = category
@@ -36,6 +40,10 @@ def question_modify(request, question_id):
         form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
             question = form.save(commit=False)
+            try:
+                question.image = request.FILES['image']
+            except:
+                question.image = None
             question.modify_date = timezone.now()  # 수정일시 저장
             question.save()
             return redirect(question)
