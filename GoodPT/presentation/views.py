@@ -58,18 +58,14 @@ def detail(request):
 
                 eraseTmpFile()
         else:
-            try:
-                path = 'tmp/myvideo.mp4'
-                cap = cv2.VideoCapture(path)
-                gesture_analysis(cap)
-                audio_path = extractAudioFromVideo("tmp/myvideo.mp4","tmp/myaudio.wav")
-                total_script,content = pt_analysis(audio_path)
-                question_list = question_contents(content)
-                eraseTmpFile()
-            except Exception as error:
-                print("presentation analays error occured")
-                print(error)
-                eraseTmpFile()
+            path = 'tmp/myvideo.mp4'
+            cap = cv2.VideoCapture(path)
+            gesture_analysis(cap)
+            audio_path = extractAudioFromVideo("tmp/myvideo.mp4","tmp/myaudio.wav")
+            total_script,content = pt_analysis(audio_path)
+            question_list = question_contents(content)
+            eraseTmpFile()
+
         return render(request, 'feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
