@@ -78,7 +78,7 @@ function sendRecording() {
         .then((res) => {
             return res.json();
         })
-        .then((json) => {})
+        .then((json)=>answerTTSJsonCallback(json))
         .catch((err) => {
             console.log(err);
         });
@@ -90,6 +90,27 @@ function getCSRFToken() {
         .split('=')[1];
 
     return cookieValue;
+}
+
+function answerTTSJsonCallback(json){
+    let GPTconsole = document.querySelector('#response');
+    let answer = document.createElement('p');
+    answer.innerText = json.total_script
+    GPTconsole.appendChild(answer);
+
+    let questionList = json.question_list
+
+    console.log(questionList)
+    console.log(questionList.length)
+
+
+    // if (i < questionList.length) {
+    //     let question = document.createElement('p');
+    //     question.innerText = questionList[i];
+    //     GPTconsole.appendChild(question);
+    //     console.log(e.target)
+    //     console.log(question)
+    // }
 }
 
 recordButton.addEventListener('click', videoStart);
