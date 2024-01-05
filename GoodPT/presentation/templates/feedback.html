@@ -97,6 +97,8 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'camera.css' %}">
 <script>
+
+    setTimeout(()=>{
     let i = 0;
     let questionList = [];
 
@@ -104,9 +106,15 @@
         questionList.push('{{question}}');
     {% endfor %}
 
+    let firstQuestion = document.createElement('p');
+    firstQuestion.innerText = questionList[0];
+
     let GPTAnswerLayout = document.querySelector('.analyze-button');
     let GPTconsole = document.querySelector('#response');
-    console.log(GPTconsole)
+
+    GPTconsole.appendChild(firstQuestion);
+
+    
     GPTAnswerLayout.addEventListener('click', (e) => {
         i = i + 1;
         if (i < questionList.length) {
@@ -117,6 +125,7 @@
             console.log(question)
         }
     });
+},1000)
 </script>
 
 {% endblock content %}
