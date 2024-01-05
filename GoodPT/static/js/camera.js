@@ -102,3 +102,9 @@ const pmodalBackground = document.querySelector('.pmodal-background')
 pmodalBackground.addEventListener('click',()=>{
     pmodalBackground.style.display = "none";
 })
+
+window.addEventListener('click', () => {
+    {
+        pmodalBackground.style.display = "none";
+    }
+  })
