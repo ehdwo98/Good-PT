@@ -22,9 +22,37 @@
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">파일</label>
+            <br>
+            <label for="image" id="imageLabel" class="custom-file-upload">
+                {% if form.image.value %}
+                    현재 선택된 이미지 : {{ form.image.value.name }}
+                    <div>
+                        <label>
+                            <input type="radio" name="image_action" value="changeImage" onclick="showImageInput()" checked> 이미지 변경
+                        </label>
+                        <br>
+                        <label>
+                            <input type="radio" name="image_action" value="deleteImage" onclick="hideImageInput()"> 이미지 삭제
+                        </label>
+                    </div>
+                {% else %}
+                    현재 선택된 이미지 파일이 없습니다.
+                {% endif %}
+            </label>
+            <br>
             <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg" />
         </div>
         <button type="submit" class="btn btn-primary" style="background-color:#6671a4; border:#6671a4;">저장하기</button>
     </form>
 </div>
+
+<script>
+    function showImageInput() {
+        document.getElementById("image").style.display = "block";
+    }
+
+    function hideImageInput() {
+        document.getElementById("image").style.display = "none";
+    }
+</script>
 {% endblock %}
