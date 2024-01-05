@@ -16,13 +16,13 @@ body {
 .report-container{
     background : white;
 	padding : 2%;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 .wrapper{
-	margin-top: 60px;
+	margin-top: 50px;
 }
 .hero{
-	height: 430px;
+	height: 500px;
 	margin: 0;
 	text-align: center;
 }
