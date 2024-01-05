@@ -1,7 +1,10 @@
 
 import subprocess
+import os
 def extractAudioFromVideo(input_video_path,output_audio_path):
-
+    if os.path.exists(input_video_path):
+        os.remove(input_video_path)
+    
     command = ['ffmpeg', '-i', input_video_path, output_audio_path]
     process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
