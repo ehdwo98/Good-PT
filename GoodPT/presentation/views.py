@@ -21,11 +21,15 @@ openai.api_key=''
 # Create your views here.
 
 def recording(request):
-  if request.method == 'POST':
-    recorded_data = request.FILES.get('recordedData')
-    path = default_storage.save('tmp/myvideo.mp4', ContentFile(recorded_data.read()))
+    if request.user.is_authenticated:
 
-  return render(request,'presentation.html')
+        if request.method == 'POST':
+            recorded_data = request.FILES.get('recordedData')
+            path = default_storage.save('tmp/myvideo.mp4', ContentFile(recorded_data.read()))
+
+        return render(request,'presentation.html')
+    else:
+        return redirect('/login')
       
 
 
@@ -35,25 +39,25 @@ def get_completion(prompt):
     return response
 
 def detail(request):
-    answer_list = []
-    question_list = ['empty1','empty2','empty3']
-    if request.method == 'POST':
-        try:
-            recorded_data = request.FILES.get('recordedData')
-            answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
-            answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
-            path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
-            audio_path = extractAudioFromVideo(answer_video_path,answer_audio_path)
-            total_script = stt(audio_path)
-            eraseTmpFile()
-            answer_list.append(total_script)
-            return JsonResponse({"total_script":total_script})
-        except:
-            print("stt analays error occured")
+    if request.user.is_authenticated:
+        answer_list = []
+        question_list = ['empty1','empty2','empty3']
+        if request.method == 'POST':
+            try:
+                recorded_data = request.FILES.get('recordedData')
+                answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
+                answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
+                path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
+                audio_path = extractAudioFromVideo(answer_video_path,answer_audio_path)
+                total_script = stt(audio_path)
+                eraseTmpFile()
+                answer_list.append(total_script)
+                return JsonResponse({"total_script":total_script})
+            except:
+                print("stt analays error occured")
 
-            eraseTmpFile()
-    else:
-        try:
+                eraseTmpFile()
+        else:
             path = 'tmp/myvideo.mp4'
             cap = cv2.VideoCapture(path)
             gesture_analysis(cap)
@@ -61,9 +65,8 @@ def detail(request):
             total_script,content = pt_analysis(audio_path)
             question_list = question_contents(content)
             eraseTmpFile()
-        except Exception as error:
-            print("presentation analays error occured")
-            print(error)
-            eraseTmpFile()
-    return render(request, 'feedback.html',{'question_list':question_list})
+
+        return render(request, 'feedback.html',{'question_list':question_list})
+    else:
+        return redirect('/login')
   
