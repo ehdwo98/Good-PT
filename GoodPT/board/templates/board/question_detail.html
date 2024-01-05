@@ -32,6 +32,10 @@
                     <div>{{ question.create_date }}</div>
                 </div>
             </div>
+            {% if question.image %}
+                <img src="{{question.image.url}}" width="400px" />
+                <br>
+            {% endif %}
             <div class="my-3">
                 <a href="javascript:void(0)" data-uri="{% url 'board:vote_question' question.id  %}"
                    class="recommend btn btn-sm btn-outline-secondary"> 추천

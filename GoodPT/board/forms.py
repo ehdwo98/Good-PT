@@ -5,10 +5,11 @@ from board.models import Question, Answer, Comment
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question  # 사용할 모델
-        fields = ['subject', 'content']
+        fields = ['subject', 'content', 'image']
         labels = {
             'subject': '제목',
             'content': '내용',
+            'image': '파일',
         }  
         
 class AnswerForm(forms.ModelForm):
