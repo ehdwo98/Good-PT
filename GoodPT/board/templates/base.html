@@ -62,21 +62,21 @@
       </nav>
       <!-- ============================================-->
     <!-- 기본 템플릿 안에 삽입될 내용 Start -->
-    <div class="container my-3">
-        <div class="row">
-            <div class="col-sm-12 col-md-3 col-lg-2 p-2">
-                {% include "sidebar.html" %}
-            </div>
-            <div class="col-sm-12 col-md-9 col-lg-10 p-2">
-                <div id="content" class="border-top border-secondary">
-                    <div class="content_block p-2">
-                        {% block content %}
-                        {% endblock %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="container my-3">
+          <div class="row">
+              <div class="col-sm-12 col-md-3 col-lg-2 p-2">
+                  {% include "sidebar.html" %}
+              </div>
+              <div class="col-sm-12 col-md-9 col-lg-10 p-2">
+                  <div id="content" class="border-top border-secondary">
+                      <div class="content_block p-2">
+                          {% block content %}
+                          {% endblock %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     <!-- 기본 템플릿 안에 삽입될 내용 End -->
       <!-- <section> begin ============================-->
       <section class="pb-lg-0 pt-md-8 py-0">
