@@ -1,9 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from presentation.speech_to_text_24 import stt, audio_length
 
-import json 
-import io
 from django.http import JsonResponse
 import cv2
 from django.core.files.storage import default_storage
@@ -39,15 +38,20 @@ def detail(request):
     question_list = ['empty1','empty2','empty3']
     if request.method == 'POST':
         recorded_data = request.FILES.get('recordedData')
-        path = default_storage.save('tmp/myAnswer.mp4', ContentFile(recorded_data.read()))
-        audio_path = extractAudioFromVideo("tmp/myAnswer.mp4","tmp/myAnswer.wav")
-        total_script,content = pt_analysis(audio_path)
+        
+        answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
+        answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
+        
+        path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
+        audio_path = extractAudioFromVideo(answer_video_path,answer_audio_path)
+        total_script = stt(audio_path)
         print('myVoice TTS : ' + total_script)
         if os.path.exists(path):
             os.remove(path)
         if os.path.exists(audio_path):
             os.remove(audio_path)
-        answer_list.append(content)
+        answer_list.append(total_script)
+        print(answer_list)
     else:
         path = 'tmp/myvideo.mp4'
         cap = cv2.VideoCapture(path)
