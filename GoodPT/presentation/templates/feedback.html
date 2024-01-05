@@ -2,7 +2,7 @@
 {% load static %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script> 
-<!-- <script> 
+    <script> 
 		$(document).ready(function() { 
 			// Send the form on enter keypress and avoid if shift is pressed 
 			$('#prompt').keypress(function(event) { 
@@ -38,8 +38,9 @@
 					} 
 				}); 
 			}); 
-		}); 
-</script> -->
+		});
+    </script>
+
 {% block content %}
 <div id="main" style="margin-top:20px;">
     <div id="screen">
@@ -75,7 +76,7 @@
 
         <div class="chat-container">
             <div class="chat-history-wrapper overflow-auto" id="response">
-                </div>
+            </div>
 
             <div class="chat-input-wrapper">
                 <form method="post" id="myform">
@@ -92,6 +93,30 @@
 </div>
 
 <script defer src = "{% static '/js/feedback.js' %}"></script>
+<script defer src = "{% static '/js/gptAnswer.js' %}"></script>
+
 <link rel="stylesheet" type="text/css" href="{% static 'camera.css' %}">
+<script>
+    let i = 0;
+    let questionList = [];
+
+    {% for question in question_list %}
+        questionList.push('{{question}}');
+    {% endfor %}
+
+    let GPTAnswerLayout = document.querySelector('.analyze-button');
+    let GPTconsole = document.querySelector('#response');
+    console.log(GPTconsole)
+    GPTAnswerLayout.addEventListener('click', (e) => {
+        i = i + 1;
+        if (i < questionList.length) {
+            let question = document.createElement('p');
+            question.innerText = questionList[i];
+            GPTconsole.appendChild(question);
+            console.log(e.target)
+            console.log(question)
+        }
+    });
+</script>
 
 {% endblock content %}
