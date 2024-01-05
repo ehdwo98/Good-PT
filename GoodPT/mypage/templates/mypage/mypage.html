@@ -14,6 +14,9 @@
             </ul>
             <br />
             <a class="btn btn-secondary" href="{% url 'mypage:password_change' %}">패스워드 변경</a>
+            {%if user.report %}
+            <a class="btn btn-primary" href="/login" style="background-color: #6671a4; border: #6671a4;">로그인 후 이용가능</a>
+            {% endif %}
         </div>
     </div>
 </div>
