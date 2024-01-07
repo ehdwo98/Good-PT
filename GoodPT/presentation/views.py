@@ -20,6 +20,8 @@ from presentation.FileErrorHandler import eraseTmpFile
 openai.api_key=''
 # Create your views here.
 
+
+
 def recording(request):
     if request.user.is_authenticated:
 
@@ -39,9 +41,11 @@ def get_completion(prompt):
     return response
 
 def detail(request):
+    question_num = 0
+    answer_list = []
+    question_list = ['empty1','empty2','empty3']
     if request.user.is_authenticated:
-        answer_list = []
-        question_list = ['empty1','empty2','empty3']
+
         if request.method == 'POST':
             try:
                 recorded_data = request.FILES.get('recordedData')
@@ -52,7 +56,10 @@ def detail(request):
                 total_script = stt(audio_path)
                 eraseTmpFile()
                 answer_list.append(total_script)
-                return JsonResponse({"total_script":total_script})
+                print(question_num,question_list)
+                feedbackData = [total_script,question_list[question_num]]
+                question_num+=1
+                return JsonResponse({'feedbackData':feedbackData})
             except:
                 print("stt analays error occured")
 
@@ -65,7 +72,6 @@ def detail(request):
             total_script,content = pt_analysis(audio_path)
             question_list = question_contents(content)
             eraseTmpFile()
-
         return render(request, 'feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
