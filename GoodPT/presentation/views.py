@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.conf import settings
 import json 
 import io
 from django.http import JsonResponse
@@ -38,42 +38,48 @@ def get_completion(prompt):
     return response
 
 def detail(request):
-  
-    if request.method == 'POST':
-      
-        prompt = request.POST.get('prompt')
-        response = get_completion(prompt)
-        return render(request, 'feedback.html',{'response': response})
+    question_num = InitialState.questionnum
+    answer_list = []
+    question_list = InitialState.questionlist
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
+            try:
+                question_num = InitialState.questionnum
+                question_list = InitialState.questionlist
+                print(question_list)
+                recorded_data = request.FILES.get('recordedData')
+                answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
+                answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
+                path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
+                audio_path = extractAudioFromVideo(os.path.join(settings.MEDIA_ROOT,answer_video_path),os.path.join(settings.MEDIA_ROOT,answer_audio_path))
+                total_script = stt(audio_path)
+                eraseTmpFile()
+                answer_list.append(total_script)
+                feedbackData = [total_script,question_list[question_num]]
+                
+                InitialState.questionlist = question_list
+                InitialState.questionnum = question_num+1
+            
+                if InitialState.questionnum >= 5:
+                    return JsonResponse({'redirect':'/report'})
+                return JsonResponse({'feedbackData':feedbackData})
+            except:
+                print("stt analays error occured")
+                eraseTmpFile()
+                return JsonResponse({'error':'음성이 확인되지 않았습니다.'})
+        else:
+            path = 'media/tmp/myvideo.mp4'
+            cap = cv2.VideoCapture(path)
+            gesture_analysis(cap)
+            audio_path = extractAudioFromVideo("media/tmp/myvideo.mp4","media/tmp/myaudio.wav")
+            total_script,content = pt_analysis(audio_path)
+            question_list = question_contents(content)
+            eraseTmpFile()
+            
+            InitialState.questionlist = question_list
+
+        return render(request, 'feedback.html',{'question_list':question_list})
     else:
-        path = 'tmp/myvideo.mp4'
-        cap = cv2.VideoCapture(path)
-
-        gesture_analysis(cap)
-
-        
-        # 태도 분석
-        
-        #음성 파일
-        audio_path = extractAudioFromVideo()
-        
-        # 음성 분석
-        total_script,content = pt_analysis(audio_path)
-        question_list = question_contents(content) # question = ['환영','Q1','Q2','Q3']
-        print(question_list)
-        if os.path.exists(path):
-            os.remove(path)
-        if os.path.exists(audio_path):
-            os.remove(audio_path)
-    return render(request, 'feedback.html')
+        return redirect('/login')
   
-# def stt(request):
-#     pyaudio = PyAudio()
-#     audio = pyaudio.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1024)
-#     stream = Microphone(audio, chunk_size=1024)
-
-#     recognizer = Recognizer()
-#     speech = recognizer.record(stream)
-
-#     transcript = recognizer.recognize_google(speech)
-
-#     return render(request, 'feedback.html',{'stt':transcript})
