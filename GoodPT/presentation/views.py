@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from presentation.speech_to_text_24 import stt, audio_length
-
+from django.conf import settings
 from django.http import JsonResponse
 import cv2
 from django.core.files.storage import default_storage
@@ -47,28 +47,30 @@ def detail(request):
     if request.user.is_authenticated:
 
         if request.method == 'POST':
-            # try:
-            question_num = InitialState.questionnum
-            question_list = InitialState.questionlist
-            print(question_list)
-            recorded_data = request.FILES.get('recordedData')
-            answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
-            answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
-            path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
-            audio_path = extractAudioFromVideo('media/'+answer_video_path,'media/'+answer_audio_path)
-            total_script = stt(audio_path)
-            eraseTmpFile()
-            answer_list.append(total_script)
-            feedbackData = [total_script,question_list[question_num]]
+            try:
+                question_num = InitialState.questionnum
+                question_list = InitialState.questionlist
+                print(question_list)
+                recorded_data = request.FILES.get('recordedData')
+                answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
+                answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
+                path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
+                audio_path = extractAudioFromVideo(os.path.join(settings.MEDIA_ROOT,answer_video_path),os.path.join(settings.MEDIA_ROOT,answer_audio_path))
+                total_script = stt(audio_path)
+                eraseTmpFile()
+                answer_list.append(total_script)
+                feedbackData = [total_script,question_list[question_num]]
+                
+                InitialState.questionlist = question_list
+                InitialState.questionnum = question_num+1
             
-            InitialState.questionlist = question_list
-            InitialState.questionnum = question_num+1
-            
-            return JsonResponse({'feedbackData':feedbackData})
-            # except:
-            #     print("stt analays error occured")
-            #     eraseTmpFile()
-            #     return JsonResponse({'error':'음성이 확인되지 않았습니다.'})
+                if InitialState.questionnum >= 5:
+                    return JsonResponse({'redirect':'/report'})
+                return JsonResponse({'feedbackData':feedbackData})
+            except:
+                print("stt analays error occured")
+                eraseTmpFile()
+                return JsonResponse({'error':'음성이 확인되지 않았습니다.'})
         else:
             path = 'media/tmp/myvideo.mp4'
             cap = cv2.VideoCapture(path)
