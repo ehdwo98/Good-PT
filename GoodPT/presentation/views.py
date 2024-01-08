@@ -55,6 +55,8 @@ def detail(request):
         
         # 음성 분석
         total_script,content = pt_analysis(audio_path)
+        if total_script == -1:
+            return render(request, 'presentation.html')
         question_list = question_contents(content) # question = ['환영','Q1','Q2','Q3']
         print(question_list)
         if os.path.exists(path):
