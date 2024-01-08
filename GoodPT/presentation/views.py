@@ -16,9 +16,11 @@ import openai
 import os
 from presentation.LLM_gpt_24 import question_contents
 from presentation.FileErrorHandler import eraseTmpFile
-
+from presentation.feedbackState import InitialState
 openai.api_key=''
 # Create your views here.
+
+
 
 def recording(request):
     if request.user.is_authenticated:
@@ -39,11 +41,16 @@ def get_completion(prompt):
     return response
 
 def detail(request):
+    question_num = InitialState.questionnum
+    answer_list = []
+    question_list = InitialState.questionlist
     if request.user.is_authenticated:
-        answer_list = []
-        question_list = ['empty1','empty2','empty3']
+
         if request.method == 'POST':
             try:
+                question_num = InitialState.questionnum
+                question_list = InitialState.questionlist
+
                 recorded_data = request.FILES.get('recordedData')
                 answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
                 answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
@@ -52,10 +59,14 @@ def detail(request):
                 total_script = stt(audio_path)
                 eraseTmpFile()
                 answer_list.append(total_script)
-                return JsonResponse({"total_script":total_script})
+                feedbackData = [total_script,question_list[question_num]]
+                
+                InitialState.questionlist = question_list
+                InitialState.questionnum = question_num+1
+                
+                return JsonResponse({'feedbackData':feedbackData})
             except:
                 print("stt analays error occured")
-
                 eraseTmpFile()
         else:
             path = 'tmp/myvideo.mp4'
@@ -65,7 +76,8 @@ def detail(request):
             total_script,content = pt_analysis(audio_path)
             question_list = question_contents(content)
             eraseTmpFile()
-
+            
+            InitialState.questionlist = question_list
         return render(request, 'feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')

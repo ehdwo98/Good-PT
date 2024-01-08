@@ -34,4 +34,3 @@ urlpatterns = [
     path("presentation/",include('presentation.urls')),
     path("report/",include('report.urls')),
     ]
-handler404 = 'common.views.page_not_found'
