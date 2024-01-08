@@ -8,6 +8,8 @@ from presentation.analysis_24 import total_analysis
 def pt_analysis(audio_path="GoodPT/tmp/myaudio.wav"):
     attitude = 0.4
     content = stt(audio_path)
+    if content == -1:
+        return (-1, -1)
     audio_len = audio_length(audio_path)
     surplus = find_surplus(content)
     speech_rate = measure_speech_rate(content, audio_len)

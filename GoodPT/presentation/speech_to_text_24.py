@@ -29,8 +29,18 @@ def stt(audio_path):
     audio_file = sr.AudioFile(audio_path)
     with audio_file as source:
         audio = rec.record(audio_file)
-    text = rec.recognize_google(audio_data=audio, language='ko-KR')
-    return text
+    try:
+        text = rec.recognize_google(audio_data=audio, language='ko-KR')
+        print('Understanding!!!')
+        return text
+    except sr.UnknownValueError:
+        print('Can Not Understand...')
+        text = -1
+        return text
+    except sr.RequestError as e:
+        print('---Request Error---')
+        text = -1
+        return text
 
 def audio_length(audio_path):
     audio = AudioSegment.from_wav(audio_path)
