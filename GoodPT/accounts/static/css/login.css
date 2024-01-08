@@ -193,9 +193,12 @@ form h1 {
 }
 
 #login-logo {
-    width: 50%;
-    height: 50%;
+    width: 25px;
+    height: 25px;
 }
 #qnaboard {
     background-color: #424d83;
+}
+#h{
+    color: #fff;
 }
