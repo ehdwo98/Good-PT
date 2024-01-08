@@ -93,20 +93,27 @@ function getCSRFToken() {
 }
 
 function answerTTSJsonCallback(json){
-    let GPTconsole = document.querySelector('#response');
 
-    let questionList = json.feedbackData[1]
-    let mystt = json.feedbackData[0]
+    if(json.feedbackData){
+        let GPTconsole = document.querySelector('#response');
 
-    let answer = document.createElement('p');
-    answer.innerText = mystt;
-    GPTconsole.appendChild(answer);
-    console.log(answer)
+        let questionList = json.feedbackData[1]
+        let mystt = json.feedbackData[0]
 
-    let question = document.createElement('p');
-    question.innerText = questionList;
-    GPTconsole.appendChild(question);
-    console.log(question)
+        let answer = document.createElement('p');
+        answer.innerText = mystt;
+        GPTconsole.appendChild(answer);
+        console.log(answer)
+
+        let question = document.createElement('p');
+        question.innerText = questionList;
+        GPTconsole.appendChild(question);
+        console.log(question)
+    }
+    else if(json.redirect){
+        window.location.href = '/report';
+
+    }
 
 
 }
