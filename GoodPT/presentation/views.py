@@ -47,27 +47,28 @@ def detail(request):
     if request.user.is_authenticated:
 
         if request.method == 'POST':
-            try:
-                question_num = InitialState.questionnum
-                question_list = InitialState.questionlist
-
-                recorded_data = request.FILES.get('recordedData')
-                answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
-                answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
-                path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
-                audio_path = extractAudioFromVideo(answer_video_path,answer_audio_path)
-                total_script = stt(audio_path)
-                eraseTmpFile()
-                answer_list.append(total_script)
-                feedbackData = [total_script,question_list[question_num]]
-                
-                InitialState.questionlist = question_list
-                InitialState.questionnum = question_num+1
-                
-                return JsonResponse({'feedbackData':feedbackData})
-            except:
-                print("stt analays error occured")
-                eraseTmpFile()
+            # try:
+            question_num = InitialState.questionnum
+            question_list = InitialState.questionlist
+            print(question_list)
+            recorded_data = request.FILES.get('recordedData')
+            answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
+            answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
+            path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
+            audio_path = extractAudioFromVideo(answer_video_path,answer_audio_path)
+            total_script = stt(audio_path)
+            eraseTmpFile()
+            answer_list.append(total_script)
+            feedbackData = [total_script,question_list[question_num]]
+            
+            InitialState.questionlist = question_list
+            InitialState.questionnum = question_num+1
+            
+            return JsonResponse({'feedbackData':feedbackData})
+            # except:
+            #     print("stt analays error occured")
+            #     eraseTmpFile()
+            #     return JsonResponse({'error':'음성이 확인되지 않았습니다.'})
         else:
             path = 'tmp/myvideo.mp4'
             cap = cv2.VideoCapture(path)
