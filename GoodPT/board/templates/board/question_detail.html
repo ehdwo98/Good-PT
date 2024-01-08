@@ -24,12 +24,12 @@
                 {% if question.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
                     <div class="mb-2">(수정됨)</div>
-                    <div>{{ question.modify_date }}</div>
+                    <div>{{ question.modify_date|date:'Y-m-d h:i:s A' }}</div>
                 </div>
                 {% endif %}
                 <div class="badge bg-light text-dark p-2 text-start">
                     <div class="mb-2">{{ question.author.username }}</div>
-                    <div>{{ question.create_date }}</div>
+                    <div>{{ question.create_date|date:'Y-m-d h:i:s A' }}</div>
                 </div>
             </div>
             {% if question.image %}
@@ -83,12 +83,12 @@
                         {% if answer.modify_date %}
                         <div class="badge badge-light p-2 text-left mx-3">
                             <div class="mb-2">(수정됨)</div>
-                            <div>{{ answer.modify_date }}</div>
+                            <div>{{ answer.modify_date|date:'Y-m-d h:i:s A' }}</div>
                         </div>
                         {% endif %}
                         <div class="badge badge-light p-2 text-left">
                             <div class="mb-2">{{ answer.author.username }}</div>
-                            <div>{{ answer.create_date }}</div>
+                            <div>{{ answer.create_date|date:'Y-m-d h:i:s A' }}</div>
                         </div>
                     </div>
                     <!-- 답변 수정&삭제 버튼 표시 -->
@@ -108,9 +108,9 @@
                         <div class="comment py-2 text-muted">  <!-- 댓글 각각에 comment 스타일 지정 -->
                             <span style="white-space: pre-line;">{{ comment.content }}</span>
                             <span>
-                                - {{ comment.author }}, {{ comment.create_date }}
+                                - {{ comment.author }}, {{ comment.create_date|date:'Y-m-d h:i:s A' }}
                                 {% if comment.modify_date %}
-                                (수정:{{ comment.modify_date }})
+                                (수정:{{ comment.modify_date|date:'Y-m-d h:i:s A' }}) 
                                 {% endif %}
                             </span>
                             {% if request.user == comment.author %}
