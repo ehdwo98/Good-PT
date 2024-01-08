@@ -18,19 +18,32 @@ def script_analysis(a_content_lst):
         result += "\n"
     return result
 
-def total_analysis(gesture, gaze, surplus, speech_rate, gap, a_content_lst):
+def total_analysis(attitude_text, voice_text, script_text):
     result = "태도 분석\n"
-    result += gesture_analysis(gesture)
-    result += gaze_analysis(gaze)
-    result += "\n\n"
+    result += attitude_text
+    result += "\n"
     result += "음성 분석\n"
-    result += surplus_analysis(surplus)
+    result += voice_text
     result += "\n"
-    result += speed_analysis(speech_rate)
-    result += "\n"
-    result += gap_analysis(gap)
-    result += "\n\n"
     result += "발표 내용 분석\n"
-    result += content_analysis(script_analysis(a_content_lst))
-    result += "\n\n"
+    result += script_text
+    result += "\n"
+    return result
+
+def voice_analysis(surplus_text, speed_text, gap_text):
+    result = ""
+    result += surplus_text
+    result += '\n'
+    result += speed_text
+    result += '\n'
+    result += gap_text
+    result += '\n'
+    return result
+
+def attitude_analysis(gesture_text, gaze_text):
+    result = ""
+    result += gesture_text
+    result += '\n'
+    result += gaze_text
+    result += '\n'
     return result
