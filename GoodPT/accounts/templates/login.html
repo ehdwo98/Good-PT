@@ -51,13 +51,13 @@
                             <input type="password" name="password" placeholder="비밀번호">
                             <div class="social-links">
                                 <div>
-                                    <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img id="login-logo" src="/static/img/kakao.png"></a>
+                                    <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img id="login-logo" src="/static/img/kakao_logo.png"></a>
                                 </div>
                                 <div>
-                                    <a href="{% provider_login_url 'naver' method='oauth2' %}"><img id="login-logo" src="/static/img/naver.png"></a>
+                                    <a href="{% provider_login_url 'naver' method='oauth2' %}"><img id="login-logo" src="/static/img/naver_logo.png"></a>
                                 </div>
                                 <div>
-                                    <a href="{% provider_login_url 'google' method='oauth2' %}"><img id="login-logo" src='/static/img/google.png'></a>
+                                    <a href="{% provider_login_url 'google' method='oauth2' %}"><img id="login-logo" src='/static/img/google_logo.png'></a>
                                 </div>
                             </div>
                             <button id="login_button" type="submit" class="form_btn" name="login">로그인</button>
@@ -67,14 +67,14 @@
             </div>
             <div class="overlay-container">
                 <div class="overlay-left">
-                    <h2>환영합니다!</h2>
+                    <h2 id="h">환영합니다!</h2>
                     <div class = "login_detail">
                         <p>회원정보를 입력해주세요.</p>
                     </div>
                     <button id="signIn" class="overlay_btn">로그인</button>
                 </div>
                 <div class="overlay-right">
-                    <h2> Good-PT에서</h2>
+                    <h2 id="h"> Good-PT에서</h2>
                     <div class="login_detail">
                         <p>여러분의 발표능력을 향상시켜보세요.</p>
                         
