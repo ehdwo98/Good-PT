@@ -14,6 +14,10 @@ def question_create(request, category_name):
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
+            try:
+                question.image = request.FILES['image']
+            except:
+                question.image = None
             question.author = request.user  # author 속성에 로그인 계정 저장
             question.create_date = timezone.now()
             question.category = category
@@ -33,8 +37,14 @@ def question_modify(request, question_id):
         return redirect(question)
 
     if request.method == "POST":
-        form = QuestionForm(request.POST, instance=question)
+        form = QuestionForm(request.POST, request.FILES, instance=question)
+        image_action = request.POST.get('image_action')
+        
         if form.is_valid():
+            if image_action == 'deleteImage':
+                # 현재 이미지 삭제하기
+                question.image.delete()
+                question.image = None  # Optional: Clear the image field in the model
             question = form.save(commit=False)
             question.modify_date = timezone.now()  # 수정일시 저장
             question.save()

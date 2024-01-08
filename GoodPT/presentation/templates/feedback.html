@@ -38,8 +38,9 @@
 					} 
 				}); 
 			}); 
-		}); 
+		});
     </script>
+
 {% block content %}
 <div id="main" style="margin-top:20px;">
     <div id="screen">
@@ -75,10 +76,7 @@
 
         <div class="chat-container">
             <div class="chat-history-wrapper overflow-auto" id="response">
-                {% for question in question_list %}
-                    <p>{{question}}</p>
-                {% endfor %}
-                </div>
+            </div>
 
             <div class="chat-input-wrapper">
                 <form method="post" id="myform">
@@ -95,6 +93,27 @@
 </div>
 
 <script defer src = "{% static '/js/feedback.js' %}"></script>
+<script defer src = "{% static '/js/gptAnswer.js' %}"></script>
+
 <link rel="stylesheet" type="text/css" href="{% static 'camera.css' %}">
+<script>
+
+
+    let i = 0;
+    let questionList = [];
+
+    {% for question in question_list %}
+        questionList.push('{{question}}');
+    {% endfor %}
+
+    let firstQuestion = document.createElement('p');
+    firstQuestion.innerText = questionList[0];
+
+    let GPTconsole = document.querySelector('#response');
+
+    GPTconsole.appendChild(firstQuestion);
+
+
+</script>
 
 {% endblock content %}
