@@ -18,8 +18,10 @@
             {% else %}
             <h5>소셜 로그인 패스워드 변경 불가</h5>
             {% endif %}
-            {% if user.profile.report %}
+            {% if user.profile.has_report %}
             <a class="btn btn-primary" href="/report" style="background-color: #6671a4; border: #6671a4;">리포트 보기</a>
+            {% else %}
+            <p>보고서가 없습니다.</p>
             {% endif %}
         </div>
     </div>
