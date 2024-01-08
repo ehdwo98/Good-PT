@@ -33,4 +33,4 @@ urlpatterns = [
     path('mypage/', include('mypage.urls')),
     path("presentation/",include('presentation.urls')),
     path("report/",include('report.urls')),
-    ]
+    ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

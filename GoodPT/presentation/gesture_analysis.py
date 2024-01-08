@@ -112,9 +112,12 @@ def gesture_analysis(cap):
         #     print("사람이 역동적으로 움직이고 있습니다.")
         
         # cv2.imshow('presentation', frame)
+        # cv2.imshow('presentation', frame)
         count += 1
         
         # 영상 종료
+        # if cv2.waitKey(10) & 0xFF==ord('q'):
+        #     break
         # if cv2.waitKey(10) & 0xFF==ord('q'):
         #     break
 

@@ -18,7 +18,8 @@
     width: 768px;
     min-height: 480px;
     overflow: hidden;
-    margin-top: 100px;
+    margin-top: -80px;
+    /* margin-top: 100px; */
 }
 .login_form {
     background: #ebecf0;
@@ -193,9 +194,12 @@ form h1 {
 }
 
 #login-logo {
-    width: 50%;
-    height: 50%;
+    width: 25px;
+    height: 25px;
 }
 #qnaboard {
     background-color: #424d83;
+}
+#h{
+    color: #fff;
 }
