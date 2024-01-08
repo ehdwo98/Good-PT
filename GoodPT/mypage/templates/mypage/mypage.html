@@ -4,14 +4,14 @@
     <div class="row">
         <div class="col-sm-12" style="margin-top: 80px">
             <h1>My Info</h1>
+            
             <br />
             <ul class="list-group list-group">
-                <li class="list-group-item">Name : {{user}}</li>
+                <li class="list-group-item">성함 : {{user}}</li>
                 <li class="list-group-item">Email : {{user.email}}</li>
-                <li class="list-group-item">Tel : {{user.profile.phone_number}}</li>
-                <li class="list-group-item">Address : {{user.profile.address}}</li>
-                <li class="list-group-item">Signup : {{user.date_joined}}</li>
+                <li class="list-group-item">가입시간 : {{user.date_joined|date:'Y-m-d (D) h:i:s A'}}</li>
             </ul>
+
             <br />
             {% if user.has_usable_password %}
             <a class="btn btn-secondary" href="{% url 'mypage:password_change' %}">패스워드 변경</a>
@@ -19,7 +19,7 @@
             <h5>소셜 로그인 패스워드 변경 불가</h5>
             {% endif %}
             {% if user.profile.report %}
-            <a class="btn btn-primary" href="/report" style="background-color: #6671a4; border: #6671a4;">리포트 보기</a>
+            <a class="btn btn-primary" href="{% url 'report:report' %}" style="background-color: #6671a4; border: #6671a4;">리포트 보기</a>
             {% endif %}
         </div>
     </div>

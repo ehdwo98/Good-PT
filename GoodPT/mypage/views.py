@@ -6,7 +6,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib import messages
 
-def signup(request):
+def mypa(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
