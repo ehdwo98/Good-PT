@@ -89,16 +89,14 @@ def content_analysis(content):
 
 # 제스처 분석
 # gesture: gesture_analysis.py의 gesture_analysis()의 반환 값인 gesture (제스처 비율)
-def gesture_analysis(gesture):
+def gesture_analysis_return_rate(gesture):
     # API 연동
     OPENAI_API_KEY = "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"
     client = OpenAI(api_key=OPENAI_API_KEY)
     
     # 정면 응시 평가 멘트
     gesture_percentage = gesture * 100
-    content = f"제스처 비율은 (제스처 동작 시간 / 전체 발표 시간)이야. 제스처 시간 평가 기준은 값이 10%보다 낮으면 많이 정적인 거고 21%보다 높으면 제스처가 너무 많은 거야. 값이 10% 초과 21% 미만이면 적절한 제스처를 하고 있다는 거야.
-                제스처 비율 값이 10% 이하면 제스처를 사용하라는 식으로 21% 이상이면 제스처를 좀 줄이라는 식으로 평가해야돼.
-                내 제스처 비율은 {gesture_percentage}%이야. 이 제스처 비율에 대해서 '{gesture_percentage}%'는 빼고 발표와 관련하여 평가해줘."
+    content = f"제스처 비율은 (제스처 동작 시간 / 전체 발표 시간)이야. 제스처 시간 평가 기준은 값이 10%보다 낮으면 많이 정적인 거고 21%보다 높으면 제스처가 너무 많은 거야. 값이 10% 초과 21% 미만이면 적절한 제스처를 하고 있다는 거야. 제스처 비율 값이 10% 이하면 제스처를 사용하라는 식으로 21% 이상이면 제스처를 좀 줄이라는 식으로 평가해야돼. 내 제스처 비율은 {gesture_percentage}%이야. 이 제스처 비율에 대해서 '{gesture_percentage}%'는 빼고 발표와 관련하여 평가해줘."
 
     # GPT-3.5-TURBO API
     completion = client.chat.completions.create(
@@ -227,8 +225,7 @@ def speed_analysis(speed):
     
     # 음성 빠르기 평가 멘트
     speed_percentage = speed * 100
-    content = f"표 속도 = 발표 글자 수  / 발표 시간
-                내 발표 속도는 {speed_percentage}%이야. '{speed_percentage}%' 단어는 빼고 내 발표 속도가 빠른지, 적절한지, 느린지 평가해줘."
+    content = f"표 속도 = (발표 글자 수  / 발표 시간(초))이야. 내 발표 속도는 {speed_percentage}%이야. '{speed_percentage}%' 단어는 빼고 내 발표 속도가 빠른지, 적절한지, 느린지 평가해줘."
 
     # GPT-3.5-TURBO API
     completion = client.chat.completions.create(
