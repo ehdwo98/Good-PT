@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="{% static '/report.css' %}" />
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
 
+<script src="{% static '/js/html2canvas.js' %}"></script>
+<script src="{% static '/js/jspdf.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <style>
     ul {
@@ -47,6 +50,23 @@
     .navlist input[type=checkbox]:checked + label + ul {
         max-height: 1000px; 
     }
+    #savePdf {
+        margin-top: 10px;
+        display: block;
+        width:250px;
+        height:50px;
+        line-height:50px;
+        text-align:center;
+        color:#989898;
+        background-color: #f1f1f1;
+        -webkit-transition: all .25s ease-in;
+        transition: all .25s ease-in;
+        border:1px solid #d7d7d7;
+    }
+    #savePdf:hover {
+        color: rgba(255, 255, 255, 0.9);
+        background: #424D83;
+    }
 </style>
 <body>
     <div class = "report">
@@ -58,23 +78,25 @@
                     {% endfor %}
                 </ul>
              </nav>
+             <button type="button" id="savePdf" ><img src="{% static '/img/icons/download2.png' %}" width="15px" />PDF 저장하기</button>
         </div>
-        <div class = "report-main">
+        <div class = "report-main" id="pdfCanvas">
             <div class="report-row report-container">
-                <div class="large-12 columns">
+                <div class="large-12 columns pdf_page">
                     <div class="report-row hero">
                         <div class="large-6 columns panel">
-                            <h1>발표 분석 결과</h1>
-                            <p><b>{{ user }}님의 {{reportID}}번째 발표 분석 결과입니다.</b></p>
-                            <p>발표 날짜: {{date}}</p>
+                            <h1><b>발표 분석 결과</b></h1>
+                            <p style="font-size: 15px;"><b>{{ user }}님의 {{reportID}}번째 발표 분석 결과입니다.</b></p>
+                            <p style="font-size: 15px;">발표 날짜: {{date}}</p>
+                            <img src="{% static '/img/illustrations/main.png' %}" width="800px" style="padding-top:20px;"/>
                         </div>
-                        <div class="large-6 columns panel bg" data-equalizer-watch>&nbsp;</div>
                     </div>
+                    <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p>
                 </div>
-                <div class="report-row">
+                <div class="report-row pdf_page">
                     <div class="large-12 columns title text-center">
                         <h1>태도 분석</h1>
-                        <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
+                        <p>발표자의 자연스러운 시선처리와 제스처는 발표자의 자신감을 보여줍니다.</p>
                         <table align="center">
                             <tr align="center">
                                 <td width=300 style="padding-right: 20px;">
@@ -90,7 +112,7 @@
                                             <span style="float: right;">{{static_rate}} %</span>
                                         </h6>
                                         <div class="progress-bar">           
-                                            <div class="progress"> </div>
+                                            <div class="progress static-bg"> <div class="check-point static-point"> </div> </div>
                                         </div>
                                     </div>
                                     <div class="graph-box">
@@ -99,7 +121,7 @@
                                             <span style="float: right;">{{face_recog_rate}} %</span>
                                         </h6>
                                         <div class="progress-bar">           
-                                            <div class="progress"> </div>
+                                            <div class="progress face-bg"> <div class="check-point face-point"> </div> </div>
                                         </div>
                                     </div>
                                 </td>
@@ -109,7 +131,7 @@
                     <hr>
                     <div class="large-12 columns title text-center">
                         <h1>음성 분석</h1>
-                        <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
+                        <p>발표의 언어적 요소와 빠르기에 따라 청중들의 발표 집중도가 결정됩니다.</p>
                         <table align="center">
                             <tr align="center">
                                 <td width=300 style="padding-right: 20px;">
@@ -125,7 +147,7 @@
                                             <span style="float: right;">{{surplus_rate}} %</span>
                                         </h6>
                                         <div class="progress-bar">           
-                                            <div class="progress"> </div>
+                                            <div class="progress surplus-bg"> <div class="check-point surplus-point"> </div> </div>
                                         </div>
                                     </div>
                                     <div class="graph-box">
@@ -134,7 +156,7 @@
                                             <span style="float: right;">{{speed_rate}} %</span>
                                         </h6>
                                         <div class="progress-bar">           
-                                            <div class="progress"> </div>
+                                            <div class="progress speed-bg"> <div class="check-point speed-point"> </div> </div>
                                         </div>
                                     </div>
                                 </td>
@@ -157,40 +179,55 @@
                     </div>
                     <hr>
                     <div class="large-12 columns title text-center">
-                        <h1>발표 내용 확인</h1>
+                        <h1>질의응답 내용 확인</h1>
                         <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
+                        <div class="question-set">
+                            <h6>
+                                Q1 : &quot;{{q1}}&quot;
+                            </h6>
+                            <h6>
+                                A1 : &quot;{{a1}}&quot;
+                            </h6>
+                        </div>
+                        <div class="question-set">
+                            <h6>
+                                Q2 : &quot;{{q2}}&quot;
+                            </h6>
+                            <h6>
+                                A2 : &quot;{{a2}}&quot;
+                            </h6>
+                        </div>
+                        <div class="question-set">
+                            <h6>
+                                Q3 : &quot;{{q3}}&quot;
+                            </h6>
+                            <h6>
+                                A3 : &quot;{{a3}}&quot;
+                            </h6>
+                        </div>
                     </div>
-                    <div class="large-12 columns title text-center">
-                        <h1>Q&A</h1>
-                        <h6>
-                            Q1 : &quot;{{q1}}&quot;
-                        </h6>
-                        <h6>
-                            A1 : &quot;{{a1}}&quot;
-                        </h6>
-                        <h6>
-                            Q2 : &quot;{{q2}}&quot;
-                        </h6>
-                        <h6>
-                            A2 : &quot;{{a2}}&quot;
-                        </h6>
-                        <h6>
-                            Q3 : &quot;{{q3}}&quot;
-                        </h6>
-                        <h6>
-                            A3 : &quot;{{a3}}&quot;
-                        </h6>
-                    </div>
-                    </div>
+                    <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p>
                 </div>
+                {% comment %} <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p> {% endcomment %}
             </div>
         </div>
     </div>
 </body>
 <script>
-    progressBar = document.getElementsByClassName('progress')[0]
-    console.log(progressBar)
-    percentage_static_rate = {{static_rate}}*100
-    progressBar.style.width = percentage_static_rate+'%'
+    progressBar_static = document.getElementsByClassName('static-point')[0]
+    percentage_static_rate = 100 - {{static_rate}}*100
+    progressBar_static.style.marginRight = percentage_static_rate+'%'
+
+    progressBar_face = document.getElementsByClassName('face-point')[0]
+    percentage_face_rate = 100 - {{face_recog_rate}}*100
+    progressBar_face.style.marginRight = percentage_face_rate+'%'
+
+    progressBar_surplus = document.getElementsByClassName('surplus-point')[0]
+    percentage_surplus_rate = 100 - {{surplus_rate}}*100
+    progressBar_surplus.style.marginRight = percentage_surplus_rate+'%'
+
+    progressBar_speed = document.getElementsByClassName('speed-point')[0]
+    percentage_speed_rate = 100 - {{speed_rate}}*100
+    progressBar_speed.style.marginRight = percentage_speed_rate+'%'
 </script>
 {% endblock content %}

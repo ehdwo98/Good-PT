@@ -1,8 +1,8 @@
 
 import subprocess
-def extractAudioFromVideo():
-    input_video_path = "tmp/myvideo.mp4"
-    output_audio_path = "tmp/myaudio.wav"
+import os
+def extractAudioFromVideo(input_video_path,output_audio_path):
+    
     command = ['ffmpeg', '-i', input_video_path, output_audio_path]
     process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
