@@ -19,4 +19,4 @@ class feedState:
     def questionnum(self,questionnum):
         self.__questionnum = questionnum
         
-InitialState = feedState(2,['blank1','blank2','blank3'])
+InitialState = feedState(2,['blank1','blank2','blank3','blank4','blank5'])
