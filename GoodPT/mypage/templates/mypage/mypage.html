@@ -4,7 +4,7 @@
         <div class="col-sm-12" style="margin-top: 80px">
             <h1>My Info</h1>
             {% if profile.image %}
-                <img src="{{ profile.image.url }}" class="mb-3" height="150" />
+            <img src="{{ profile.image.url }}" class="mb-3" height="150" />
             {% endif %}
             <br />
             <ul class="list-group list-group">
@@ -17,8 +17,10 @@
             <a class="btn btn-secondary" href="{% url 'mypage:password_change' %}">패스워드 변경</a>
             {% else %}
             <h5>소셜 로그인 패스워드 변경 불가</h5>
-            {% endif %} {% if user.profile.report %}
+            {% endif %} {% if user.profile.has_report %}
             <a class="btn btn-primary" href="/report" style="background-color: #6671a4; border: #6671a4">리포트 보기</a>
+            {% else %}
+            <p>보고서가 없습니다.</p>
             {% endif %}
         </div>
     </div>
