@@ -3,7 +3,7 @@ from board.models import Question, Answer, Comment
 
 
 class QuestionForm(forms.ModelForm):
-    class Meta:
+    class Meta:# 장고 모델 폼은 반드시 내부에 Meta 클래스 가져야 함
         model = Question  # 사용할 모델
         fields = ['subject', 'content', 'image']
         labels = {

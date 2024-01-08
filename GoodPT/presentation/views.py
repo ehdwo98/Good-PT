@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from presentation.speech_to_text_24 import stt, audio_length
-
+from django.conf import settings
 from django.http import JsonResponse
 import cv2
 from django.core.files.storage import default_storage
@@ -50,12 +50,12 @@ def detail(request):
             try:
                 question_num = InitialState.questionnum
                 question_list = InitialState.questionlist
-
+                print(question_list)
                 recorded_data = request.FILES.get('recordedData')
                 answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
                 answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
                 path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
-                audio_path = extractAudioFromVideo(answer_video_path,answer_audio_path)
+                audio_path = extractAudioFromVideo(os.path.join(settings.MEDIA_ROOT,answer_video_path),os.path.join(settings.MEDIA_ROOT,answer_audio_path))
                 total_script = stt(audio_path)
                 eraseTmpFile()
                 answer_list.append(total_script)
@@ -63,21 +63,25 @@ def detail(request):
                 
                 InitialState.questionlist = question_list
                 InitialState.questionnum = question_num+1
-                
+            
+                if InitialState.questionnum >= 5:
+                    return JsonResponse({'redirect':'/report'})
                 return JsonResponse({'feedbackData':feedbackData})
             except:
                 print("stt analays error occured")
                 eraseTmpFile()
+                return JsonResponse({'error':'음성이 확인되지 않았습니다.'})
         else:
-            path = 'tmp/myvideo.mp4'
+            path = 'media/tmp/myvideo.mp4'
             cap = cv2.VideoCapture(path)
             gesture_analysis(cap)
-            audio_path = extractAudioFromVideo("tmp/myvideo.mp4","tmp/myaudio.wav")
+            audio_path = extractAudioFromVideo("media/tmp/myvideo.mp4","media/tmp/myaudio.wav")
             total_script,content = pt_analysis(audio_path)
             question_list = question_contents(content)
             eraseTmpFile()
             
             InitialState.questionlist = question_list
+
         return render(request, 'feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
