@@ -93,24 +93,29 @@ function getCSRFToken() {
 }
 
 function answerTTSJsonCallback(json){
-    let GPTconsole = document.querySelector('#response');
-    let answer = document.createElement('p');
-    answer.innerText = json.total_script
-    GPTconsole.appendChild(answer);
 
-    let questionList = json.question_list
+    if(json.feedbackData){
+        let GPTconsole = document.querySelector('#response');
 
-    console.log(questionList)
-    console.log(questionList.length)
+        let questionList = json.feedbackData[1]
+        let mystt = json.feedbackData[0]
+
+        let answer = document.createElement('p');
+        answer.innerText = mystt;
+        GPTconsole.appendChild(answer);
+        console.log(answer)
+
+        let question = document.createElement('p');
+        question.innerText = questionList;
+        GPTconsole.appendChild(question);
+        console.log(question)
+    }
+    else if(json.redirect){
+        window.location.href = '/report';
+
+    }
 
 
-    // if (i < questionList.length) {
-    //     let question = document.createElement('p');
-    //     question.innerText = questionList[i];
-    //     GPTconsole.appendChild(question);
-    //     console.log(e.target)
-    //     console.log(question)
-    // }
 }
 
 recordButton.addEventListener('click', videoStart);

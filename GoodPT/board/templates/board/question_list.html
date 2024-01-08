@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load board_filter %}
+{% load static %}
 {% block content %}
 <style>
     #qnaboard {
@@ -66,9 +67,12 @@
                 {% else %}
                 <span class="badge rounded-pill bg-warning">💬 0</span>
                 {% endif %}
+                {% if question.image %}
+                <span class="list-i-img"><img src="{% static '/img/icons/image-gallery.png' %}" width="20px"></span>
+                {% endif %}
             </td>
             <td>{{ question.author.username }}</td>
-            <td>{{ question.create_date }}</td>
+            <td>{{ question.create_date|date:'Y-m-d h:i:s A' }}</td>
         </tr>
         {% endfor %}
         {% else %}

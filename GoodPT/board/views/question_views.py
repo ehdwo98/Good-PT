@@ -37,13 +37,15 @@ def question_modify(request, question_id):
         return redirect(question)
 
     if request.method == "POST":
-        form = QuestionForm(request.POST, instance=question)
+        form = QuestionForm(request.POST, request.FILES, instance=question)
+        image_action = request.POST.get('image_action')
+        
         if form.is_valid():
+            if image_action == 'deleteImage':
+                # 현재 이미지 삭제하기
+                question.image.delete()
+                question.image = None  # Optional: Clear the image field in the model
             question = form.save(commit=False)
-            try:
-                question.image = request.FILES['image']
-            except:
-                question.image = None
             question.modify_date = timezone.now()  # 수정일시 저장
             question.save()
             return redirect(question)
