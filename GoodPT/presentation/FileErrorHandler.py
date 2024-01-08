@@ -1,7 +1,7 @@
 import os
 
 def eraseTmpFile():
-    tmp_folder_path = "tmp/" 
+    tmp_folder_path = "media/tmp/" 
 
     try:
         file_list = os.listdir(tmp_folder_path)

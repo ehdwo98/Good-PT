@@ -55,7 +55,7 @@ def detail(request):
             answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
             answer_audio_path = 'tmp/myAnswer' + str(len(answer_list)) +'.wav'
             path = default_storage.save(answer_video_path, ContentFile(recorded_data.read()))
-            audio_path = extractAudioFromVideo(answer_video_path,answer_audio_path)
+            audio_path = extractAudioFromVideo('media/'+answer_video_path,'media/'+answer_audio_path)
             total_script = stt(audio_path)
             eraseTmpFile()
             answer_list.append(total_script)
@@ -70,15 +70,16 @@ def detail(request):
             #     eraseTmpFile()
             #     return JsonResponse({'error':'음성이 확인되지 않았습니다.'})
         else:
-            path = 'tmp/myvideo.mp4'
+            path = 'media/tmp/myvideo.mp4'
             cap = cv2.VideoCapture(path)
             gesture_analysis(cap)
-            audio_path = extractAudioFromVideo("tmp/myvideo.mp4","tmp/myaudio.wav")
+            audio_path = extractAudioFromVideo("media/tmp/myvideo.mp4","media/tmp/myaudio.wav")
             total_script,content = pt_analysis(audio_path)
             question_list = question_contents(content)
             eraseTmpFile()
             
             InitialState.questionlist = question_list
+
         return render(request, 'feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
