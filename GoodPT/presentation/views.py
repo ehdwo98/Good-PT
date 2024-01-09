@@ -62,18 +62,18 @@ def detail(request):
             total_script = stt(audio_path)
             eraseTmpFile()
             answer_list.append(total_script)
-            feedbackData = [total_script,question_list[question_num]]
             
-            InitialState.questionlist = question_list
-            InitialState.answerlist = answer_list
-            InitialState.questionnum = question_num+1
-        
-            if InitialState.questionnum >= 3:
-                # save db
+            if question_num == 3:
                 individual_report = REPORT.objects.filter(user=request.user).latest('rDatetime')
                 individual_report.answers = json.dumps(answer_list)
                 individual_report.save()
                 return JsonResponse({'redirect':'/report'})
+              
+            feedbackData = [total_script,question_list[question_num]] #출력하는줄
+            
+            InitialState.questionlist = question_list
+            InitialState.answerlist = answer_list #저장하는 줄
+            InitialState.questionnum = question_num+1
             return JsonResponse({'feedbackData':feedbackData})
         else:
             path = 'media/tmp/myvideo.mp4'
