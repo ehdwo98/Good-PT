@@ -1,8 +1,8 @@
 
 from django.shortcuts import render,redirect, get_object_or_404
-
 from .models import REPORT
 import json
+
 def report(request):
     print(request)
     if request.user.is_authenticated:
@@ -32,14 +32,6 @@ def report(request):
         a1 = answers[0]
         a2 = answers[1]
         a3 = answers[2]
-        # questions = questions.split(',')
-        # answers = answers.split(',')
-        # q1 = questions[0].lstrip("['").rstrip("'")
-        # q2 = questions[1].strip("'")
-        # q3 = questions[2].lstrip("'").rstrip("']")
-        # a1 = answers[0].lstrip("['").rstrip("'")
-        # a2 = answers[1].strip("'")
-        # a3 = answers[2].lstrip("'").rstrip("']")
         
         return render(request,'report.html', {'user': user, 'reportID': reportID,
                                                 'q1': q1, 'q2': q2, 'q3': q3,
@@ -81,14 +73,6 @@ def detail(request, no):
             a1 = answers[0]
             a2 = answers[1]
             a3 = answers[2]
-            # questions = questions.split(',')
-            # answers = answers.split(',')
-            # q1 = questions[0].lstrip("['").rstrip("'")
-            # q2 = questions[1].strip("'")
-            # q3 = questions[2].lstrip("'").rstrip("']")
-            # a1 = answers[0].lstrip("['").rstrip("'")
-            # a2 = answers[1].strip("'")
-            # a3 = answers[2].lstrip("'").rstrip("']")
             
             return render(request,'report.html', {'user': user, 'reportID': reportID,
                                                   'q1': q1, 'q2': q2, 'q3': q3,
