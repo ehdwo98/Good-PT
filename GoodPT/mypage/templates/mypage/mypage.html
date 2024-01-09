@@ -1,15 +1,15 @@
-{% extends "layout.html" %} 
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <div class="container page-body" id="mypage_container">
     <div class="row">
         <div class="col-sm-12" style="margin-top: 80px">
             <h1>My Info</h1>
+            {% if profile.image %}
+            <img src="{{ profile.image.url }}" class="mb-3" height="150" />
+            {% endif %}
             <br />
             <ul class="list-group list-group">
                 <li class="list-group-item">Name : {{user}}</li>
                 <li class="list-group-item">Email : {{user.email}}</li>
-                <li class="list-group-item">Tel : {{user.profile.phone_number}}</li>
-                <li class="list-group-item">Address : {{user.profile.address}}</li>
                 <li class="list-group-item">Signup : {{user.date_joined}}</li>
             </ul>
             <br>
