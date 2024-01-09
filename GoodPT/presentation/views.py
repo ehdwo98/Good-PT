@@ -52,6 +52,7 @@ def detail(request):
         if request.method == 'POST':
             question_num = InitialState.questionnum
             question_list = InitialState.questionlist
+            answer_list = InitialState.answerlist
             print(question_list)
             recorded_data = request.FILES.get('recordedData')
             answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
@@ -64,11 +65,12 @@ def detail(request):
             feedbackData = [total_script,question_list[question_num]]
             
             InitialState.questionlist = question_list
+            InitialState.answerlist = answer_list
             InitialState.questionnum = question_num+1
         
             if InitialState.questionnum >= 3:
                 # save db
-                individual_report = REPORT.objects.latest()
+                individual_report = REPORT.objects.filter(user=request.user).latest('rDatetime')
                 individual_report.answers = json.dumps(answer_list)
                 individual_report.save()
                 return JsonResponse({'redirect':'/report'})
