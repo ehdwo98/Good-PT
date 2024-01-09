@@ -8,15 +8,14 @@
     align-items: center;
     justify-content: center;
     /* margin-top : 20px; */
-    padding-bottom: 43px;
+    padding-bottom: 52px;
     background-color: #e5e9ff;
 }
 
 .video-container {
     /* display: flex;    
     width: 550px;     */
-    padding: 1rem;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 }
 
 .video-item > h2 {
@@ -29,7 +28,7 @@
     height: 451px;
     border-radius: 30px;
     object-fit: cover;
-    margin-top: 30px;
+    margin-top: 55px;
 }
 
 #button-record-image,
@@ -98,12 +97,12 @@
 }
 
 #screen {
-    width: 30%;
+    width: 50%;
     height: 100%;
     float: left;
 }
 #dialog {
-    width: 30%;
+    width: 40%;
     height: 100%;
     float: right;
 }
@@ -115,15 +114,10 @@
     align-items: center;
     text-align: center;
 }
-#chat {
-    margin-top: 50px;
-    border-radius: 30px;
-}
-
 .video-item2 > video {
     border: 1px solid #6671a4;
-    width: 90%;
-    height: 400px;
+    width: 550px;
+    height: 412px;
     border-radius: 30px;
     margin-top: 30px;
     object-fit: cover;
