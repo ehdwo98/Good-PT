@@ -37,7 +37,7 @@ def question_contents(content):
             },
             {
                 "role" : "user",
-                "content" : content
+                "content" : "발표 할게. 반드시 질문 3개를 생성해줘!\n" + content
             }
         ]
     )
