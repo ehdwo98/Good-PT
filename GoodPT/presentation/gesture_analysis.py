@@ -112,15 +112,27 @@ def gesture_analysis(cap):
         #     print("사람이 역동적으로 움직이고 있습니다.")
         
         # cv2.imshow('presentation', frame)
+        # cv2.imshow('presentation', frame)
         count += 1
         
         # 영상 종료
         # if cv2.waitKey(10) & 0xFF==ord('q'):
         #     break
+        # if cv2.waitKey(10) & 0xFF==ord('q'):
+        #     break
 
     cap.release()
     # cv2.destroyAllWindows()
-
+    
+    # 제스처 사용 비율
+    gesture_rate = (1 - count_static / count)
+    
+    # 정면 응시 비율
+    gaze_rate = (1 - (count_action[1] + count_action[2]) / count)
+    
+    
+    return (gesture_rate, gaze_rate)
+    '''
     print('total frame:', count)
     print('뒤돌아 있음:', count_action[1], '/', count_action[1]/count)
     print('옆을 보고 있음:', count_action[2], '/', count_action[2]/count) # 오른쪽으로 도는 것을 잘 인식하지 못함 (왼, 뒤로 인식)
@@ -129,3 +141,4 @@ def gesture_analysis(cap):
         print('너무 움직임이 없습니다. 발표 시 내용에 맞는 제스쳐를 해보세요.')
     elif count_static/count <= 0.79:
         print('너무 움직임이 많습니다. 발표 시 몸의 움직임을 줄여보세요.')
+    '''
