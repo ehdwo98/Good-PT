@@ -12,15 +12,12 @@
                 <li class="list-group-item">Email : {{user.email}}</li>
                 <li class="list-group-item">Signup : {{user.date_joined}}</li>
             </ul>
-            <br />
+            <br>
+            <a class="btn btn-secondary" href="/report">리포트 보기</a>
             {% if user.has_usable_password %}
             <a class="btn btn-secondary" href="{% url 'mypage:password_change' %}">패스워드 변경</a>
             {% else %}
             <h5>소셜 로그인 패스워드 변경 불가</h5>
-            {% endif %} {% if user.profile.has_report %}
-            <a class="btn btn-primary" href="/report" style="background-color: #6671a4; border: #6671a4">리포트 보기</a>
-            {% else %}
-            <p>보고서가 없습니다.</p>
             {% endif %}
         </div>
     </div>
