@@ -10,8 +10,5 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=20,verbose_name='사용자_전화번호')
     address = models.CharField(max_length=50, verbose_name='사용자_주소')
     
-    def has_report(self):
-        return REPORT.objects.filter(user=self.user).exists()
-    
     def __str__(self):
         return self.user
