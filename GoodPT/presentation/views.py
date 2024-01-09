@@ -66,8 +66,11 @@ def detail(request):
             InitialState.questionlist = question_list
             InitialState.questionnum = question_num+1
         
-            if InitialState.questionnum >= 4:
+            if InitialState.questionnum >= 3:
                 # save db
+                individual_report = REPORT.objects.latest()
+                individual_report.answers = json.dumps(answer_list)
+                individual_report.save()
                 return JsonResponse({'redirect':'/report'})
             return JsonResponse({'feedbackData':feedbackData})
         else:
@@ -79,7 +82,7 @@ def detail(request):
             question_list = question_contents(content)
             # DB 저장
             REPORT(user = request.user,
-                   questions = "", 
+                   questions = json.dumps(question_list), 
                    answers = "", 
                    voice_analysis = voice_text,
                    attitude_analysis = attitude_text,
