@@ -51,8 +51,8 @@ def detail(request, no):
         try:
             no-=1
             report = REPORT.objects.filter(user=request.user)
-            report_pick = report.order_by('reportID')[no]
-            user = report_pick.user
+            report_pick = REPORT.objects.filter(reportID = no+1)[0]
+            user = request.user
             reportID = report_pick.reportID
             questions = report_pick.questions
             answers = report_pick.answers
