@@ -33,7 +33,7 @@ def report(request):
         a2 = answers[1]
         a3 = answers[2]
         
-        return render(request,'report.html', {'user': user, 'reportID': reportID,
+        return render(request,'report/report.html', {'user': user, 'reportID': reportID,
                                                 'q1': q1, 'q2': q2, 'q3': q3,
                                                 'a1': a1, 'a2': a2, 'a3': a3,
                                                 'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
@@ -41,7 +41,7 @@ def report(request):
                                                 'date': date, 'report_list': report,
                                                 'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
                                                 'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
-    return render(request,'zeroReport.html')
+    return render(request,'report/zeroReport.html')
 
 def detail(request, no):
     if request.user.is_authenticated:
@@ -74,7 +74,7 @@ def detail(request, no):
             a2 = answers[1]
             a3 = answers[2]
             
-            return render(request,'report.html', {'user': user, 'reportID': reportID,
+            return render(request,'report/report.html', {'user': user, 'reportID': reportID,
                                                   'q1': q1, 'q2': q2, 'q3': q3,
                                                   'a1': a1, 'a2': a2, 'a3': a3,
                                                   'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
@@ -83,6 +83,6 @@ def detail(request, no):
                                                   'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
                                                   'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
         except:
-            return render(request,'zeroReport.html')
+            return render(request,'report/zeroReport.html')
     else:
         return redirect('/login')
