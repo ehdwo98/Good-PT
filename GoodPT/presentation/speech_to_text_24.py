@@ -45,4 +45,5 @@ def stt(audio_path):
 def audio_length(audio_path):
     audio = AudioSegment.from_wav(audio_path)
     audio_length_ms = len(audio) # ms
+    print('audio_length(Seconds):', np.round(audio_length_ms / 1000, 2))
     return np.round(audio_length_ms / 1000, 2) # s

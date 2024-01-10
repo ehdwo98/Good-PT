@@ -31,7 +31,7 @@ def find_surplus(content):
     surplus = re.findall(pattern, content)
 
     # 음성적 잉여 개수 / 전체 단어 개수
-    result = np.round(len(surplus) / len(content.split()), 3)
+    result = np.round(len(surplus) / len(content.split()), 2)
      
     return result
 
