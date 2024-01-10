@@ -111,15 +111,22 @@ function createPdf() { //이미지를 pdf로 만들기
       var sortedHeight = sorted[i].height, //이미지 높이
           sortedImage = sorted[i].image; //이미지
 
-      if( curHeight + sortedHeight > 297 - padding * 2 ){ // a4 높이에 맞게 남은 공간이 이미지높이보다 작을 경우 페이지 추가
-        doc.addPage(); // 페이지를 추가함
-        curHeight = margin; // 이미지가 들어갈 y축을 초기 여백값으로 초기화
+      if(i===0) {
         doc.addImage(sortedImage, 'jpeg', padding , curHeight, contWidth, sortedHeight); //이미지 넣기
         curHeight += sortedHeight; // y축 = 여백 + 새로 들어간 이미지 높이
-      } else { // 페이지에 남은 공간보다 이미지가 작으면 페이지 추가하지 않음
-        doc.addImage(sortedImage, 'jpeg', padding , curHeight, contWidth, sortedHeight); //이미지 넣기
-        curHeight += sortedHeight; // y축 = 기존y축 + 새로들어간 이미지 높이
       }
+      else {
+        if( curHeight + sortedHeight > 297 - padding * 2 ){ // a4 높이에 맞게 남은 공간이 이미지높이보다 작을 경우 페이지 추가
+          doc.addPage(); // 페이지를 추가함
+          curHeight = margin; // 이미지가 들어갈 y축을 초기 여백값으로 초기화
+          doc.addImage(sortedImage, 'jpeg', padding , curHeight, contWidth, sortedHeight); //이미지 넣기
+          curHeight += sortedHeight; // y축 = 여백 + 새로 들어간 이미지 높이
+        } else { // 페이지에 남은 공간보다 이미지가 작으면 페이지 추가하지 않음
+          doc.addImage(sortedImage, 'jpeg', padding , curHeight, contWidth, sortedHeight); //이미지 넣기
+          curHeight += sortedHeight; // y축 = 기존y축 + 새로들어간 이미지 높이
+        }
+      }
+      
     }
     doc.save('Report.pdf'); //pdf 저장
 
