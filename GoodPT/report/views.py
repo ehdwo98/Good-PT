@@ -8,6 +8,7 @@ def report(request):
     if request.user.is_authenticated:
         try:
             report = REPORT.objects.filter(user=request.user)
+            no = report.count()
             report_last = report.order_by('reportID').last()
             user = report_last.user
             reportID = report_last.reportID
@@ -39,7 +40,7 @@ def report(request):
                                                     'a1': a1, 'a2': a2, 'a3': a3,
                                                     'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
                                                     'script_analysis': script_analysis, 'total_analysis':total_analysis,
-                                                    'date': date, 'report_list': report,
+                                                    'date': date, 'report_list': report, 'no':no,
                                                     'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
                                                     'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
         except:
@@ -51,8 +52,8 @@ def detail(request, no):
         try:
             no-=1
             report = REPORT.objects.filter(user=request.user)
-            report_pick = REPORT.objects.filter(reportID = no+1)[0]
-            user = request.user
+            report_pick = report.order_by('reportID')[no]
+            user = report_pick.user
             reportID = report_pick.reportID
             questions = report_pick.questions
             answers = report_pick.answers
@@ -82,9 +83,9 @@ def detail(request, no):
                                                   'a1': a1, 'a2': a2, 'a3': a3,
                                                   'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
                                                   'script_analysis': script_analysis, 'total_analysis':total_analysis,
-                                                  'date': date, 'report_list': report,
+                                                  'date': date, 'report_list': report,'no':no+1,
                                                   'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
-                                                  'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
+                                                  'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate,})
         except:
             return render(request,'report/zeroReport.html')
     else:
