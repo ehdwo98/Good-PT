@@ -13,9 +13,9 @@
 }
 
 .video-container {
-    /* display: flex;    
-    width: 550px;     */
-    /* justify-content: space-around; */
+    display: flex;    
+    width: 550px;
+    justify-content: space-around;
 }
 
 .video-item > h2 {

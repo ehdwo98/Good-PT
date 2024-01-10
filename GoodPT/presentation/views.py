@@ -27,6 +27,8 @@ from report.models import REPORT
 from accounts.models import USER
 from datetime import datetime
 
+from presentation.text_to_speech_24 import text_to_speech
+
 openai.api_key=''
 # Create your views here.
 
@@ -35,7 +37,7 @@ def recording(request):
     recorded_data = request.FILES.get('recordedData')
     path = default_storage.save('tmp/myvideo.mp4', ContentFile(recorded_data.read()))
   
-  return render(request,'presentation.html')
+  return render(request,'presentation/presentation.html')
       
 
 
@@ -51,7 +53,10 @@ def detail(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             question_num = InitialState.questionnum
+            if (question_num == 1) | (question_num == 2) | (question_num == 3):
+                text_to_speech(question_list[question_num - 1])
             question_list = InitialState.questionlist
+            answer_list = InitialState.answerlist
             print(question_list)
             recorded_data = request.FILES.get('recordedData')
             answer_video_path = 'tmp/myAnswer' + str(len(answer_list)) +'.mp4'
@@ -61,14 +66,18 @@ def detail(request):
             total_script = stt(audio_path)
             eraseTmpFile()
             answer_list.append(total_script)
-            feedbackData = [total_script,question_list[question_num]]
+            
+            if question_num == 3:
+                individual_report = REPORT.objects.filter(user=request.user).latest('rDatetime')
+                individual_report.answers = json.dumps(answer_list, ensure_ascii=False)
+                individual_report.save()
+                return JsonResponse({'redirect':'/report'})
+              
+            feedbackData = [total_script,question_list[question_num]] #출력하는줄
             
             InitialState.questionlist = question_list
+            InitialState.answerlist = answer_list #저장하는 줄
             InitialState.questionnum = question_num+1
-        
-            if InitialState.questionnum >= 4:
-                # save db
-                return JsonResponse({'redirect':'/report'})
             return JsonResponse({'feedbackData':feedbackData})
         else:
             path = 'media/tmp/myvideo.mp4'
@@ -79,7 +88,7 @@ def detail(request):
             question_list = question_contents(content)
             # DB 저장
             REPORT(user = request.user,
-                   questions = "", 
+                   questions = json.dumps(question_list, ensure_ascii=False), 
                    answers = "", 
                    voice_analysis = voice_text,
                    attitude_analysis = attitude_text,
@@ -95,7 +104,7 @@ def detail(request):
             
             InitialState.questionlist = question_list
 
-        return render(request, 'feedback.html',{'question_list':question_list})
+        return render(request, 'presentation/feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
   

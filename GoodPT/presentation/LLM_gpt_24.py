@@ -37,7 +37,7 @@ def question_contents(content):
             },
             {
                 "role" : "user",
-                "content" : content
+                "content" : "발표 할게. 반드시 질문 3개를 생성해줘!\n" + content
             }
         ]
     )
@@ -52,7 +52,8 @@ def question_contents(content):
     q_content_lst = q_content.split('\n\n')
     q_content_lst = q_content.split('\n')
     q_content_lst = [i for i in q_content_lst if i != '']
-
+    if len(q_content_lst) == 4:
+        q_content_lst = q_content_lst[1:]
     # 질문 리스트 반환
     return q_content_lst
 
