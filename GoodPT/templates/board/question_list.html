@@ -17,14 +17,14 @@
 <h4 class="border-bottom pb-2 my-3">{{ category.description }}</h4>
 <div class="container my-3" id="question_list">
     <div class="row justify-content-between my-3"  >
-        <div class="col-2"style="margin-top: 30px">
+        <div class="col-2">
             <select class="form-control so" style="text-align:center;">
                 <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
                 <option value="recommend" {% if so == 'recommend' %}selected{% endif %}>추천순</option>
                 <option value="popular" {% if so == 'popular' %}selected{% endif %}>답변순</option>
             </select>
         </div>
-        <div class="col-4"style="margin-top: 30px">
+        <div class="col-4">
             <div class="input-group">
                 <input type="text" class="form-control kw" value="{{ kw|default_if_none:'' }}">
                 <div class="input-group-append">
@@ -60,7 +60,7 @@
                     <span class="badge rounded-pill bg-success">👍 0</span>
                 {% endif %}
             </td>
-            <td class="text-left">
+            <td class="text-center">
                 <a href="{{ question.get_absolute_url }}"class="text-primary">{{ question.subject }}</a>
                 {% if question.answer_set.count > 0 %}
                 <span class="badge rounded-pill bg-warning">💬 [{{ question.answer_set.count }}]</span>

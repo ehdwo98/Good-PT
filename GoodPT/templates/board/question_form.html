@@ -1,6 +1,6 @@
 {% extends "base.html" %} 
 {% block content %}
-<div class="container"  id="question_form" style="margin-top: 30px">
+<div class="container"  id="question_form">
     <h5 class="my-3 border-bottom pb-2">[{{ category.description }}] 질문 등록</h5>
     <form method="post" class="post-form my-3" enctype="multipart/form-data">
         {% csrf_token %} {% include "form_errors.html" %}
