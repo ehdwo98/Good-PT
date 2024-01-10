@@ -67,6 +67,21 @@
         color: rgba(255, 255, 255, 0.9);
         background: #424D83;
     }
+    .qna-table th, .qna-table td {
+        text-align: center;
+        border: 1px solid #000;
+        padding: 8px;
+        width: 450px;
+    }
+    .qna-table h6{
+        margin: 0;
+        font-size: 10pt;
+        line-height:1.5;
+        text-align: center;
+    }
+    h6 {
+        text-align: left;
+    }
 </style>
 <body>
     <div class = "report">
@@ -89,18 +104,22 @@
                             <p style="font-size: 15px;"><b>{{ user }}님의 {{reportID}}번째 발표 분석 결과입니다.</b></p>
                             <p style="font-size: 15px;">발표 날짜: {{date}}</p>
                             <img src="{% static '/img/illustrations/main.png' %}" width="800px" style="padding-top:20px;"/>
+                            <br>
+                            <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p>
                         </div>
                     </div>
-                    <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p>
+                    {% comment %} <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p> {% endcomment %}
                 </div>
-                <div class="report-row pdf_page">
+                <br>
+                <div class="report-row">
+                    <div class="pdf_page">
                     <div class="large-12 columns title text-center">
                         <h1>태도 분석</h1>
                         <p>발표자의 자연스러운 시선처리와 제스처는 발표자의 자신감을 보여줍니다.</p>
                         <table align="center">
                             <tr align="center">
-                                <td width=300 style="padding-right: 20px;">
-                                    <h6>
+                                <td width=550 style="padding-right: 20px;">
+                                    <h6 style="font-size: 10pt; line-height:1.5;">
                                         &quot;{{attitude_analysis}}&quot;
                                     </h6>
                                     
@@ -108,8 +127,8 @@
                                 <td width=300 style="padding-left: 20px;">
                                     <div class="graph-box">
                                         <h6 style="color: white;">
-                                            <span style="float: left;">손 제스쳐 비율</span>
-                                            <span style="float: right;">{{static_rate}} %</span>
+                                            <p style="float: left;">손 제스쳐 비율</p>
+                                            <p style="float: right;" id="static-calc"></p>
                                         </h6>
                                         <div class="progress-bar">           
                                             <div class="progress static-bg"> <div class="check-point static-point"> </div> </div>
@@ -117,8 +136,8 @@
                                     </div>
                                     <div class="graph-box">
                                         <h6 style="color: white;">
-                                            <span style="float: left;">정면 응시 비율</span>
-                                            <span style="float: right;">{{face_recog_rate}} %</span>
+                                            <p style="float: left;">정면 응시 비율</p>
+                                            <p style="float: right;" id="face-calc"></p>
                                         </h6>
                                         <div class="progress-bar">           
                                             <div class="progress face-bg"> <div class="check-point face-point"> </div> </div>
@@ -129,13 +148,13 @@
                         </table>
                     </div>
                     <hr>
-                    <div class="large-12 columns title text-center">
+                    <div class="large-12 columns title text-center ">
                         <h1>음성 분석</h1>
                         <p>발표의 언어적 요소와 빠르기에 따라 청중들의 발표 집중도가 결정됩니다.</p>
                         <table align="center">
                             <tr align="center">
-                                <td width=300 style="padding-right: 20px;">
-                                    <h6>
+                                <td width=550 style="padding-right: 20px;">
+                                    <h6 style="font-size: 10pt; line-height:1.5;">
                                         &quot;{{voice_analysis}}&quot;
                                     </h6>
                                     
@@ -143,8 +162,8 @@
                                 <td width=300 style="padding-left: 20px;">
                                     <div class="graph-box">
                                         <h6 style="color: white;">
-                                            <span style="float: left;">음성적 잉여 비율</span>
-                                            <span style="float: right;">{{surplus_rate}} %</span>
+                                            <p style="float: left;">음성적 잉여 비율</p>
+                                            <p style="float: right;" id="surplus-calc"></p>
                                         </h6>
                                         <div class="progress-bar">           
                                             <div class="progress surplus-bg"> <div class="check-point surplus-point"> </div> </div>
@@ -152,8 +171,8 @@
                                     </div>
                                     <div class="graph-box">
                                         <h6 style="color: white;">
-                                            <span style="float: left;">발표 빠르기</span>
-                                            <span style="float: right;">{{speed_rate}} %</span>
+                                            <p style="float: left;">발표 빠르기</p>
+                                            <p style="float: right;" id="speed-calc"></p>
                                         </h6>
                                         <div class="progress-bar">           
                                             <div class="progress speed-bg"> <div class="check-point speed-point"> </div> </div>
@@ -163,14 +182,16 @@
                             </tr>
                         </table>
                     </div>
+                    </div>
                     <hr>
-                    <div class="large-12 columns title text-center">
+                    <div class="pdf_page">
+                    <div class="large-12 columns title text-center ">
                         <h1>내용 분석</h1>
-                        <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
+                        <p>발표 내용에 대한 분석입니다.</p>
                         <table align="center">
                             <tr align="center">
-                                <td width=300>
-                                    <h6>
+                                <td width=850>
+                                    <h6 style="font-size: 10pt; line-height:1.5;">
                                         &quot;{{script_analysis}}&quot;
                                     </h6>
                                 </td>
@@ -178,37 +199,47 @@
                         </table>
                     </div>
                     <hr>
-                    <div class="large-12 columns title text-center">
-                        <h1>질의응답 내용 확인</h1>
-                        <p>Check out our amazing graphs made by chartist.js based on our search results in our search engine</p>
-                        <div class="question-set">
-                            <h6>
-                                Q1 : &quot;{{q1}}&quot;
-                            </h6>
-                            <h6>
-                                A1 : &quot;{{a1}}&quot;
-                            </h6>
-                        </div>
-                        <div class="question-set">
-                            <h6>
-                                Q2 : &quot;{{q2}}&quot;
-                            </h6>
-                            <h6>
-                                A2 : &quot;{{a2}}&quot;
-                            </h6>
-                        </div>
-                        <div class="question-set">
-                            <h6>
-                                Q3 : &quot;{{q3}}&quot;
-                            </h6>
-                            <h6>
-                                A3 : &quot;{{a3}}&quot;
-                            </h6>
-                        </div>
+                    <div class="large-12 columns title text-center ">
+                        <h1>질의응답</h1>
+                        <p>발표 후 진행한 질의응답 내용을 확인하세요.</p>
+                        <table align="center" class="qna-table">
+                            <tr align="center" style="background-color: #424D83;">
+                                <td style="padding-right: 10px;">
+                                    <h6 style="color: white; font-size: 12pt;"> Questions </h6>
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    <h6 style="color: white; font-size: 12pt;"> Answers </h6>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td style="padding-right: 10px;">
+                                    <h6> {{q1}} </h6>
+                                </td> 
+                                <td style="padding-left: 10px;">
+                                    <h6> {{a1}} </h6>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td style="padding-right: 10px;">
+                                    <h6> {{q2}} </h6>
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    <h6> {{a2}}</h6>
+                                </td>
+                            </tr>
+                            <tr align="center">
+                                <td style="padding-right: 10px;">
+                                    <h6> {{q3}}</h6>
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    <h6> {{a3}}</h6>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p>
+                    </div>
                 </div>
-                {% comment %} <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p> {% endcomment %}
             </div>
         </div>
     </div>
@@ -229,5 +260,10 @@
     progressBar_speed = document.getElementsByClassName('speed-point')[0]
     percentage_speed_rate = 100 - {{speed_rate}}*100
     progressBar_speed.style.marginRight = percentage_speed_rate+'%'
+
+    document.getElementById("static-calc").innerHTML = ({{static_rate}}*100).toFixed(2) + ' %';
+    document.getElementById("face-calc").innerHTML = ({{face_recog_rate}}*100).toFixed(2) + ' %';
+    document.getElementById("surplus-calc").innerHTML = ({{surplus_rate}}*100).toFixed(2) + ' %';
+    document.getElementById("speed-calc").innerHTML = ({{speed_rate}}*100).toFixed(2) + ' %';
 </script>
 {% endblock content %}
