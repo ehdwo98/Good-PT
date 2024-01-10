@@ -1,12 +1,5 @@
-#main_nav {
-    position: fixed;
-    top: 0;
-    /* width: 100% */
-    left: 0;
-    right: 0;
-}
 body {
-    padding-top: 90px;
+    /* padding-top: 90px; */
 }
 #mypage_container,
 #pw_container {
