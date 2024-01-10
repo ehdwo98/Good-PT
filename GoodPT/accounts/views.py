@@ -47,7 +47,7 @@ def test1(request):
                     errors.append(match.group(1))
                 messages.warning(request,errorDictionary[errors[0]])
     
-    return render(request,'login.html')
+    return render(request,'accounts/login.html')
 
 def test4(request):
-    return render(request,'privacyPolicy.html')
+    return render(request,'accounts/privacyPolicy.html')
