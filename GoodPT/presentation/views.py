@@ -76,29 +76,29 @@ def detail(request):
             InitialState.questionnum = question_num+1
             return JsonResponse({'feedbackData':feedbackData})
         else:
-            path = 'media/tmp/myvideo.mp4'
-            cap = cv2.VideoCapture(path)
-            gesture, gaze = gesture_analysis(cap)
-            audio_path = extractAudioFromVideo("media/tmp/myvideo.mp4","media/tmp/myaudio.wav")
-            voice_text, attitude_text, script_text, total_script, gesture, gaze, gap, speech_rate, surplus, content = pt_analysis(gesture, gaze, audio_path)
-            question_list = question_contents(content)
-            # DB 저장
-            REPORT(user = request.user,
-                   questions = json.dumps(question_list), 
-                   answers = "", 
-                   voice_analysis = voice_text,
-                   attitude_analysis = attitude_text,
-                   script_analysis = script_text,
-                   total_analysis = total_script,
-                   rDatetime = datetime.now(),
-                   static_rate = gesture,
-                   face_recog_rate = gaze,
-                   gap_rate = gap,
-                   speed_rate = speech_rate,
-                   surplus_rate = surplus).save()
+            # path = 'media/tmp/myvideo.mp4'
+            # cap = cv2.VideoCapture(path)
+            # gesture, gaze = gesture_analysis(cap)
+            # audio_path = extractAudioFromVideo("media/tmp/myvideo.mp4","media/tmp/myaudio.wav")
+            # voice_text, attitude_text, script_text, total_script, gesture, gaze, gap, speech_rate, surplus, content = pt_analysis(gesture, gaze, audio_path)
+            # question_list = question_contents(content)
+            # # DB 저장
+            # REPORT(user = request.user,
+            #        questions = json.dumps(question_list), 
+            #        answers = "", 
+            #        voice_analysis = voice_text,
+            #        attitude_analysis = attitude_text,
+            #        script_analysis = script_text,
+            #        total_analysis = total_script,
+            #        rDatetime = datetime.now(),
+            #        static_rate = gesture,
+            #        face_recog_rate = gaze,
+            #        gap_rate = gap,
+            #        speed_rate = speech_rate,
+            #        surplus_rate = surplus).save()
             eraseTmpFile()
             
-            InitialState.questionlist = question_list
+            # InitialState.questionlist = question_list
 
         return render(request, 'presentation/feedback.html',{'question_list':question_list})
     else:
