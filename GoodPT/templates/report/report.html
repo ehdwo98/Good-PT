@@ -89,7 +89,7 @@
             <nav class="nav" role="navigation">
                 <ul class="navlist">
                     {% for report in report_list %}
-                        <li><a href="/report/{{report.reportID}}"><label>[Report {{report.reportID}}] {{report.rDatetime}}</label></a></li>
+                        <li><a href="/report/{{forloop.counter}}"><label>[Report {{forloop.counter}}] {{report.rDatetime}}</label></a></li>
                     {% endfor %}
                 </ul>
              </nav>
@@ -101,9 +101,9 @@
                     <div class="report-row hero">
                         <div class="large-6 columns panel">
                             <h1><b>발표 분석 결과</b></h1>
-                            <p style="font-size: 15px;"><b>{{ user }}님의 {{reportID}}번째 발표 분석 결과입니다.</b></p>
+                            <p style="font-size: 15px;"><b>{{ user }}님의 {{no}}번째 발표 분석 결과입니다.</b></p>
                             <p style="font-size: 15px;">발표 날짜: {{date}}</p>
-                            <img src="{% static '/img/illustrations/main.png' %}" width="800px" style="padding-top:20px;"/>
+                            <img src="{% static '/img/illustrations/main.png' %}" width="800px" style="padding-top:10px;"/>
                             <br>
                             <p style="float: right;">Presentation analyzed by<img src="{% static '/img/logo/main_logo_2.png' %}" width="100"/></p>
                         </div>
@@ -167,6 +167,15 @@
                                         </h6>
                                         <div class="progress-bar">           
                                             <div class="progress surplus-bg"> <div class="check-point surplus-point"> </div> </div>
+                                        </div>
+                                    </div>
+                                    <div class="graph-box">
+                                        <h6 style="color: white;">
+                                            <p style="float: left;">공백 비율</p>
+                                            <p style="float: right;" id="gap-calc"></p>
+                                        </h6>
+                                        <div class="progress-bar">           
+                                            <div class="progress gap-bg"> <div class="check-point gap-point"> </div> </div>
                                         </div>
                                     </div>
                                     <div class="graph-box">
@@ -257,6 +266,10 @@
     percentage_surplus_rate = 100 - {{surplus_rate}}*100
     progressBar_surplus.style.marginRight = percentage_surplus_rate+'%'
 
+    progressBar_gap = document.getElementsByClassName('gap-point')[0]
+    percentage_gap_rate = 100 - {{gap_rate}}*100
+    progressBar_gap.style.marginRight = percentage_gap_rate+'%'
+
     progressBar_speed = document.getElementsByClassName('speed-point')[0]
     percentage_speed_rate = 100 - {{speed_rate}}*100
     progressBar_speed.style.marginRight = percentage_speed_rate+'%'
@@ -264,6 +277,7 @@
     document.getElementById("static-calc").innerHTML = ({{static_rate}}*100).toFixed(2) + ' %';
     document.getElementById("face-calc").innerHTML = ({{face_recog_rate}}*100).toFixed(2) + ' %';
     document.getElementById("surplus-calc").innerHTML = ({{surplus_rate}}*100).toFixed(2) + ' %';
+    document.getElementById("gap-calc").innerHTML = ({{gap_rate}}*100).toFixed(2) + ' %';
     document.getElementById("speed-calc").innerHTML = ({{speed_rate}}*100).toFixed(2) + ' %';
 </script>
 {% endblock content %}
