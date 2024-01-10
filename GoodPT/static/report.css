@@ -139,19 +139,19 @@ hr{
 }
 
 .static-bg {
-	background: linear-gradient(to right, #ee7c7c 79%, #79b93c 90%, #ee7c7c 100%);
+	background: linear-gradient(to right, #c95f5f, #5e8d30 11%, #c95f5f 22%);
 }
 .face-bg {
-	background: linear-gradient(to right, #ee7c7c 50%, #79b93c 80%, #ee7c7c 100%);
+	background: linear-gradient(to right, #c95f5f, #5e8d30 61%, #c95f5f 91%);
 }
 .surplus-bg {
-	background: linear-gradient(to right, #ee7c7c 79%, #79b93c 90%, #ee7c7c 100%);
+	background: linear-gradient(to right, #5e8d30, #c95f5f 4%);
 }
 .gap-bg {
-	background: linear-gradient(to right, #ee7c7c 79%, #79b93c 90%, #ee7c7c 100%);
+	background: linear-gradient(to right, #5e8d30, #c95f5f 7%);
 }
 .speed-bg {
-	background: linear-gradient(to right, #ee7c7c 79%, #79b93c 90%, #ee7c7c 100%);
+	background: linear-gradient(to right, #c95f5f , #5e8d30 56%, #c95f5f 100%);
 }
 
 .question-set {
