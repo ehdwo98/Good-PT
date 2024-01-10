@@ -11,6 +11,7 @@
     - 반환 값: 실수 (발표 속도 비율)
 ***** 주의 사항 : 음성 파일은 반드시 wav 파일 *****
 '''
+import numpy as np
 
 def measure_speech_rate(content, audio_length):
     # 음성에서 추출한 텍스트의 글자 수 계산
@@ -18,6 +19,8 @@ def measure_speech_rate(content, audio_length):
 
     # 발화 속도(글자 수 / 음성 길이(초)) 계산
     speech_rate = word_length / audio_length
-
-    return speech_rate
+    print('word_length:', word_length)
+    print('audio_length:', audio_length)
+    print(np.round(0.08 * speech_rate, 2))
+    return np.round(0.08 * speech_rate, 2)
     
