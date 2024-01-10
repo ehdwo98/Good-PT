@@ -27,6 +27,8 @@ from report.models import REPORT
 from accounts.models import USER
 from datetime import datetime
 
+from presentation.text_to_speech_24 import text_to_speech
+
 openai.api_key=''
 # Create your views here.
 
@@ -51,6 +53,8 @@ def detail(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             question_num = InitialState.questionnum
+            if (question_num == 1) | (question_num == 2) | (question_num == 3):
+                text_to_speech(question_list[question_num - 1])
             question_list = InitialState.questionlist
             answer_list = InitialState.answerlist
             print(question_list)
@@ -65,7 +69,7 @@ def detail(request):
             
             if question_num == 3:
                 individual_report = REPORT.objects.filter(user=request.user).latest('rDatetime')
-                individual_report.answers = json.dumps(answer_list)
+                individual_report.answers = json.dumps(answer_list, ensure_ascii=False)
                 individual_report.save()
                 return JsonResponse({'redirect':'/report'})
               
@@ -84,7 +88,7 @@ def detail(request):
             question_list = question_contents(content)
             # DB 저장
             REPORT(user = request.user,
-                   questions = json.dumps(question_list), 
+                   questions = json.dumps(question_list, ensure_ascii=False), 
                    answers = "", 
                    voice_analysis = voice_text,
                    attitude_analysis = attitude_text,
@@ -99,7 +103,6 @@ def detail(request):
             eraseTmpFile()
             
             InitialState.questionlist = question_list
-
         return render(request, 'feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
