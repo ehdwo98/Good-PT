@@ -4,8 +4,8 @@
 {% load allauth account socialaccount %}
 
 {% block content %}
-    <link rel="stylesheet" href="{% static '/css/login.css' %}?after" />
-    <link rel="stylesheet" href="{% static '/css/modal.css' %}?after" />
+    <link rel="stylesheet" href="{% static '/accounts/css/login.css' %}?after" />
+    <link rel="stylesheet" href="{% static '/accounts/css/modal.css' %}?after" />
     <script defer src="{% static 'js/login.js' %}?after"></script>
     <script defer src="{% static 'js/modal.js' %}?after"></script>
   
@@ -51,13 +51,13 @@
                             <input type="password" name="password" placeholder="비밀번호">
                             <div class="social-links">
                                 <div>
-                                    <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img id="login-logo" src="/static/img/kakao_logo.png"></a>
+                                    <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img id="login-logo" src="/static/accounts/img/kakao_logo.png"></a>
                                 </div>
                                 <div>
-                                    <a href="{% provider_login_url 'naver' method='oauth2' %}"><img id="login-logo" src="/static/img/naver_logo.png"></a>
+                                    <a href="{% provider_login_url 'naver' method='oauth2' %}"><img id="login-logo" src="/static/accounts/img/naver_logo.png"></a>
                                 </div>
                                 <div>
-                                    <a href="{% provider_login_url 'google' method='oauth2' %}"><img id="login-logo" src='/static/img/google_logo.png'></a>
+                                    <a href="{% provider_login_url 'google' method='oauth2' %}"><img id="login-logo" src='/static/accounts/img/google_logo.png'></a>
                                 </div>
                             </div>
                             <button id="login_button" type="submit" class="form_btn" name="login">로그인</button>
