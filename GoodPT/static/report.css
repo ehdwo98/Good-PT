@@ -147,6 +147,9 @@ hr{
 .surplus-bg {
 	background: linear-gradient(to right, #ee7c7c 79%, #79b93c 90%, #ee7c7c 100%);
 }
+.gap-bg {
+	background: linear-gradient(to right, #ee7c7c 79%, #79b93c 90%, #ee7c7c 100%);
+}
 .speed-bg {
 	background: linear-gradient(to right, #ee7c7c 79%, #79b93c 90%, #ee7c7c 100%);
 }

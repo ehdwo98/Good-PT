@@ -109,6 +109,9 @@ function answerTTSJsonCallback(json){
         question.innerText = questionList;
         GPTconsole.appendChild(question);
         console.log(question)
+
+        const newaudio = new Audio('http://localhost:8000/media/tmp/question.mp3')
+        newaudio.play()
     }
     else if(json.redirect){
         window.location.href = '/report';
