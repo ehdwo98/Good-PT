@@ -1,7 +1,8 @@
 class feedState:
-    def __init__(self,questionnum,questionlist):
+    def __init__(self,questionnum,questionlist,answerlist):
         self.__questionnum = questionnum
         self.__questionlist = questionlist
+        self.__answerlist = answerlist
         
     @property
     def questionnum(self):
@@ -11,6 +12,11 @@ class feedState:
     def questionlist(self):
         return self.__questionlist    
     
+    @property
+    def answerlist(self):
+        return self.__answerlist
+    
+      
     @questionlist.setter
     def questionlist(self,questionlist):
         self.__questionlist = questionlist
@@ -19,4 +25,8 @@ class feedState:
     def questionnum(self,questionnum):
         self.__questionnum = questionnum
         
-InitialState = feedState(2,['blank1','blank2','blank3','blank4','blank5'])
+    @answerlist.setter
+    def answerlist(self,answerlist):
+        self.__answerlist = answerlist
+        
+InitialState = feedState(1,['blank1','blank2','blank3','blank4','blank5'],[])

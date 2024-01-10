@@ -1,7 +1,8 @@
 
 from django.shortcuts import render,redirect, get_object_or_404
-
 from .models import REPORT
+import json
+
 def report(request):
     print(request)
     if request.user.is_authenticated:
@@ -24,34 +25,34 @@ def report(request):
             date = report_last.rDatetime
             
             #Q & A split
-            questions = questions.split(',')
-            answers = answers.split(',')
-            q1 = questions[0].lstrip("['").rstrip("'")
-            q2 = questions[1].strip("'")
-            q3 = questions[2].lstrip("'").rstrip("']")
-            a1 = answers[0].lstrip("['").rstrip("'")
-            a2 = answers[1].strip("'")
-            a3 = answers[2].lstrip("'").rstrip("']")
+            questions = json.loads(questions)
+            answers = json.loads(answers)
+            q1 = questions[0]
+            q2 = questions[1]
+            q3 = questions[2]
+            a1 = answers[0]
+            a2 = answers[1]
+            a3 = answers[2]
             
-            return render(request,'report.html', {'user': user, 'reportID': reportID,
-                                                  'q1': q1, 'q2': q2, 'q3': q3,
-                                                  'a1': a1, 'a2': a2, 'a3': a3,
-                                                  'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
-                                                  'script_analysis': script_analysis, 'total_analysis':total_analysis,
-                                                  'date': date, 'report_list': report,
-                                                  'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
-                                                  'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
+            return render(request,'report/report.html', {'user': user, 'reportID': reportID,
+                                                    'q1': q1, 'q2': q2, 'q3': q3,
+                                                    'a1': a1, 'a2': a2, 'a3': a3,
+                                                    'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
+                                                    'script_analysis': script_analysis, 'total_analysis':total_analysis,
+                                                    'date': date, 'report_list': report,
+                                                    'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
+                                                    'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
         except:
-            return render(request,'zeroReport.html')
-    return redirect('/')
+            return render(request,'report/zeroReport.html')
+    return render(request,'report/zeroReport.html')
 
 def detail(request, no):
     if request.user.is_authenticated:
         try:
             no-=1
             report = REPORT.objects.filter(user=request.user)
-            report_pick = report.order_by('reportID')[no]
-            user = report_pick.user
+            report_pick = REPORT.objects.filter(reportID = no+1)[0]
+            user = request.user
             reportID = report_pick.reportID
             questions = report_pick.questions
             answers = report_pick.answers
@@ -67,16 +68,16 @@ def detail(request, no):
             date = report_pick.rDatetime
             
             #Q & A split
-            questions = questions.split(',')
-            answers = answers.split(',')
-            q1 = questions[0].lstrip("['").rstrip("'")
-            q2 = questions[1].strip("'")
-            q3 = questions[2].lstrip("'").rstrip("']")
-            a1 = answers[0].lstrip("['").rstrip("'")
-            a2 = answers[1].strip("'")
-            a3 = answers[2].lstrip("'").rstrip("']")
+            questions = json.loads(questions)
+            answers = json.loads(answers)
+            q1 = questions[0]
+            q2 = questions[1]
+            q3 = questions[2]
+            a1 = answers[0]
+            a2 = answers[1]
+            a3 = answers[2]
             
-            return render(request,'report.html', {'user': user, 'reportID': reportID,
+            return render(request,'report/report.html', {'user': user, 'reportID': reportID,
                                                   'q1': q1, 'q2': q2, 'q3': q3,
                                                   'a1': a1, 'a2': a2, 'a3': a3,
                                                   'voice_analysis': voice_analysis, 'attitude_analysis': attitude_analysis, 
@@ -85,6 +86,6 @@ def detail(request, no):
                                                   'static_rate':static_rate, 'face_recog_rate':face_recog_rate,
                                                   'gap_rate':gap_rate, 'speed_rate':speed_rate, 'surplus_rate':surplus_rate})
         except:
-            return render(request,'zeroReport.html')
+            return render(request,'report/zeroReport.html')
     else:
         return redirect('/login')
