@@ -37,7 +37,7 @@ def recording(request):
     recorded_data = request.FILES.get('recordedData')
     path = default_storage.save('tmp/myvideo.mp4', ContentFile(recorded_data.read()))
   
-  return render(request,'presentation.html')
+  return render(request,'presentation/presentation.html')
       
 
 
@@ -103,7 +103,8 @@ def detail(request):
             eraseTmpFile()
             
             InitialState.questionlist = question_list
-        return render(request, 'feedback.html',{'question_list':question_list})
+
+        return render(request, 'presentation/feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
   
