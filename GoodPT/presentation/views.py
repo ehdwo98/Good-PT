@@ -72,7 +72,6 @@ def detail(request):
                 
                 InitialState.questionnum = 0
                 InitialState.answerlist = []
-                
                 return JsonResponse({'redirect':'/report'})
               
             feedbackData = [total_script,question_list[question_num]] #출력하는줄
@@ -80,6 +79,10 @@ def detail(request):
             InitialState.questionlist = question_list
             InitialState.answerlist = answer_list #저장하는 줄
             InitialState.questionnum = question_num+1
+            
+            if (question_num == 1) | (question_num == 2) | (question_num == 3):
+                    text_to_speech(question_list[question_num])
+                    
             return JsonResponse({'feedbackData':feedbackData})
         else:
             path = 'media/tmp/myvideo.mp4'
@@ -104,7 +107,8 @@ def detail(request):
                    surplus_rate = surplus).save()
             
             InitialState.questionlist = question_list
-        return render(request, 'feedback.html',{'question_list':question_list})
+            text_to_speech(question_list[0])
+        return render(request, 'presentation/feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
 
