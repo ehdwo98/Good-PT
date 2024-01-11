@@ -1,6 +1,18 @@
 {% extends "base.html" %} 
 {% load board_filter %}
 {% block content %}
+<style>
+    #qnaboard {
+        background-color: #6671a4;
+        color: white;
+    }
+    
+    .page-item.active .page-link {
+        background-color: #6671a4 !important;
+        border: #6671a4;
+    }
+
+</style>
 <div class="container my-3" id="question_detail">
     <!-- message 표시 -->
     {% if messages %}
@@ -204,7 +216,7 @@
         </div>
         <br/>
         <div>
-            <input type="submit" value="답변등록" class="btn btn-primary">
+            <input type="submit" value="답변등록" class="btn btn-primary" style="background-color:#6671a4; border:#6671a4;">
         </div>
     </form>
     <!-- 답변 등록폼 End -->
