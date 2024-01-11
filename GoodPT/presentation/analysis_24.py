@@ -10,12 +10,11 @@ from presentation.surplus_24 import find_surplus
 from presentation.speech_rate_24 import measure_speech_rate
 from presentation.gap_find_24 import find_silence
 from presentation.LLM_gpt_24 import *
-    
-def script_analysis(a_content_lst):
-    result = ""
-    for c in a_content_lst:
-        result += c
-        result += "\n"
+
+def script_analysis(a_content):
+    result = "\t"
+    result += a_content
+    result += "\n"
     return result
 
 def total_analysis(attitude_text, voice_text, script_text):
@@ -31,19 +30,22 @@ def total_analysis(attitude_text, voice_text, script_text):
     return result
 
 def voice_analysis(surplus_text, speed_text, gap_text):
-    result = ""
+    result = "\t"
     result += surplus_text
     result += '\n'
+    result += ' '
     result += speed_text
     result += '\n'
+    result += ' '
     result += gap_text
     result += '\n'
     return result
 
 def attitude_analysis(gesture_text, gaze_text):
-    result = ""
+    result = "\t"
     result += gesture_text
     result += '\n'
+    result += ' '
     result += gaze_text
     result += '\n'
     return result

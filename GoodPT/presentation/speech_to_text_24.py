@@ -35,14 +35,15 @@ def stt(audio_path):
         return text
     except sr.UnknownValueError:
         print('Can Not Understand...')
-        text = -1
+        text = '음성 인식이 되지 않았습니다.'
         return text
     except sr.RequestError as e:
         print('---Request Error---')
-        text = -1
+        text = '네트워크 에러'
         return text
 
 def audio_length(audio_path):
     audio = AudioSegment.from_wav(audio_path)
     audio_length_ms = len(audio) # ms
+    print('audio_length(Seconds):', np.round(audio_length_ms / 1000, 2))
     return np.round(audio_length_ms / 1000, 2) # s
