@@ -101,12 +101,16 @@ function answerTTSJsonCallback(json){
         let mystt = json.feedbackData[0]
 
         let answer = document.createElement('p');
-        answer.innerText = mystt;
+        answer.innerText = "답변: " + mystt;
         GPTconsole.appendChild(answer);
         console.log(answer)
 
+        // hr 요소 추가
+        let line = document.createElement('hr');
+        GPTconsole.appendChild(line);
+
         let question = document.createElement('p');
-        question.innerText = questionList;
+        question.innerText = "질문: " + questionList;
         GPTconsole.appendChild(question);
         console.log(question)
 
@@ -117,7 +121,6 @@ function answerTTSJsonCallback(json){
         window.location.href = '/report';
 
     }
-
 
 }
 
