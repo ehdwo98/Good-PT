@@ -3,28 +3,24 @@
 <div class="container"  id="question_form">
     <h5 class="my-3 border-bottom pb-2">[{{ category.description }}] 질문 등록</h5>
     <form method="post" class="post-form my-3" enctype="multipart/form-data">
-        {% csrf_token %} {% include "form_errors.html" %}
-        <div class="mb-3">
-            <label for="subject" class="form-label">제목</label>
-            <input
-                type="text"
-                class="form-control"
-                name="subject"
-                id="subject"
-                value="{{ form.subject.value|default_if_none:'' }}"
-            />
+        {% csrf_token %} 
+        {% include "form_errors.html" %}
+        <div class="form-group">
+            <label for="subject">제목</label>
+            <input type="text" class="form-control" name="subject" id="subject"
+                value="{{ form.subject.value|default_if_none:'' }}">
         </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">내용</label>
-            <textarea class="form-control" name="content" id="content" rows=10 style="resize: none;">
-                {{ form.content.value|default_if_none:'' }}
-            </textarea>
+        <div class="form-group" style="margin-top:10px;">
+            <label for="content">내용</label>
+            <textarea class="form-control" name="content"
+                    id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">파일</label>
-            <br>
+        <div class="mb-3"style="margin-top:10px;">
+            <div>
+                <label for="content" class="form-label">파일</label>
+            </div>
+            {% if form.image.value %}
             <label for="image" id="imageLabel" class="custom-file-upload">
-                {% if form.image.value %}
                     현재 선택된 이미지 : {{ form.image.value.name }}
                     <div>
                         <label>
@@ -35,11 +31,8 @@
                             <input type="radio" name="image_action" value="deleteImage" onclick="hideImageInput()"> 이미지 삭제
                         </label>
                     </div>
-                {% else %}
-                    현재 선택된 이미지 파일이 없습니다.
-                {% endif %}
             </label>
-            <br>
+            {% endif %}
             <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg" />
         </div>
         <button type="submit" class="btn btn-primary" style="background-color:#6671a4; border:#6671a4;">저장하기</button>
