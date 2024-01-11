@@ -33,11 +33,15 @@ openai.api_key=''
 # Create your views here.
 
 def recording(request):
-  if request.method == 'POST':
-    recorded_data = request.FILES.get('recordedData')
-    path = default_storage.save('tmp/myvideo.mp4', ContentFile(recorded_data.read()))
-  
-  return render(request,'presentation/presentation.html')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            recorded_data = request.FILES.get('recordedData')
+            path = default_storage.save('tmp/myvideo.mp4', ContentFile(recorded_data.read()))
+        
+        return render(request,'presentation/presentation.html')
+    else:
+        return redirect('/login')
+        
       
 
 
