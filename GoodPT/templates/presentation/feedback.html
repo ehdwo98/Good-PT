@@ -2,44 +2,6 @@
 {% load static %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script> 
-    <script> 
-		$(document).ready(function() { 
-			// Send the form on enter keypress and avoid if shift is pressed 
-			$('#prompt').keypress(function(event) { 
-				if (event.keyCode === 13 && !event.shiftKey) { 
-					event.preventDefault(); 
-					$('form').submit(); 
-				} 
-			}); 
-			$('form').on('submit', function(event) { 
-				event.preventDefault(); 
-			// get the CSRF token from the cookie 
-			var csrftoken = Cookies.get('csrftoken'); 
-			
-			// set the CSRF token in the AJAX headers 
-			$.ajaxSetup({ 
-				headers: { 'X-CSRFToken': csrftoken } 
-			}); 
-				// Get the prompt 
-				var prompt = $('#prompt').val(); 
-				var dateTime = new Date(); 
-				var time = dateTime.toLocaleTimeString(); 
-				// Add the prompt to the response div 
-				$('#response').append('<p>('+ time + ') <i class="bi bi-person"></i>: ' + prompt + '</p>'); 
-				// Clear the prompt 
-				$('#prompt').val(''); 
-				$.ajax({ 
-					url: '/feedback/', 
-					type: 'POST', 
-					data: {prompt: prompt}, 
-					dataType: 'json', 
-					success: function(data) { 
-						$('#response').append('<p>('+ time + ') <i class="bi bi-robot"></i>: ' + data.response + '</p>'); 
-					} 
-				}); 
-			}); 
-		});
-    </script>
 
 {% block content %}
 <div class="video-wrapper" style="padding-bottom: 22px;">
@@ -72,7 +34,7 @@
         </div>
         <div id="dialog">
             <div class="container p-3 rounded-lg" id="chat">
-                <h5>Q&A Dialog</h5>
+                <h5>QnA Dialog</h5>
                 <div class="chat-container">
                     <div class="chat-history-wrapper overflow-auto" id="response">
                     </div>
@@ -97,7 +59,7 @@
     {% endfor %}
 
     let firstQuestion = document.createElement('p');
-    firstQuestion.innerText = questionList[0];
+    firstQuestion.innerText = "질문: " + questionList[0];
 
     let GPTconsole = document.querySelector('#response');
 
