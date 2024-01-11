@@ -57,7 +57,6 @@ def detail(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             question_num = InitialState.questionnum
-
             question_list = InitialState.questionlist
             answer_list = InitialState.answerlist
             print(question_list)
@@ -77,7 +76,6 @@ def detail(request):
                 
                 InitialState.questionnum = 0
                 InitialState.answerlist = []
-                
                 return JsonResponse({'redirect':'/report'})
               
             feedbackData = [total_script,question_list[question_num]] #출력하는줄
@@ -85,8 +83,10 @@ def detail(request):
             InitialState.questionlist = question_list
             InitialState.answerlist = answer_list #저장하는 줄
             InitialState.questionnum = question_num+1
+            
             if (question_num == 1) | (question_num == 2) | (question_num == 3):
-                text_to_speech(question_list[question_num])
+                    text_to_speech(question_list[question_num])
+                    
             return JsonResponse({'feedbackData':feedbackData})
         else:
             path = 'media/tmp/myvideo.mp4'
@@ -105,15 +105,14 @@ def detail(request):
                    total_analysis = total_script,
                    rDatetime = datetime.now(),
                    static_rate = gesture,
-                   face_recog_rate = gaze,
+                   face_recog_rate = abs(gaze),
                    gap_rate = gap,
                    speed_rate = speech_rate,
                    surplus_rate = surplus).save()
             
             InitialState.questionlist = question_list
             text_to_speech(question_list[0])
-
         return render(request, 'presentation/feedback.html',{'question_list':question_list})
     else:
         return redirect('/login')
-  
+
