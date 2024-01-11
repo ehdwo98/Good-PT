@@ -82,8 +82,8 @@
     <div class="row my-3">
         <div class="col-1">  <!-- 추천 영역 -->
             <a href="#" data-uri="{% url 'board:vote_answer' answer.id %}?page={{ page }}&so={{ so }}"
-            class="recommend btn btn-sm btn-secondary btn btn-block my-1">추천</a>
-            <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{ answer.voter.count }}</div>
+            class="recommend btn btn-sm btn-secondary btn btn-block my-1" style="width: 50px;">추천</a>
+            <div class="bg-light text-center p-3 border font-weight-bolder mb-1" style="width: 50px;">{{ answer.voter.count }}</div>
         </div>
         <div class="col-11">  <!-- 답변 영역 -->
             <div class="card">
