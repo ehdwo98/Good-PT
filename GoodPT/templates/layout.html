@@ -56,7 +56,7 @@
               <li class="nav-item px-2"><a class="nav-link" href="/">Home</a></li>
               <li class="nav-item px-2" ><a class="nav-link" href="/presentation">Presentation</a></li>
               <li class="nav-item px-2" ><a class="nav-link" href="{% url 'board:index' 'qna' %}">Board</a></li>
-              {% if request.resolver_match.app_name == 'presentation' or request.resolver_match.app_name == 'report' %}
+              {% if request.resolver_match.app_name == 'presentation' or request.resolver_match.app_name == 'report'  or request.resolver_match.app_name == 'login' %}
               {% else %}
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Price</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#team">Team</a></li>
@@ -143,7 +143,7 @@
           <hr />
           <div class="row flex-center pb-3">
             <div class="col-md-6 order-0">
-              <p class="text-200 text-center text-md-start">All rights Reserved &copy; KT AIVLE School AI 24, 2023</p>
+              <p class="text-200 text-center text-md-start">All rights Reserved &copy; KT AIVLE School AI Team 24, 2023</p>
             </div>
             <div class="col-md-6 order-1">
               <p class="text-200 text-center text-md-end"> Made with&nbsp;
