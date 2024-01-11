@@ -134,3 +134,8 @@
     background-color: #e5e9ff;
     border-radius: 30px;
 }
+
+#response {
+    font-size: 12pt;
+    font-weight: 600;
+}
