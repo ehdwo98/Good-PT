@@ -25,8 +25,7 @@ import numpy as np
 
 def question_contents(content):
     # API 연동
-    # OPENAI_API_KEY = "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"
-    OPENAI_API_KEY = "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"
+    # OPENAI_API_KEY =
     client = OpenAI(api_key=OPENAI_API_KEY)
 
     # GPT-3.5-TURBO API
@@ -62,7 +61,6 @@ def question_contents(content):
 # 발표 내용 분석
 def content_analysis(content):
     # API 연동
-    OPENAI_API_KEY = "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"
     client = OpenAI(api_key=OPENAI_API_KEY)
 
     # GPT-3.5-TURBO API
@@ -90,7 +88,6 @@ def content_analysis(content):
 # gesture: gesture_analysis.py의 gesture_analysis()의 반환 값인 gesture (제스처 비율)
 def gesture_analysis_return_rate(gesture):
     # API 연동
-    OPENAI_API_KEY = "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"
     client = OpenAI(api_key=OPENAI_API_KEY)
     
     # 제스처 평가 멘트
@@ -122,7 +119,6 @@ def gesture_analysis_return_rate(gesture):
 # gaze: gesture_analysis.py의 gesture_analysis()의 반환 값인 gaze (정면 응시 비율)
 def gaze_analysis(gaze):
     # API 연동
-    OPENAI_API_KEY = "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"
     client = OpenAI(api_key=OPENAI_API_KEY)
     
     gaze_percentage = gaze * 100
@@ -159,7 +155,6 @@ def gaze_analysis(gaze):
 # gap: gap_find_24의 find_silence()의 반환 값인 음성 공백 비율
 def gap_analysis(gap):
     # API 연동
-    OPENAI_API_KEY = "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"
     client = OpenAI(api_key=OPENAI_API_KEY)
     
     # 음성 공백 평가 멘트
@@ -190,8 +185,7 @@ def gap_analysis(gap):
 # 음성적 잉여 분석
 # surplus: surplus_24의 find_surplus()의 반환 값인 음성적 잉여 비율
 def surplus_analysis(surplus):
-    # API 연동
-    OPENAI_API_KEY = "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"
+    # API 
     client = OpenAI(api_key=OPENAI_API_KEY)
     
     # 음성적 잉여 평가 멘트
@@ -224,7 +218,7 @@ def surplus_analysis(surplus):
 # speed: speech_rate.py의 measure_speech_rate의 반환 값 (음성 속도 비율)
 def speed_analysis(speed):
     # API 연동
-    OPENAI_API_KEY = "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"
+  
     client = OpenAI(api_key=OPENAI_API_KEY)
     
     # 음성 빠르기 평가 멘트
